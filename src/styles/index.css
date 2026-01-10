@@ -4,12 +4,88 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------ BASE ------------------ */
 html {
   scroll-behavior: smooth;
 }
 
 body {
   background-color: #FDFBFF; /* Clean White */
-  color: #1E1B4B;
+  color: #1E1B4B; /* Dark Indigo */
   font-family: 'Inter', sans-serif;
+}
+@layer components {
+  .floating-input {
+    @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 text-sm
+    focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20
+    outline-none transition;
+  }
+
+  .floating-label {
+    @apply absolute left-4 top-4 text-gray-400 text-sm pointer-events-none
+    transition-all bg-white px-1;
+  }
+
+  .floating-input:focus + .floating-label,
+  .floating-input:not(:placeholder-shown) + .floating-label {
+    @apply -top-2 text-xs text-brand-primary;
+  }
+
+  .error-input {
+    @apply border-red-500 ring-2 ring-red-400/20;
+  }
+}
+
+
+/* ------------------ FORM INPUTS (APPLY NOW) ------------------ */
+.input {
+  @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3
+  text-gray-700 placeholder-gray-400
+  focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20
+  transition-all duration-200 outline-none;
+}
+
+/* Remove ugly default select arrow (for custom UI consistency) */
+select.input {
+  @apply appearance-none cursor-pointer;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236b7280' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 3rem;
+}
+
+/* ------------------ BUTTON IMPROVEMENTS ------------------ */
+button {
+  @apply transition-all duration-300;
+}
+
+button:disabled {
+  @apply opacity-60 cursor-not-allowed;
+}
+
+/* ------------------ CARD SHADOW (MATCH SCREENSHOT) ------------------ */
+.card {
+  @apply bg-white rounded-3xl shadow-xl border border-gray-100;
+}
+
+/* ------------------ OPTIONAL: SMOOTH FOCUS ACCESSIBILITY ------------------ */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.35);
+}
+.floating-input {
+  @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 pt-5 pb-2 text-sm
+  focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20
+  transition outline-none;
+}
+
+.floating-label {
+  @apply absolute left-4 top-3 text-gray-400 text-sm
+  transition-all pointer-events-none;
+}
+
+.floating-input:focus + .floating-label,
+.floating-input:not(:placeholder-shown) + .floating-label {
+  @apply top-1 text-xs text-brand-primary;
 }

@@ -97,11 +97,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-4 text-gray-400">
                 <Mail className="shrink-0 text-brand-primary" size={20} />
-                <span className="text-sm">hello@combosquare.com</span>
+                <span className="text-sm">combosquareofficials@gmail.com</span>
               </div>
               <div className="flex items-center gap-4 text-gray-400">
                 <Phone className="shrink-0 text-brand-primary" size={20} />
-                <span className="text-sm">+91 98765 43210</span>
+                <span className="text-sm">+91 8072877622</span>
               </div>
             </div>
           </div>

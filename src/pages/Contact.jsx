@@ -82,7 +82,7 @@ const Contact = () => {
                     <Phone />
                   </div>
                   <h3 className="font-bold text-lg text-brand-dark">Call Us</h3>
-                  <p className="text-gray-500 text-sm mt-1">+91 98765 43210</p>
+                  <p className="text-gray-500 text-sm mt-1">+91 8072877622</p>
                   <p className="text-brand-primary text-xs font-bold mt-2 uppercase tracking-wide">Mon-Fri, 9am-6pm</p>
                 </SpotlightCard>
 
@@ -91,7 +91,7 @@ const Contact = () => {
                     <Mail />
                   </div>
                   <h3 className="font-bold text-lg text-brand-dark">Email Us</h3>
-                  <p className="text-gray-500 text-sm mt-1">hello@combosquare.com</p>
+                  <p className="text-gray-500 text-sm mt-1">combosquareofficials@gmail.com</p>
                   <p className="text-brand-primary text-xs font-bold mt-2 uppercase tracking-wide">24/7 Support</p>
                 </SpotlightCard>
               </div>
