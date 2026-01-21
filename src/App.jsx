@@ -1,70 +1,57 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // --- LAYOUT COMPONENTS ---
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
-// --- HOME PAGE SECTIONS (For the One-Page Scroll Experience) ---
-import Hero from './components/sections/Hero';
-import WhoWeAre from './components/sections/WhoWeAre';
-import ServicesSection from './components/sections/Services'; // The section displayed on Home
-import WhyChooseUs from './components/sections/WhyChooseUs';
-import Testimonials from './components/sections/Testimonials';
-import FAQ from './components/sections/FAQ';
-import CTA from './components/sections/CTA';
-
-// --- FULL PAGES (For Detailed Navigation) ---
+// --- PAGE COMPONENTS ---
+import Home from './pages/Home';
 import About from './pages/About';
-import ServicesPage from './pages/Services'; // The detailed Services Matrix page
+import Services from './pages/Services';
 import Careers from './pages/Careers';
 import Blog from './pages/Blog';
-import Contact from './pages/Contact'; // <--- NEW CONTACT PAGE IMPORT
+import Contact from './pages/Contact';
 
-// --- HELPER: SCROLL TO TOP ON ROUTE CHANGE ---
-// This ensures that when you click a link, the new page starts at the top
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
-
-// --- HOME PAGE COMPONENT ---
-// Bundles all landing page sections
-const Home = () => (
-  <>
-    <div id="home"><Hero /></div>
-    <div id="about"><WhoWeAre /></div>
-    <div id="services"><ServicesSection /></div>
-    <div id="why-us"><WhyChooseUs /></div>
-    <div id="testimonials"><Testimonials /></div>
-    <div id="faq"><FAQ /></div>
-    <div id="contact"><CTA /></div>
-  </>
-);
-
-// --- MAIN APP COMPONENT ---
-export default function App() {
+function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <div className="bg-white min-h-screen font-sans">
+      <div className="flex flex-col min-h-screen bg-white">
+        
+        {/* Navigation Bar - Stays at the top of every page */}
         <Navbar />
-        <Routes>
-          {/* Main Landing Page */}
-          <Route path="/" element={<Home />} />
-          
-          {/* Dedicated Inner Pages */}
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} /> {/* <--- NEW CONTACT ROUTE */}
-        </Routes>
+
+        {/* Main Content Area - Injects the active page based on URL */}
+        <main className="flex-grow">
+          <Routes>
+            
+            {/* 1. Home Page - The Hero Landing */}
+            <Route path="/" element={<Home />} />
+            
+            {/* 2. About Us - The Visionaries & Story */}
+            <Route path="/about" element={<About />} />
+
+            {/* 3. Services - The Digital Empire Showroom */}
+            <Route path="/services" element={<Services />} />
+
+            {/* 4. Careers - The Premium Job Portal */}
+            <Route path="/careers" element={<Careers />} />
+
+            {/* 5. Blog - The Knowledge & Insights Hub */}
+            <Route path="/blog" element={<Blog />} />
+
+            {/* 6. Contact - The Cinematic Map & Inquiry Page */}
+            <Route path="/contact" element={<Contact />} />
+
+          </Routes>
+        </main>
+
+        {/* Footer - Stays at the bottom of every page */}
         <Footer />
+        
       </div>
     </Router>
-  )
+  );
 }
+
+export default App;

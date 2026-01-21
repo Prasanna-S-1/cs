@@ -1,130 +1,157 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote, PlayCircle } from 'lucide-react';
+import { Quote, Star, Users } from 'lucide-react';
 
 const testimonials = [
   {
     id: 1,
-    name: "Dr. Rajesh Kumar",
-    role: "College Partner",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400",
-    quote: "Combo Square helped us train 200+ students in AI & ML, boosting their placement confidence significanty.",
-    rating: 5,
-    tag: "College Collaboration"
+    type: "College Partner",
+    quote: "Combo Square helped us train 200+ students in AI & ML, boosting their placement confidence significantly.",
+    name: "Dr. S. Ramesh",
+    role: "HOD, Engineering Dept",
+    tag: "200+ Placements",
+    color: "bg-blue-500",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=400"
   },
   {
     id: 2,
-    name: "Sarah Thompson",
-    role: "Startup Founder",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
-    quote: "Their branding and video editing services elevated our sales by 40% in just three months. Exceptional work!",
-    rating: 5,
-    tag: "Branding Client"
+    type: "Startup Client",
+    quote: "Their branding and video editing services elevated our sales by 40% in just 3 months. Truly next-gen work.",
+    name: "Vikram Mehta",
+    role: "CEO, TechFlow",
+    tag: "40% Growth",
+    color: "bg-green-500",
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=400"
   },
-  // Adding a student one to balance the grid (Implied from "Learner Growth" stats)
   {
     id: 3,
-    name: "Priya S.",
-    role: "Student Intern",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400",
-    quote: "The internship program changed my career path. I learned React and Tailwind in depth!",
-    rating: 5,
-    tag: "Internship Success"
+    type: "Student Success",
+    quote: "I went from zero coding knowledge to a hired developer at Zoho. The practical training is unmatched.",
+    name: "Anitha R.",
+    role: "Full Stack Developer",
+    tag: "Hired at Zoho",
+    color: "bg-purple-500",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    id: 4,
+    type: "Hiring Partner",
+    quote: "The students we hired from Combo Square were project-ready from Day 1. Saves us months of training.",
+    name: "HR Manager",
+    role: "Top MNC",
+    tag: "Quality Talent",
+    color: "bg-orange-500",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400"
   }
 ];
 
+const column1 = [...testimonials, ...testimonials];
+const column2 = [...testimonials.reverse(), ...testimonials];
+
+const Card = ({ item }) => (
+  <div className="mb-4 break-inside-avoid">
+    <div className="bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300">
+
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <img src={item.image} alt={item.name} className="w-9 h-9 rounded-full object-cover ring-2 ring-gray-100" />
+          <div>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{item.type}</p>
+            <p className="text-sm font-bold text-gray-900">{item.name}</p>
+          </div>
+        </div>
+        <div className={`w-7 h-7 rounded-full ${item.color} flex items-center justify-center text-white`}>
+          <Quote size={12} fill="currentColor" />
+        </div>
+      </div>
+
+      {/* Quote */}
+      <p className="text-gray-600 font-medium leading-relaxed mb-3 text-sm">
+        "{item.quote}"
+      </p>
+
+      {/* Footer */}
+      <div className="pt-3 border-t border-gray-50 flex items-center justify-between">
+        <div className="flex text-yellow-400 gap-0.5">
+          {[1,2,3,4,5].map(i => <Star key={i} size={11} fill="currentColor" />)}
+        </div>
+        <span className="text-[10px] font-bold px-2 py-1 rounded-md bg-gray-50 uppercase tracking-wide text-gray-500">
+          {item.tag}
+        </span>
+      </div>
+
+    </div>
+  </div>
+);
+
 const Testimonials = () => {
   return (
-    <section className="py-24 bg-brand-light relative overflow-hidden">
-      
-      {/* Background: Floating Quotes */}
-      <div className="absolute top-10 left-10 text-brand-primary/5 transform -rotate-12">
-        <Quote size={120} />
-      </div>
-      <div className="absolute bottom-10 right-10 text-brand-primary/5 transform rotate-12">
-        <Quote size={120} />
-      </div>
+    <section className="py-16 sm:py-20 lg:py-28 bg-gray-50 overflow-hidden relative">
 
-      <div className="container mx-auto px-6 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-extrabold text-brand-dark mb-4"
-          >
-            Client <span className="text-brand-primary">Success Stories</span>
-          </motion.h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            See how we are making a difference for colleges, startups, and students.
-          </p>
-        </div>
+      {/* Fades */}
+      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-gray-50 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
-        {/* 3D Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {testimonials.map((item, index) => (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-10 items-center">
+
+          {/* TEXT */}
+          <div className="lg:col-span-5 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full mb-5 shadow-sm">
+              <Users size={14} className="text-brand-primary" />
+              <span className="text-xs font-bold text-gray-600 uppercase tracking-widest">
+                Community Feedback
+              </span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-[#0f0518] mb-5 leading-tight">
+              Loved by <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-600">
+                Everyone.
+              </span>
+            </h2>
+
+            <p className="text-base sm:text-lg text-gray-500 mb-6 max-w-md mx-auto lg:mx-0">
+              From students landing their dream jobs to startups scaling their sales. The impact is real.
+            </p>
+
+            <div className="flex gap-4 justify-center lg:justify-start">
+              <div className="px-4 py-3 bg-white rounded-xl border border-gray-100 shadow-sm">
+                <p className="text-xl font-black text-[#0f0518]">4.9/5</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase">Average Rating</p>
+              </div>
+              <div className="px-4 py-3 bg-white rounded-xl border border-gray-100 shadow-sm">
+                <p className="text-xl font-black text-[#0f0518]">2k+</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase">Reviews</p>
+              </div>
+            </div>
+          </div>
+
+          {/* FLOATING CARDS */}
+          <div className="lg:col-span-7 h-[420px] sm:h-[520px] lg:h-[600px] relative overflow-hidden flex gap-6">
+
+            {/* Column 1 */}
             <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 relative group"
+              animate={{ y: ["-50%", "0%"] }}
+              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+              className="w-full sm:w-1/2 flex flex-col"
             >
-              {/* Top Badge */}
-              <div className="absolute top-6 right-6 px-3 py-1 bg-brand-light text-brand-primary text-xs font-bold uppercase rounded-full">
-                {item.tag}
-              </div>
-
-              {/* Star Rating */}
-              <div className="flex gap-1 mb-6">
-                {[...Array(item.rating)].map((_, i) => (
-                  <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="text-gray-600 mb-8 italic leading-relaxed relative z-10">
-                "{item.quote}"
-              </p>
-
-              {/* Profile Section */}
-              <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
-                <div className="relative">
-                   <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary p-0.5">
-                     <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-full" />
-                   </div>
-                   {/* Video Pulse Indicator */}
-                   <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-sm">
-                      <PlayCircle size={16} className="text-brand-primary fill-brand-primary/20" />
-                   </div>
-                </div>
-                <div>
-                  <h4 className="font-bold text-brand-dark">{item.name}</h4>
-                  <p className="text-sm text-gray-500">{item.role}</p>
-                </div>
-              </div>
-
-              {/* Hover Glow Effect */}
-              <div className="absolute inset-0 rounded-3xl ring-2 ring-brand-primary/0 group-hover:ring-brand-primary/50 transition-all duration-500 pointer-events-none" />
+              {column1.map((item, i) => <Card key={i} item={item} />)}
             </motion.div>
-          ))}
-        </div>
 
-        {/* TRUST BADGE STRIP (Simulated Marquee) */}
-        <div className="mt-20 pt-10 border-t border-gray-200/60">
-           <p className="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">Trusted by 25+ Partners</p>
-           <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-              {/* Using generic tech names/icons as placeholders for client logos */}
-              {['TechCorp', 'EduLearn', 'FutureSystems', 'InnovateAI', 'GlobalDesign'].map((brand, i) => (
-                 <span key={i} className="text-xl font-black text-gray-300 hover:text-brand-primary cursor-default">{brand}</span>
-              ))}
-           </div>
-        </div>
+            {/* Column 2 (hidden on small mobile) */}
+            <motion.div
+              animate={{ y: ["0%", "-50%"] }}
+              transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
+              className="hidden sm:flex w-1/2 flex-col pt-10"
+            >
+              {column2.map((item, i) => <Card key={i} item={item} />)}
+            </motion.div>
 
+          </div>
+
+        </div>
       </div>
     </section>
   );

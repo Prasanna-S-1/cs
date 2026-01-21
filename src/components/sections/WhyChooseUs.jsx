@@ -1,137 +1,165 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { XCircle, CheckCircle2, ArrowRight, TrendingUp, Globe2, Sparkles, Briefcase } from 'lucide-react';
-
-const comparisonData = [
-  {
-    before: "Limited exposure to real-world projects",
-    after: "Industry internships with hands-on experience",
-    icon: <Briefcase size={24} />
-  },
-  {
-    before: "Lack of clear career direction",
-    after: "Cutting-edge training in latest technologies",
-    icon: <TrendingUp size={24} />
-  },
-  {
-    before: "No branding identity or market presence",
-    after: "Global exposure and creative brand growth",
-    icon: <Globe2 size={24} />
-  },
-  {
-    before: "Missing industry connections",
-    after: "Strong portfolio and placement confidence",
-    icon: <Sparkles size={24} />
-  }
-];
+import { XCircle, CheckCircle2, Zap, AlertCircle, TrendingUp } from 'lucide-react';
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden relative">
-      
-      {/* Background Decor */}
-      <div className="absolute top-1/2 left-0 w-full h-[500px] bg-brand-light/30 -skew-y-3 z-0 transform -translate-y-1/2" />
+    <section className="py-16 sm:py-20 lg:py-32 bg-[#050505] relative overflow-hidden">
 
-      <div className="container mx-auto px-6 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+      {/* Background Ambience */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gray-800/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* HEADER */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 rounded-full bg-brand-light border border-brand-primary/20 text-brand-primary text-sm font-bold tracking-wide mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full mb-5 backdrop-blur-md"
           >
-            THE COMBO SQUARE ADVANTAGE
+            <Zap size={14} className="text-yellow-400 fill-yellow-400" />
+            <span className="text-xs font-bold text-white uppercase tracking-widest">
+              The Transformation
+            </span>
           </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-extrabold text-brand-dark mb-6"
-          >
-            Why Students & Brands <br/>
-            <span className="text-brand-primary">Choose Us?</span>
-          </motion.h2>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-white mb-5 leading-tight">
+            Stop Guessing. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-white to-gray-400">
+              Start Evolving.
+            </span>
+          </h2>
+
+          <p className="text-base sm:text-lg text-gray-400">
+            See the difference between the traditional path and the Combo Square advantage.
+          </p>
         </div>
 
-        {/* THE COMPARISON ENGINE */}
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-0 relative">
-          
-          {/* CENTER VS BADGE (Floating) */}
-          <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full shadow-xl items-center justify-center z-20 font-black text-gray-300 border-4 border-gray-50 text-xl">
-            VS
-          </div>
+        {/* COMPARISON */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0 relative">
 
-          {/* LEFT SIDE: BEFORE (The Problem) */}
-          <div className="bg-gray-50 rounded-l-3xl p-10 border border-gray-100 md:pr-16 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 bg-gray-200/50 rounded-bl-2xl text-xs font-bold text-gray-500 uppercase tracking-wider">
-              Before Combo Square
-            </div>
-            
-            <div className="space-y-8 mt-8">
-              {comparisonData.map((item, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 text-gray-400 grayscale transition-all duration-500 group-hover:grayscale-0"
-                >
-                  <XCircle size={28} className="shrink-0 text-gray-300" />
-                  <p className="font-medium text-lg line-through decoration-gray-300">{item.before}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT SIDE: AFTER (The Solution - Premium) */}
-          <motion.div 
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+          {/* BEFORE */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-brand-dark rounded-r-3xl p-10 md:pl-16 relative overflow-hidden shadow-2xl text-white transform md:scale-105 md:-translate-x-4 z-10"
+            transition={{ duration: 0.6 }}
+            className="
+              bg-[#121212] rounded-[2rem]
+              p-6 sm:p-8 lg:p-16
+              border border-white/5
+              lg:rounded-r-none lg:border-r-0
+            "
           >
-            {/* Glowing Gradient Background */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-primary/30 rounded-full blur-[80px] pointer-events-none" />
-            
-            <div className="absolute top-0 left-0 p-4 bg-brand-primary rounded-br-2xl text-xs font-bold text-white uppercase tracking-wider shadow-lg">
-              After Combo Square
+            <div className="flex items-center gap-3 mb-6 opacity-70">
+              <div className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center">
+                <AlertCircle size={18} className="text-gray-400" />
+              </div>
+              <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-widest">
+                Before Combo Square
+              </span>
             </div>
 
-            <div className="space-y-8 mt-8 relative z-10">
-              {comparisonData.map((item, index) => (
-                <motion.div 
-                  key={index}
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-500 mb-6 line-through decoration-red-500/50 decoration-2">
+              The Traditional Struggle
+            </h3>
+
+            <ul className="space-y-6">
+              {[
+                { title: "Limited Exposure", desc: "Stuck with theory, no real-world view." },
+                { title: "No Career Direction", desc: "Confused about what to learn next." },
+                { title: "Zero Branding", desc: "Invisible to recruiters and clients." }
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-4">
+                  <div className="w-7 h-7 rounded-full bg-gray-800/60 flex items-center justify-center mt-1">
+                    <XCircle size={14} className="text-gray-600" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-lg sm:text-xl text-gray-300 mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {item.desc}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* VS (DESKTOP ONLY) */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden lg:flex flex-col items-center">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="w-20 h-20 bg-[#0f0518] rounded-full border border-white/10 shadow-[0_0_30px_rgba(139,92,246,0.3)] flex items-center justify-center"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-brand-primary to-purple-600 rounded-full flex items-center justify-center">
+                <span className="font-black text-xl text-white italic">VS</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* AFTER */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="
+              bg-[#0f0518] rounded-[2rem]
+              p-6 sm:p-8 lg:p-16
+              border border-brand-primary/30
+              lg:rounded-l-none
+              shadow-[0_0_50px_rgba(139,92,246,0.1)]
+            "
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-9 h-9 rounded-full bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30">
+                <TrendingUp size={18} className="text-brand-neon" />
+              </div>
+              <span className="text-xs sm:text-sm font-bold text-brand-neon uppercase tracking-widest">
+                After Combo Square
+              </span>
+            </div>
+
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+              The Professional Edge
+            </h3>
+
+            <ul className="space-y-6">
+              {[
+                { title: "Industry Internships", desc: "Work on live client projects." },
+                { title: "Cutting-Edge Training", desc: "Master AI, IoT, & Full Stack." },
+                { title: "Global Exposure", desc: "Connect with 50+ hiring partners." },
+                { title: "Creative Growth", desc: "Build a brand that stands out." }
+              ].map((item, i) => (
+                <motion.li
+                  key={i}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + (index * 0.1) }}
-                  className="flex items-center gap-4"
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  className="flex items-start gap-4"
                 >
-                  <div className="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-neon shrink-0 shadow-[0_0_15px_rgba(168,127,251,0.3)]">
-                    {item.icon}
+                  <div className="w-7 h-7 rounded-full bg-green-500/20 flex items-center justify-center mt-1 border border-green-500/30">
+                    <CheckCircle2 size={14} className="text-green-400" />
                   </div>
-                  <p className="font-bold text-lg text-white">{item.after}</p>
-                </motion.div>
+                  <div>
+                    <p className="font-bold text-lg sm:text-xl text-white mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.li>
               ))}
-            </div>
-
-            {/* Shine Effect */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+            </ul>
           </motion.div>
 
-        </div>
-        
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <button className="inline-flex items-center gap-2 text-brand-dark font-bold hover:text-brand-primary transition-colors text-lg group">
-            See Our Success Stories 
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </button>
         </div>
 
       </div>

@@ -1,91 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* --- 1. IMPORT PREMIUM FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------ BASE ------------------ */
-html {
+
+/* --- 2. GLOBAL RESET & MOBILE FIXES --- */
+html, body {
+  @apply font-sans antialiased text-gray-900 bg-white;
+  width: 100%;
+  overflow-x: hidden; /* CRITICAL: Prevents mobile horizontal scroll */
+  -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight */
+
   scroll-behavior: smooth;
+  overscroll-behavior: none; /* iOS rubber-band fix (SAFE) */
+  padding-bottom: env(safe-area-inset-bottom); /* Notch-safe (no desktop impact) */
 }
 
-body {
-  background-color: #FDFBFF; /* Clean White */
-  color: #1E1B4B; /* Dark Indigo */
-  font-family: 'Inter', sans-serif;
+
+/* --- 3. PREMIUM SCROLLBAR (Desktop only) --- */
+::-webkit-scrollbar {
+  width: 8px;
 }
-@layer components {
-  .floating-input {
-    @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 text-sm
-    focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20
-    outline-none transition;
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b5cf6;
+}
+
+/* --- 4. TEXT SELECTION COLOR --- */
+::selection {
+  background-color: #482485;
+  color: #ffffff;
+}
+
+/* --- 5. UTILITY CLASSES --- */
+.glass-effect {
+  @apply bg-white/80 backdrop-blur-md border border-white/20;
+}
+
+/* Improve headline wrapping on mobile */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/* Animation helpers */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Hide scrollbar for horizontal sections */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* --- 6. ACCESSIBILITY (NO VISUAL CHANGE) --- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-
-  .floating-label {
-    @apply absolute left-4 top-4 text-gray-400 text-sm pointer-events-none
-    transition-all bg-white px-1;
-  }
-
-  .floating-input:focus + .floating-label,
-  .floating-input:not(:placeholder-shown) + .floating-label {
-    @apply -top-2 text-xs text-brand-primary;
-  }
-
-  .error-input {
-    @apply border-red-500 ring-2 ring-red-400/20;
-  }
 }
 
-
-/* ------------------ FORM INPUTS (APPLY NOW) ------------------ */
-.input {
-  @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3
-  text-gray-700 placeholder-gray-400
-  focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20
-  transition-all duration-200 outline-none;
-}
-
-/* Remove ugly default select arrow (for custom UI consistency) */
-select.input {
-  @apply appearance-none cursor-pointer;
-  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236b7280' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem;
-  padding-right: 3rem;
-}
-
-/* ------------------ BUTTON IMPROVEMENTS ------------------ */
-button {
-  @apply transition-all duration-300;
-}
-
-button:disabled {
-  @apply opacity-60 cursor-not-allowed;
-}
-
-/* ------------------ CARD SHADOW (MATCH SCREENSHOT) ------------------ */
-.card {
-  @apply bg-white rounded-3xl shadow-xl border border-gray-100;
-}
-
-/* ------------------ OPTIONAL: SMOOTH FOCUS ACCESSIBILITY ------------------ */
-*:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.35);
-}
-.floating-input {
-  @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 pt-5 pb-2 text-sm
-  focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20
-  transition outline-none;
-}
-
-.floating-label {
-  @apply absolute left-4 top-3 text-gray-400 text-sm
-  transition-all pointer-events-none;
-}
-
-.floating-input:focus + .floating-label,
-.floating-input:not(:placeholder-shown) + .floating-label {
-  @apply top-1 text-xs text-brand-primary;
-}
