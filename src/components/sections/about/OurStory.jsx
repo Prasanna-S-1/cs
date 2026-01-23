@@ -1,157 +1,156 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Flag, Rocket, Users, Globe, Zap } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Sparkles, ArrowUpRight } from "lucide-react";
 
-const milestones = [
+/* ===== CONTENT FROM PDF (UNCHANGED) ===== */
+const journey = [
+  {
+    year: "2021",
+    title: "Foundation",
+    desc: "Combo Square was founded with the vision of bridging the gap between academic knowledge and real-world industry expectations.",
+  },
+  {
+    year: "2022",
+    title: "Skill Building",
+    desc: "Introduced structured internships, workshops, and hands-on technical programs focused on practical exposure.",
+  },
+  {
+    year: "2023",
+    title: "Expansion",
+    desc: "Expanded into branding, digital marketing, and creative services for startups and educational institutions.",
+  },
   {
     year: "2024",
-    title: "The Inception",
-    desc: "Combo Square was born from a simple idea: Students need more than textbooks. They need a playground for innovation. We started as a small community of dreamers.",
-    icon: Flag
+    title: "Innovation Hub",
+    desc: "Evolved into a full-scale EdTech and Innovation Hub serving students, colleges, and businesses.",
   },
-  {
-    year: "2024 (Late)",
-    title: "First 100 Students",
-    desc: "We launched our first Bootcamp. It wasn't just a class; it was a movement. 100+ students built their first live projects, breaking the cycle of rote learning.",
-    icon: Users
-  },
-  {
-    year: "2025",
-    title: "Agency Expansion",
-    desc: "We realized we could do more. We started the Creative Agency wing, helping startups define their brand identity with high-end visuals and tech solutions.",
-    icon: Rocket
-  },
-  {
-    year: "2026",
-    title: "Global Vision",
-    desc: "Now partnering with 30+ colleges and serving clients globally. We are building the ultimate ecosystem for Education + Innovation.",
-    icon: Globe
-  }
 ];
 
-const MilestoneCard = ({ item, index }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.08 }}
-      className={`relative flex w-full mb-16 sm:mb-20 lg:mb-24 group ${
-        index % 2 === 0 ? 'md:flex-row-reverse' : ''
-      }`}
-    >
-      {/* Spacer (desktop alignment) */}
-      <div className="hidden md:block w-5/12" />
-
-      {/* Timeline Node */}
-      <div className="absolute left-[18px] md:left-1/2 -translate-x-1/2 z-20">
-        <div className="
-          w-10 h-10 sm:w-12 sm:h-12
-          rounded-full bg-[#0f0518]
-          border-4 border-white
-          shadow-xl flex items-center justify-center
-          transition-all duration-300
-          group-hover:border-brand-primary
-        ">
-          <item.icon size={18} className="text-white group-hover:text-brand-neon transition-colors" />
-          <div className="absolute inset-0 rounded-full bg-brand-primary/40 blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        </div>
-      </div>
-
-      {/* Content Card */}
-      <div className="w-full pl-16 sm:pl-20 md:pl-0 md:w-5/12">
-        <div className="
-          bg-white p-6 sm:p-8
-          rounded-2xl sm:rounded-[2rem]
-          shadow-lg border border-gray-100
-          transition-all duration-300
-          hover:shadow-xl hover:-translate-y-1
-          active:scale-[0.98]
-        ">
-          <div className="inline-block bg-gray-900 text-white px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-4">
-            {item.year}
-          </div>
-
-          <h3 className="text-xl sm:text-2xl font-black text-[#0f0518] mb-3">
-            {item.title}
-          </h3>
-
-          <p className="text-sm sm:text-base text-gray-500 leading-relaxed font-medium">
-            {item.desc}
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const OurStory = () => {
-  const containerRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 85%", "end 55%"]
-  });
-
-  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
   return (
-    <section
-      ref={containerRef}
-      className="py-16 sm:py-20 lg:py-32 bg-gray-50 overflow-hidden relative"
-    >
-      {/* Background */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+    <section className="relative bg-white overflow-hidden">
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* ===== BACKGROUND DEPTH ===== */}
+      <div className="absolute top-[-140px] right-[-140px] w-[420px] h-[420px] bg-purple-100/60 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-160px] left-[-160px] w-[520px] h-[520px] bg-brand-primary/10 rounded-full blur-[160px]" />
 
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 lg:mb-24">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full mb-5 shadow-sm"
-          >
-            <Zap size={14} className="text-brand-primary fill-brand-primary" />
-            <span className="text-xs font-bold text-gray-600 uppercase tracking-widest">
-              Our Journey
-            </span>
-          </motion.div>
+      {/* subtle grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-[#0f0518] mb-4 tracking-tight">
-            Connecting the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-600">
-              Dots.
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-10 py-20 lg:py-28">
+
+        {/* ===== HEADER ===== */}
+        <div className="max-w-5xl mb-14">
+          <span className="inline-flex items-center gap-2 px-5 py-2 mb-5 rounded-full bg-purple-50 text-purple-700 text-xs font-black tracking-widest uppercase">
+            <Sparkles size={14} /> Our Story
+          </span>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.15] text-[#0f0518]">
+            From an idea to an{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-500">
+              innovation ecosystem
             </span>
           </h2>
 
-          <p className="text-sm sm:text-lg text-gray-500 font-medium">
-            From a small dorm-room idea to a full-fledged innovation hub.
+          <p className="mt-6 max-w-3xl text-gray-600 text-base sm:text-lg font-medium leading-relaxed">
+            Our journey is built on practical learning, industry alignment,
+            and a commitment to preparing students and organizations for the future.
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
+        {/* ===== MAIN LAYOUT (CRITICAL FIX HERE) ===== */}
+        <div className="grid grid-cols-12 gap-8 lg:gap-14 items-start">
 
-          {/* Line */}
-          <div className="absolute left-[18px] md:left-1/2 top-0 bottom-12 w-1 -translate-x-1/2">
-            <div className="absolute inset-0 bg-gray-200 rounded-full"></div>
-            <motion.div
-              style={{ height }}
-              className="absolute top-0 left-0 w-full bg-brand-primary rounded-full shadow-[0_0_20px_rgba(139,92,246,0.4)] origin-top"
-            />
+          {/* ===== TIMELINE (MINI DESKTOP EVEN ON MOBILE) ===== */}
+          <div className="col-span-12 md:col-span-7">
+            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+
+              {journey.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  whileHover={{ y: -6 }}
+                  className="
+                    relative
+                    bg-white
+                    rounded-2xl
+                    sm:rounded-3xl
+                    p-4 sm:p-6
+                    border border-gray-200
+                    shadow-[0_12px_35px_rgba(0,0,0,0.08)]
+                    hover:shadow-[0_20px_55px_rgba(0,0,0,0.14)]
+                    transition-all
+                  "
+                >
+                  {/* top accent */}
+                  <span className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary to-purple-500 rounded-t-2xl sm:rounded-t-3xl" />
+
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs sm:text-sm font-black text-brand-primary">
+                      {item.year}
+                    </p>
+                    <span className="w-2.5 h-2.5 rounded-full bg-brand-primary" />
+                  </div>
+
+                  <h4 className="text-sm sm:text-lg font-black text-[#0f0518] mb-2">
+                    {item.title}
+                  </h4>
+
+                  <p className="text-[12px] sm:text-sm text-gray-600 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+
+            </div>
           </div>
 
-          {/* Items */}
-          <div className="relative z-10 pt-2">
-            {milestones.map((item, index) => (
-              <MilestoneCard key={index} item={item} index={index} />
-            ))}
+          {/* ===== VISUAL STORY CARD (FIXED FOR MOBILE) ===== */}
+          <div className="col-span-12 md:col-span-5 flex md:block justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 140 }}
+              className="
+                relative
+                w-full
+                max-w-[420px]
+                md:max-w-none
+                rounded-[2.4rem]
+                overflow-hidden
+                border border-gray-200
+                shadow-[0_40px_100px_rgba(0,0,0,0.15)]
+                bg-white
+              "
+            >
+              <img
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1400"
+                alt="Combo Square Team"
+                className="w-full h-[220px] sm:h-[260px] lg:h-[340px] object-cover"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+
+              <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-2xl flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">
+                    Since 2021
+                  </p>
+                  <p className="text-sm sm:text-base font-black text-[#0f0518]">
+                    Building future-ready talent
+                  </p>
+                </div>
+                <ArrowUpRight className="text-brand-primary" />
+              </div>
+            </motion.div>
           </div>
 
         </div>
-
       </div>
     </section>
   );

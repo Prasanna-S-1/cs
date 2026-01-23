@@ -1,169 +1,144 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Layers, Code2, Cpu, Palette, GraduationCap } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const services = [
   {
-    id: 'it',
-    title: 'IT Services',
-    subtitle: 'Scalable Software Solutions',
-    desc: 'Full Stack, AI & ML, Data Analytics, Cybersecurity',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600',
-    icon: Code2,
-    color: 'bg-blue-500'
+    title: "IT Services",
+    tag: "Scalable Software",
+    description:
+      "Full Stack Development, AI & ML, Data Analytics, Cloud Computing, and Cybersecurity solutions for real-world business needs.",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    id: 'core',
-    title: 'Core Domains',
-    subtitle: 'Hardware & Innovation',
-    desc: 'IoT, Robotics, Embedded Systems, Automation',
-    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=600',
-    icon: Cpu,
-    color: 'bg-purple-500'
+    title: "Core Domains",
+    tag: "Hardware & Innovation",
+    description:
+      "IoT, Robotics, Embedded Systems, and Automation programs with strong hands-on and industry exposure.",
+    image:
+      // ✅ FIXED – stable and widely used
+      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    id: 'creative',
-    title: 'Creative Services',
-    subtitle: 'Branding & Design',
-    desc: 'Digital Marketing, UI/UX, Video Editing, Branding',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600',
-    icon: Palette,
-    color: 'bg-pink-500'
+    title: "Creative Services",
+    tag: "Brand & Growth",
+    description:
+      "UI/UX Design, Digital Marketing, Video Editing, and Branding to elevate reach and engagement.",
+    image:
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    id: 'training',
-    title: 'Training & Hackathons',
-    subtitle: 'Skill Development',
-    desc: 'Internships, Career Programs, College Workshops',
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600',
-    icon: GraduationCap,
-    color: 'bg-orange-500'
-  }
+    title: "Training & Hackathons",
+    tag: "Skill Development",
+    description:
+      "Internships, Workshops, Corporate Training, and Hackathons focused on job-ready skills.",
+    image:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+  },
 ];
 
 const Services = () => {
   return (
-    <section className="py-16 sm:py-20 lg:py-28 bg-gray-50 relative overflow-hidden">
+    <section className="relative bg-white py-20 overflow-hidden">
+      {/* subtle depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-purple-50 pointer-events-none" />
 
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
+      <div className="relative container mx-auto px-4 lg:px-10">
         {/* HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 sm:mb-12 gap-6">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full mb-4 shadow-sm"
-            >
-              <Layers size={14} className="text-brand-primary" />
-              <span className="text-xs font-bold text-gray-600 uppercase tracking-widest">
-                Our Expertise
-              </span>
-            </motion.div>
+        <div className="mb-14">
+          <span className="inline-flex px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-sm font-bold mb-4">
+            OUR SERVICES
+          </span>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0f0518] leading-tight">
-              We Provide{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-600">
-                360° Solutions
-              </span>{" "}
-              for Everyone.
-            </h2>
-          </div>
+          <h2 className="text-4xl sm:text-5xl font-black leading-tight">
+            Complete <span className="text-purple-600">Ecosystem</span>
+            <br /> for Growth & Innovation
+          </h2>
 
-          <Link to="/services" className="hidden md:block">
-            <button className="group flex items-center gap-2 font-bold text-gray-500 hover:text-brand-primary transition-colors border-b-2 border-transparent hover:border-brand-primary pb-1">
-              View All Services
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </Link>
+          <p className="mt-4 text-gray-600 max-w-xl text-lg">
+            We deliver technology, creativity, and training solutions under one powerful ecosystem.
+          </p>
         </div>
 
-        {/* SERVICES GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-          {services.map((service, index) => (
+        {/* GRID */}
+        <div
+          className="
+            grid
+            grid-cols-2
+            lg:grid-cols-4
+            gap-5
+            lg:gap-10
+          "
+        >
+          {services.map((service, i) => (
             <motion.div
-              key={service.id}
+              key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.08, duration: 0.45 }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
               whileHover={{ y: -8 }}
               className="
-                group relative bg-white rounded-3xl overflow-hidden
-                border border-gray-100 shadow-sm
-                hover:shadow-2xl transition-all duration-500
-                h-[260px] sm:h-[300px] lg:h-[400px]
+                group
+                relative
+                rounded-3xl
+                overflow-hidden
+                bg-white
+                border border-gray-100
+                shadow-[0_18px_45px_rgba(0,0,0,0.08)]
               "
             >
-
               {/* IMAGE */}
-              <div className="absolute inset-0">
+              <div className="relative h-36 sm:h-40 lg:h-56 overflow-hidden">
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="
+                    w-full h-full object-cover
+                    transition-transform duration-700
+                    group-hover:scale-110
+                  "
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0518] via-[#0f0518]/40 to-transparent opacity-90"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+                <span className="absolute top-3 left-3 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white bg-purple-600/90 px-3 py-1 rounded-full">
+                  {service.tag}
+                </span>
               </div>
 
               {/* CONTENT */}
-              <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-end z-10">
+              <div className="p-4 sm:p-5 lg:p-7">
+                <h3 className="text-base sm:text-lg lg:text-xl font-black mb-2">
+                  {service.title}
+                </h3>
 
-                {/* ICON */}
-                <div
-                  className={`
-                    w-11 h-11 rounded-2xl ${service.color}
-                    flex items-center justify-center text-white
-                    mb-auto shadow-lg
-                    transform translate-y-4 opacity-0
-                    lg:group-hover:translate-y-0 lg:group-hover:opacity-100
-                    transition-all duration-500
-                  `}
+                {/* 
+                  KEY FIX:
+                  - clamp text height on mobile
+                  - full text visible on desktop
+                */}
+                <p
+                  className="
+                    text-gray-600 text-[13px] sm:text-sm leading-relaxed
+                    line-clamp-2
+                    lg:line-clamp-none
+                    mb-4
+                  "
                 >
-                  <service.icon size={22} />
-                </div>
+                  {service.description}
+                </p>
 
-                <div className="transition-transform duration-500 lg:group-hover:-translate-y-2">
-                  <p className="text-[11px] font-bold text-brand-neon uppercase tracking-wider mb-1">
-                    {service.subtitle}
-                  </p>
-                  <h3 className="text-xl sm:text-2xl font-black text-white mb-2 leading-tight">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {service.desc}
-                  </p>
-                </div>
-
-                <div className="mt-3 flex items-center gap-2 text-white font-bold text-sm">
-                  <span>Learn More</span>
-                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-                    <ArrowRight size={12} />
-                  </div>
+                <div className="flex items-center gap-2 text-sm font-bold text-purple-700 group-hover:gap-3 transition-all">
+                  Learn More
+                  <ArrowUpRight size={14} />
                 </div>
               </div>
 
-              {/* BORDER GLOW */}
-              <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-3xl transition-colors pointer-events-none"></div>
+              {/* hover ring */}
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-purple-500/0 group-hover:ring-purple-500/30 transition" />
             </motion.div>
           ))}
         </div>
-
-        {/* MOBILE CTA */}
-        <div className="mt-8 sm:mt-10 text-center md:hidden">
-          <Link to="/services">
-            <button className="w-full py-3.5 bg-white border border-gray-200 text-[#0f0518] font-bold rounded-xl shadow-sm active:scale-95 transition">
-              View All Solutions
-            </button>
-          </Link>
-        </div>
-
       </div>
     </section>
   );

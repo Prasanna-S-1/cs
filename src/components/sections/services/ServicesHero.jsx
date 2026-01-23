@@ -1,110 +1,150 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code2, Cpu, Palette, Zap } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
+
+const serviceImages = [
+  {
+    title: "IT Services",
+    desc: "Full Stack, AI, Data & Cybersecurity",
+    img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1200",
+  },
+  {
+    title: "Core Domains",
+    desc: "IoT, Robotics & Embedded Systems",
+    img: "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?q=80&w=1200",
+  },
+  {
+    title: "Creative Services",
+    desc: "UI/UX, Branding & Digital Marketing",
+    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+  },
+  {
+    title: "Training & Hackathons",
+    desc: "Internships, Workshops & Programs",
+    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800",
+  },
+];
 
 const ServicesHero = () => {
   return (
-    <section
-      className="
-        relative
-        min-h-[100svh]
-        flex items-center justify-center
-        bg-[#050505]
-        overflow-hidden
-        pt-24 sm:pt-28
-      "
-    >
-      
-      {/* 1. CYBER GRID (DESKTOP-FIRST LUXURY) */}
-      <div className="absolute inset-0 perspective-[1000px] hidden sm:block">
-        <div className="
-          absolute inset-0
-          bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)]
-          bg-[size:40px_40px]
-          [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]
-          transform rotate-x-[60deg] translate-y-[-20%] scale-150
-          animate-grid-flow
-        "></div>
-      </div>
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#12051f] via-[#1a0b2e] to-[#0b0216] text-white">
 
-      {/* 2. FLOATING ICONS (DESKTOP ONLY) */}
-      {[Code2, Cpu, Palette, Zap].map((Icon, i) => (
+      {/* BACKGROUND GLOWS */}
+      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[160px]" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-fuchsia-600/20 rounded-full blur-[140px]" />
+
+      <div className="relative container mx-auto px-6 lg:px-12 pt-28 pb-20">
+
+        {/* TOP LABEL */}
         <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 0.2, y: -80 }}
-          transition={{
-            duration: 10 + i * 2,
-            repeat: Infinity,
-            repeatType: "mirror",
-            delay: i * 2,
-            ease: "easeInOut"
-          }}
-          className="absolute text-brand-primary hidden lg:block"
-          style={{
-            left: `${20 + i * 20}%`,
-            top: `${30 + (i % 2) * 40}%`
-          }}
-        >
-          <Icon size={60 + i * 10} />
-        </motion.div>
-      ))}
-
-      {/* 3. HERO CONTENT */}
-      <div className="container mx-auto px-4 relative z-10 text-center">
-
-        {/* BADGE */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="
-            inline-flex items-center gap-2
-            px-4 py-2
-            bg-white/5 border border-white/10
-            rounded-full mb-6 sm:mb-8
-            backdrop-blur-md
-          "
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-8 backdrop-blur-md"
         >
-          <span className="w-2 h-2 rounded-full bg-brand-neon animate-pulse"></span>
-          <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-widest">
-            Our Expertise
+          <Sparkles size={16} className="text-purple-400" />
+          <span className="text-sm font-bold tracking-wide">
+            OUR SERVICES
           </span>
         </motion.div>
 
-        {/* HEADLINE */}
-        <h1
-          className="
-            font-black text-white tracking-tighter leading-[1.05]
-            mb-6 sm:mb-8
-            text-4xl sm:text-6xl lg:text-8xl
-          "
-        >
-          We Build <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-purple-400 to-pink-500">
-            Digital Empires.
-          </span>
-        </h1>
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-        {/* SUBTEXT */}
-        <p
-          className="
-            text-sm sm:text-lg
-            text-gray-400
-            max-w-xl sm:max-w-2xl
-            mx-auto mb-8 sm:mb-10
-            font-medium leading-relaxed
-          "
-        >
-          From full-stack applications to IoT robotics and creative branding.
-          We provide the complete ecosystem for your growth.
-        </p>
+          {/* LEFT CONTENT */}
+          <div className="max-w-xl">
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6"
+            >
+              End-to-End{" "}
+              <span className="text-purple-400">
+                Digital, Technical & Training
+              </span>{" "}
+              Solutions
+            </motion.h1>
 
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-gray-300 text-lg leading-relaxed mb-10"
+            >
+              Combo Square delivers industry-ready services across technology,
+              innovation, creativity, and skill development — empowering
+              students, colleges, and businesses with real-world outcomes.
+            </motion.p>
+
+            {/* CTA */}
+            <div className="flex gap-4">
+              <a
+                href="#services"
+                className="px-7 py-4 rounded-2xl bg-purple-600 hover:bg-purple-700 transition-all font-bold flex items-center gap-2"
+              >
+                Explore Services <ArrowRight size={18} />
+              </a>
+              <a
+                href="/contact"
+                className="px-7 py-4 rounded-2xl border border-white/20 hover:bg-white/10 transition-all font-bold"
+              >
+                Talk to Experts
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT VISUAL GRID */}
+          <div className="relative">
+
+            {/* DESKTOP + MOBILE MINI GRID */}
+            <div className="grid grid-cols-2 gap-5">
+
+              {serviceImages.map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.15 * i }}
+                  className="relative group rounded-3xl overflow-hidden shadow-2xl"
+                >
+                  <img
+                    src={s.img}
+                    alt={s.title}
+                    className="w-full h-[180px] sm:h-[200px] object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+
+                  {/* OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  {/* TEXT */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h4 className="font-black text-white text-lg leading-tight">
+                      {s.title}
+                    </h4>
+                    <p className="text-xs text-gray-300 mt-1">
+                      {s.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+
+            </div>
+
+            {/* FLOATING BADGE */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="absolute -bottom-6 -left-6 bg-white text-black px-6 py-4 rounded-2xl shadow-2xl hidden sm:block"
+            >
+              <p className="font-black text-lg">360° Solutions</p>
+              <p className="text-xs text-gray-500 font-semibold">
+                Technology • Creativity • Training
+              </p>
+            </motion.div>
+
+          </div>
+        </div>
       </div>
-
-      {/* BOTTOM FADE */}
-      <div className="absolute bottom-0 left-0 right-0 h-28 sm:h-32 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none"></div>
-
     </section>
   );
 };

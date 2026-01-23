@@ -1,156 +1,153 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Quote, Star, Users } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    id: 1,
-    type: "College Partner",
-    quote: "Combo Square helped us train 200+ students in AI & ML, boosting their placement confidence significantly.",
-    name: "Dr. S. Ramesh",
-    role: "HOD, Engineering Dept",
-    tag: "200+ Placements",
-    color: "bg-blue-500",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 2,
-    type: "Startup Client",
-    quote: "Their branding and video editing services elevated our sales by 40% in just 3 months. Truly next-gen work.",
-    name: "Vikram Mehta",
-    role: "CEO, TechFlow",
-    tag: "40% Growth",
-    color: "bg-green-500",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 3,
-    type: "Student Success",
-    quote: "I went from zero coding knowledge to a hired developer at Zoho. The practical training is unmatched.",
     name: "Anitha R.",
-    role: "Full Stack Developer",
-    tag: "Hired at Zoho",
-    color: "bg-purple-500",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=400"
+    role: "Student",
+    text: "The training gave me real confidence. I cracked interviews because of live projects.",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
-    id: 4,
-    type: "Hiring Partner",
-    quote: "The students we hired from Combo Square were project-ready from Day 1. Saves us months of training.",
-    name: "HR Manager",
-    role: "Top MNC",
-    tag: "Quality Talent",
-    color: "bg-orange-500",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400"
-  }
+    name: "Vikram Mehta",
+    role: "Startup Founder",
+    text: "Our brand presence and conversions improved massively after working with Combo Square.",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    name: "Dr. Ramesh",
+    role: "College Partner",
+    text: "Their workshops and internships created real industry exposure for our students.",
+    avatar: "https://randomuser.me/api/portraits/men/75.jpg",
+  },
+  {
+    name: "Kavya S.",
+    role: "Intern",
+    text: "Mentorship and guidance were top-notch. It felt like real industry training.",
+    avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+  },
+  {
+    name: "Arjun K.",
+    role: "Business Client",
+    text: "Professional delivery, clean execution, and measurable growth.",
+    avatar: "https://randomuser.me/api/portraits/men/41.jpg",
+  },
+  {
+    name: "Sneha P.",
+    role: "Student",
+    text: "Live projects helped me understand real-world development workflows.",
+    avatar: "https://randomuser.me/api/portraits/women/22.jpg",
+  },
 ];
 
-const column1 = [...testimonials, ...testimonials];
-const column2 = [...testimonials.reverse(), ...testimonials];
+// duplicate for seamless motion
+const loop = [...testimonials, ...testimonials];
 
-const Card = ({ item }) => (
-  <div className="mb-4 break-inside-avoid">
-    <div className="bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300">
+const Card = ({ data }) => (
+  <div
+    className="
+      relative
+      bg-white
+      rounded-3xl
+      p-5 sm:p-6
+      border border-gray-100
+      shadow-[0_20px_45px_rgba(0,0,0,0.08)]
+      hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)]
+      transition-all
+    "
+  >
+    <Quote
+      size={18}
+      className="absolute top-4 right-4 text-purple-300"
+    />
 
-      {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-3">
-          <img src={item.image} alt={item.name} className="w-9 h-9 rounded-full object-cover ring-2 ring-gray-100" />
-          <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{item.type}</p>
-            <p className="text-sm font-bold text-gray-900">{item.name}</p>
-          </div>
-        </div>
-        <div className={`w-7 h-7 rounded-full ${item.color} flex items-center justify-center text-white`}>
-          <Quote size={12} fill="currentColor" />
-        </div>
+    <div className="flex items-center gap-3 mb-4">
+      <img
+        src={data.avatar}
+        alt={data.name}
+        className="w-10 h-10 rounded-full object-cover"
+      />
+      <div>
+        <p className="font-bold text-sm">{data.name}</p>
+        <p className="text-[11px] text-gray-500 uppercase font-semibold">
+          {data.role}
+        </p>
       </div>
+    </div>
 
-      {/* Quote */}
-      <p className="text-gray-600 font-medium leading-relaxed mb-3 text-sm">
-        "{item.quote}"
-      </p>
+    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
+      “{data.text}”
+    </p>
 
-      {/* Footer */}
-      <div className="pt-3 border-t border-gray-50 flex items-center justify-between">
-        <div className="flex text-yellow-400 gap-0.5">
-          {[1,2,3,4,5].map(i => <Star key={i} size={11} fill="currentColor" />)}
-        </div>
-        <span className="text-[10px] font-bold px-2 py-1 rounded-md bg-gray-50 uppercase tracking-wide text-gray-500">
-          {item.tag}
-        </span>
-      </div>
-
+    <div className="flex items-center gap-1 text-yellow-400">
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} size={14} fill="currentColor" />
+      ))}
     </div>
   </div>
 );
 
+const FloatingColumn = ({ speed }) => (
+  <motion.div
+    animate={{ y: ["0%", "-50%"] }}
+    transition={{
+      duration: speed,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    className="flex flex-col gap-6"
+  >
+    {loop.map((item, i) => (
+      <Card key={i} data={item} />
+    ))}
+  </motion.div>
+);
+
 const Testimonials = () => {
   return (
-    <section className="py-16 sm:py-20 lg:py-28 bg-gray-50 overflow-hidden relative">
+    <section className="relative py-28 bg-gray-50 overflow-hidden">
+      {/* subtle background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white pointer-events-none" />
 
-      {/* Fades */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-gray-50 to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none"></div>
+      <div className="relative container mx-auto px-4 lg:px-10">
+        {/* HEADER */}
+        <div className="max-w-3xl mb-16">
+          <span className="inline-flex px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-bold text-sm mb-5">
+            TESTIMONIALS
+          </span>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            Trusted by <span className="text-purple-600">People & Partners</span>
+          </h2>
 
-          {/* TEXT */}
-          <div className="lg:col-span-5 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full mb-5 shadow-sm">
-              <Users size={14} className="text-brand-primary" />
-              <span className="text-xs font-bold text-gray-600 uppercase tracking-widest">
-                Community Feedback
-              </span>
-            </div>
+          <p className="text-gray-600 text-lg">
+            Real experiences from students, colleges, and businesses who worked
+            with Combo Square.
+          </p>
+        </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-[#0f0518] mb-5 leading-tight">
-              Loved by <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-600">
-                Everyone.
-              </span>
-            </h2>
+        {/* FLOATING GRID */}
+        <div
+          className="
+            relative
+            h-[520px]
+            grid
+            grid-cols-2
+            lg:grid-cols-3
+            gap-6
+            overflow-hidden
+          "
+        >
+          {/* Column 1 */}
+          <FloatingColumn speed={26} />
 
-            <p className="text-base sm:text-lg text-gray-500 mb-6 max-w-md mx-auto lg:mx-0">
-              From students landing their dream jobs to startups scaling their sales. The impact is real.
-            </p>
+          {/* Column 2 */}
+          <FloatingColumn speed={32} />
 
-            <div className="flex gap-4 justify-center lg:justify-start">
-              <div className="px-4 py-3 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <p className="text-xl font-black text-[#0f0518]">4.9/5</p>
-                <p className="text-[10px] font-bold text-gray-400 uppercase">Average Rating</p>
-              </div>
-              <div className="px-4 py-3 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <p className="text-xl font-black text-[#0f0518]">2k+</p>
-                <p className="text-[10px] font-bold text-gray-400 uppercase">Reviews</p>
-              </div>
-            </div>
+          {/* Column 3 (desktop only) */}
+          <div className="hidden lg:block">
+            <FloatingColumn speed={29} />
           </div>
-
-          {/* FLOATING CARDS */}
-          <div className="lg:col-span-7 h-[420px] sm:h-[520px] lg:h-[600px] relative overflow-hidden flex gap-6">
-
-            {/* Column 1 */}
-            <motion.div
-              animate={{ y: ["-50%", "0%"] }}
-              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-              className="w-full sm:w-1/2 flex flex-col"
-            >
-              {column1.map((item, i) => <Card key={i} item={item} />)}
-            </motion.div>
-
-            {/* Column 2 (hidden on small mobile) */}
-            <motion.div
-              animate={{ y: ["0%", "-50%"] }}
-              transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
-              className="hidden sm:flex w-1/2 flex-col pt-10"
-            >
-              {column2.map((item, i) => <Card key={i} item={item} />)}
-            </motion.div>
-
-          </div>
-
         </div>
       </div>
     </section>

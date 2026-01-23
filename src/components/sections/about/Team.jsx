@@ -1,162 +1,170 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Linkedin, Twitter, Globe, ArrowRight, Plus } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Linkedin, Twitter, Plus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const team = [
   {
     name: "Ahamad Thowfeek B",
-    role: "Founder & CEO",
+    role: "FOUNDER & CEO",
     desc: "Visionary leader in branding & education.",
-    socials: { linkedin: "#", twitter: "#" }
+    initials: "AT",
+    socials: true,
+    variant: "light",
   },
   {
     name: "Nazneen A",
-    role: "Co-Founder & Creative Dir.",
+    role: "CO-FOUNDER & CREATIVE DIR.",
     desc: "Driving force behind design & creativity.",
-    socials: { linkedin: "#", twitter: "#" }
+    initials: "NA",
+    socials: true,
+    variant: "light",
   },
   {
     name: "Core Team",
-    role: "Specialists & Mentors",
+    role: "SPECIALISTS & MENTORS",
     desc: "Experts in AI, UI/UX, and Innovation.",
-    socials: { linkedin: "#", website: "#" }
-  }
+    initials: "CT",
+    socials: true,
+    variant: "light",
+  },
+  {
+    name: "You?",
+    role: "WE ARE HIRING",
+    desc: "Join our growing innovation-driven team.",
+    cta: true,
+    variant: "dark",
+  },
 ];
 
 const Team = () => {
   return (
-    <section className="py-16 sm:py-20 lg:py-32 bg-white relative overflow-hidden">
+    <section className="relative bg-white py-20 overflow-hidden">
 
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gray-50 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      {/* subtle background glow */}
+      <div className="absolute -top-40 right-0 w-[420px] h-[420px] bg-purple-200/40 blur-[130px]" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
 
         {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full mb-5 shadow-sm"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-xs font-bold text-gray-600 uppercase tracking-widest">
-              Meet The Visionaries
-            </span>
-          </motion.div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0f0518]">
-            The Minds Behind{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-600">
-              Combo Square.
-            </span>
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span className="inline-flex px-4 py-2 rounded-full bg-purple-50 text-purple-700 font-bold text-sm mb-5">
+            OUR TEAM
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            The People Behind{" "}
+            <span className="text-purple-600">Combo Square.</span>
           </h2>
+          <p className="text-gray-600 text-base sm:text-lg">
+            Leaders, creators, and mentors shaping future-ready talent.
+          </p>
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-
-          {team.map((member, index) => (
+        <div
+          className="
+            grid
+            grid-cols-2
+            lg:grid-cols-4
+            gap-6
+            lg:gap-10
+          "
+        >
+          {team.map((m, i) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 24 }}
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className="
-                group relative h-[380px] sm:h-[420px]
-                rounded-2xl sm:rounded-[2rem]
-                overflow-hidden bg-white
-                border border-gray-100
-                shadow-lg hover:shadow-xl
-                transition-all duration-500
-              "
+              transition={{ duration: 0.7, delay: i * 0.1 }}
+              className={`
+                relative rounded-[2rem] overflow-hidden
+                shadow-[0_20px_45px_rgba(0,0,0,0.12)]
+                ${m.variant === "dark"
+                  ? "bg-gradient-to-br from-[#12061d] to-[#2b0f3f]"
+                  : "bg-gradient-to-b from-gray-100 to-gray-300"}
+              `}
             >
-              {/* IMAGE / INITIALS */}
-              <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
-                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-gray-100 to-white border border-gray-200 flex items-center justify-center shadow-inner mb-20">
-                  <span className="text-3xl sm:text-4xl font-black text-gray-300 group-hover:text-brand-primary transition-colors">
-                    {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                  </span>
-                </div>
-              </div>
 
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f0518] via-[#0f0518]/60 to-transparent opacity-95"></div>
+              {/* soft overlay */}
+              <div className="absolute inset-0 bg-black/25" />
 
               {/* CONTENT */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+              <div
+                className="
+                  relative z-10
+                  p-5 sm:p-6
+                  flex flex-col
+                  h-[280px] sm:h-[300px] lg:h-[340px]
+                "
+              >
 
-                <h3 className="text-lg sm:text-xl font-black text-white mb-1">
-                  {member.name}
+                {/* INITIAL / ICON */}
+                {!m.cta && (
+                  <div className="mb-4">
+                    <div className="
+                      w-16 h-16 rounded-full
+                      bg-white/20 backdrop-blur-md
+                      flex items-center justify-center
+                      text-2xl font-black text-white
+                    ">
+                      {m.initials}
+                    </div>
+                  </div>
+                )}
+
+                {m.cta && (
+                  <div className="mb-4">
+                    <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center">
+                      <Plus size={28} className="text-white" />
+                    </div>
+                  </div>
+                )}
+
+                {/* TEXT */}
+                <h3 className="text-lg sm:text-xl font-black text-white leading-tight">
+                  {m.name}
                 </h3>
 
-                <p className="text-[10px] font-bold text-brand-neon uppercase tracking-widest mb-3">
-                  {member.role}
+                <p className="text-xs font-bold tracking-widest text-purple-300 mt-1 mb-2">
+                  {m.role}
                 </p>
 
-                {/* DESCRIPTION: always visible on mobile */}
-                <p className="text-gray-400 text-sm mb-5 leading-relaxed">
-                  {member.desc}
+                <p className="text-sm text-gray-200 leading-relaxed flex-grow">
+                  {m.desc}
                 </p>
 
-                {/* SOCIALS */}
-                <div className="flex items-center gap-3">
-                  {member.socials.linkedin && (
-                    <button className="p-2 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-colors">
-                      <Linkedin size={16} />
+                {/* FOOTER */}
+                {m.socials && (
+                  <div className="flex gap-3 mt-4">
+                    <span className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-purple-600 transition">
+                      <Linkedin size={16} className="text-white" />
+                    </span>
+                    <span className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-purple-600 transition">
+                      <Twitter size={16} className="text-white" />
+                    </span>
+                  </div>
+                )}
+
+                {m.cta && (
+                  <Link to="/careers" className="mt-4">
+                    <button
+                      className="
+                        w-full py-3 rounded-xl
+                        bg-white text-[#12061d]
+                        font-black
+                        hover:bg-purple-600 hover:text-white
+                        transition-all
+                      "
+                    >
+                      Join the Team →
                     </button>
-                  )}
-                  {member.socials.twitter && (
-                    <button className="p-2 rounded-full bg-white/10 hover:bg-black text-white transition-colors">
-                      <Twitter size={16} />
-                    </button>
-                  )}
-                  {member.socials.website && (
-                    <button className="p-2 rounded-full bg-white/10 hover:bg-purple-600 text-white transition-colors">
-                      <Globe size={16} />
-                    </button>
-                  )}
-                </div>
+                  </Link>
+                )}
 
               </div>
             </motion.div>
           ))}
-
-          {/* JOIN US */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.25 }}
-            className="
-              group relative h-[380px] sm:h-[420px]
-              rounded-2xl sm:rounded-[2rem]
-              bg-[#0f0518] border border-gray-800
-              flex flex-col items-center justify-center
-              text-center p-6
-              hover:border-brand-primary/50
-              transition-colors
-            "
-          >
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 group-hover:bg-brand-primary group-hover:text-white transition-all mb-5">
-              <Plus size={32} />
-            </div>
-
-            <h3 className="text-xl sm:text-2xl font-black text-white mb-1">You?</h3>
-            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">
-              We are Hiring
-            </p>
-
-            <button className="px-6 py-3 bg-white text-black font-bold rounded-xl flex items-center gap-2 hover:bg-gray-200 transition-colors">
-              Join the Team <ArrowRight size={16} />
-            </button>
-          </motion.div>
-
         </div>
       </div>
     </section>

@@ -1,197 +1,242 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, MapPin, Search, Users, Heart, Zap, Globe } from 'lucide-react';
+import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import {
+  Briefcase,
+  MapPin,
+  Clock,
+  Code2,
+  Rocket,
+  Users,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react";
 
-const images = {
-  meeting: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
-  team: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
-  solo: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800",
-  office: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
-};
+/* -----------------------------------
+   DATA
+----------------------------------- */
 
-const jobs = [
+const roles = [
   {
-    id: '01',
-    role: "MERN Stack Developer",
-    type: "Full Time",
-    location: "Chennai / Hybrid",
-    tags: ["React", "Node.js", "MongoDB"],
-    desc: "Build and scale full-stack applications used by real users."
+    title: "Full Stack Intern",
+    desc: "Build industry-grade MERN applications with real clients, clean architecture, and mentor guidance.",
+    location: "Remote / Chennai",
+    duration: "3–6 Months",
+    stack: ["React", "Node", "MongoDB"],
+    image:
+      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1400",
   },
   {
-    id: '02',
-    role: "UI/UX Designer",
-    type: "Full Time",
-    location: "Remote",
-    tags: ["Figma", "UX"],
-    desc: "Design clean, intuitive interfaces for modern products."
+    title: "Developer Intern",
+    desc: "Work across frontend, backend, APIs, and deployment while shipping scalable real-world products.",
+    location: "Hybrid",
+    duration: "6 Months",
+    stack: ["MERN", "APIs", "Cloud"],
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1400",
   },
-  {
-    id: '03',
-    role: "IoT Research Lead",
-    type: "Contract",
-    location: "On-Site",
-    tags: ["Embedded", "PCB"],
-    desc: "Lead hardware innovation and applied research."
-  }
 ];
 
+const perks = [
+  {
+    icon: Code2,
+    title: "Industry Training",
+    text: "Structured training aligned with real company workflows.",
+  },
+  {
+    icon: Rocket,
+    title: "Live Projects",
+    text: "Hands-on delivery with startups and real clients.",
+  },
+  {
+    icon: Users,
+    title: "Mentorship",
+    text: "1-on-1 guidance from experienced professionals.",
+  },
+  {
+    icon: Sparkles,
+    title: "Placement Support",
+    text: "Resume, interviews, and hiring network access.",
+  },
+];
+
+/* -----------------------------------
+   COMPONENT
+----------------------------------- */
+
 const Careers = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const rolesRef = useRef(null);
+
+  const scrollToRoles = () => {
+    rolesRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="bg-white overflow-x-hidden"
-    >
+    <div className="bg-white overflow-hidden">
 
-      {/* HERO */}
-      <section
-        className="
-          relative
-          pt-20 pb-14
-          sm:pt-24 sm:pb-16
-          lg:pt-32 lg:pb-24
-          bg-[#0f0518]
-          rounded-b-[2.5rem]
-          sm:rounded-b-[4rem]
-        "
-      >
-        <div className="container mx-auto px-4 text-center text-white">
+      {/* =====================================================
+          HERO SECTION (FIXED BUTTONS)
+      ===================================================== */}
+      <section className="relative bg-gradient-to-br from-[#2a0f4c] via-[#4b1c7a] to-[#12001f] text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.15),transparent_60%)]" />
 
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-xs font-bold uppercase mb-5 sm:mb-6">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            We are hiring
-          </span>
+        <div className="relative container mx-auto px-6 lg:px-12 py-20 lg:py-28 grid lg:grid-cols-2 gap-16 items-center">
 
-          <h1
-            className="
-              text-3xl
-              sm:text-4xl
-              lg:text-8xl
-              font-black
-              leading-[0.95]
-              mb-5 sm:mb-6
-            "
+          {/* LEFT */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
           >
-            DON’T JUST <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-400">
-              WORK.
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-sm font-semibold mb-6">
+              <Briefcase size={16} /> Careers at Combo Square
             </span>
-          </h1>
 
-          <p className="text-sm sm:text-base lg:text-lg text-gray-400 max-w-xl mx-auto">
-            Build meaningful products at the intersection of education and innovation.
-          </p>
+            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black leading-tight mb-6">
+              Build Your <span className="text-purple-300">Career</span> With
+              Real-World Impact
+            </h1>
+
+            <p className="text-white/80 max-w-xl text-lg mb-10">
+              Learn by doing. Work on live projects, gain industry exposure,
+              and grow with mentors who care about outcomes.
+            </p>
+
+            <div className="flex gap-4 flex-wrap">
+              <button
+                onClick={scrollToRoles}
+                className="px-7 py-4 rounded-2xl bg-white text-black font-bold hover:bg-purple-200 active:scale-95 transition"
+              >
+                View Open Roles
+              </button>
+
+              <a
+                href="/contact"
+                className="px-7 py-4 rounded-2xl border border-white/30 font-bold hover:bg-white/10 active:scale-95 transition"
+              >
+                Talk to Us
+              </a>
+            </div>
+          </motion.div>
+
+          {/* RIGHT IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600"
+              alt="Careers"
+              className="rounded-[2.5rem] shadow-2xl w-full max-h-[420px] object-cover"
+            />
+          </motion.div>
         </div>
       </section>
 
-      {/* BENTO GRID */}
+      {/* =====================================================
+          ROLES (FIXED SQUEEZE)
+      ===================================================== */}
       <section
-        className="
-          py-14
-          sm:py-16
-          lg:py-24
-          container mx-auto px-4
-        "
+        ref={rolesRef}
+        className="container mx-auto px-6 lg:px-12 py-20"
       >
-        <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-[#0f0518] mb-8 sm:mb-10">
-          Why Join Us?
+        <h2 className="text-3xl lg:text-4xl font-black mb-14">
+          Open <span className="text-purple-600">Opportunities</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-          {[{ img: images.team, icon: Users, title: "Collaboration" },
-            { img: images.meeting, icon: Heart, title: "Mentorship" },
-            { img: images.solo, icon: Zap, title: "Creative Freedom" },
-            { img: images.office, icon: Globe, title: "Global Impact" }
-          ].map((item, i) => (
-            <div
+        <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-10">
+          {roles.map((role, i) => (
+            <motion.div
               key={i}
-              className={`
-                relative
-                h-[200px]
-                sm:h-[220px]
-                lg:h-[350px]
-                rounded-3xl
-                overflow-hidden
-                shadow-lg
-                ${i === 0 || i === 3 ? 'md:col-span-2' : ''}
-              `}
+              whileHover={{ y: -8 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-white rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden flex flex-col"
             >
-              <img src={item.img} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/40" />
-              <div className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 text-white">
-                <item.icon size={22} />
-                <p className="text-base sm:text-lg font-bold mt-2">{item.title}</p>
+              {/* IMAGE */}
+              <div className="h-32 sm:h-40 overflow-hidden">
+                <img
+                  src={role.image}
+                  alt={role.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
+
+              {/* CONTENT */}
+              <div className="p-5 sm:p-6 flex flex-col flex-grow">
+                <h3 className="font-black text-lg sm:text-xl mb-2">
+                  {role.title}
+                </h3>
+
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                  {role.desc}
+                </p>
+
+                <div className="flex flex-wrap gap-3 text-xs font-semibold text-gray-500 mb-4">
+                  <span className="flex items-center gap-1">
+                    <MapPin size={14} /> {role.location}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock size={14} /> {role.duration}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {role.stack.map((s) => (
+                    <span
+                      key={s}
+                      className="px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-bold"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+
+                <button className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-purple-600 text-white font-bold hover:bg-purple-700 active:scale-95 transition">
+                  Apply Now <ArrowRight size={16} />
+                </button>
+              </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* JOB BOARD */}
-      <section className="py-14 sm:py-16 lg:py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-6 sm:mb-8">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black">Open Positions</h2>
-            <button className="hidden sm:flex items-center gap-2 px-5 py-2 bg-white border rounded-full text-sm font-bold">
-              <Search size={14} /> View all
-            </button>
-          </div>
+      {/* =====================================================
+          PERKS (ICON COLOR CHANGE ON TOUCH)
+      ===================================================== */}
+      <section className="bg-gray-50 py-20">
+        <div className="container mx-auto px-6 lg:px-12">
+          <h2 className="text-3xl lg:text-4xl font-black mb-14">
+            Why <span className="text-purple-600">Join Us</span>
+          </h2>
 
-          <div className="space-y-3 sm:space-y-4">
-            {jobs.map(job => (
-              <div
-                key={job.id}
-                className="
-                  bg-white
-                  rounded-2xl
-                  p-4
-                  sm:p-5
-                  lg:p-7
-                  border
-                  hover:bg-brand-primary
-                  hover:text-white
-                  transition-all
-                  flex
-                  flex-col
-                  sm:flex-row
-                  justify-between
-                  gap-4
-                "
-              >
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold">{job.role}</h3>
-                  <p className="text-xs sm:text-sm opacity-80">{job.desc}</p>
-                  <div className="flex gap-2 mt-2 flex-wrap">
-                    {job.tags.map(t => (
-                      <span key={t} className="text-xs px-2 py-1 bg-black/5 rounded-md">
-                        #{t}
-                      </span>
-                    ))}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {perks.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -6 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-4
+                    group-hover:bg-purple-600 group-hover:text-white
+                    active:bg-purple-700 active:text-white transition">
+                    <Icon />
                   </div>
-                </div>
 
-                <div className="flex sm:flex-col items-start sm:items-end gap-3">
-                  <span className="flex items-center gap-1 text-xs sm:text-sm opacity-80">
-                    <MapPin size={14} /> {job.location}
-                  </span>
-                  <button className="px-5 py-2 bg-black text-white rounded-xl text-xs sm:text-sm font-bold hover:bg-white hover:text-brand-primary transition">
-                    Apply <ArrowRight size={14} />
-                  </button>
-                </div>
-              </div>
- 
-            ))}
+                  <h4 className="font-black mb-2">{p.title}</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {p.text}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
-
-    </motion.main>
+    </div>
   );
 };
 

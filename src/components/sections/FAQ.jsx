@@ -1,139 +1,136 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, MessageCircle, HelpCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight, HelpCircle } from "lucide-react";
 
 const faqs = [
   {
-    question: "Do you provide internships?",
-    answer: "Yes, we provide industry-standard internships in IT (Full Stack, AI), Core (IoT, Robotics), and Creative domains. You will work on live client projects, not just dummy demos."
+    q: "What is Combo Square?",
+    a: "Combo Square is an EdTech and innovation hub that provides training, internships, and digital solutions for students, colleges, and businesses.",
   },
   {
-    question: "Can colleges collaborate with Combo Square?",
-    answer: "Absolutely. We partner with over 30+ colleges to conduct workshops, hackathons, faculty development programs, and on-campus placement training."
+    q: "Do you provide internships?",
+    a: "Yes. We provide industry-focused internships with real projects, mentorship, and certification.",
   },
   {
-    question: "Is the training beginner-friendly?",
-    answer: "100%. Our modules are designed for students from any background. We start from the absolute basics and take you to a professional level with hands-on practice."
+    q: "Are your programs beginner friendly?",
+    a: "Yes. Our programs are structured from fundamentals to real-world applications.",
   },
   {
-    question: "Do you offer placement support?",
-    answer: "Yes, we have a dedicated placement cell. From resume building to mock interviews, we support you until you get hired by one of our 50+ hiring partners."
-  }
+    q: "Do you work with colleges?",
+    a: "Yes. We partner with colleges for workshops, internships, and training programs.",
+  },
+  {
+    q: "What services do you offer?",
+    a: "We offer branding, web development, digital marketing, and creative services.",
+  },
+  {
+    q: "Is certification provided?",
+    a: "Yes. All programs and internships include verified certification.",
+  },
 ];
 
+const FAQCard = ({ item, open, onClick }) => {
+  return (
+    <div
+      className={`
+        relative
+        rounded-3xl
+        border
+        bg-white
+        transition-all
+        overflow-hidden
+        ${
+          open
+            ? "border-purple-300 shadow-[0_28px_60px_rgba(139,92,246,0.22)]"
+            : "border-gray-100 shadow-[0_18px_36px_rgba(0,0,0,0.06)]"
+        }
+      `}
+    >
+      {/* glow only for active */}
+      {open && (
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-xl opacity-50 -z-10" />
+      )}
+
+      {/* HEADER */}
+      <button
+        onClick={onClick}
+        className="w-full flex items-start gap-4 p-5 sm:p-6 text-left"
+      >
+        <motion.div
+          animate={{ rotate: open ? 90 : 0 }}
+          transition={{ duration: 0.25 }}
+          className={`
+            w-10 h-10 rounded-xl flex items-center justify-center shrink-0
+            ${open ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-600"}
+          `}
+        >
+          <ChevronRight size={18} />
+        </motion.div>
+
+        <h4 className="font-black text-sm sm:text-base text-gray-900 leading-snug">
+          {item.q}
+        </h4>
+      </button>
+
+      {/* ANSWER (isolated animation – NO layout bleed) */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.25 }}
+            className="px-5 sm:px-6 pb-5 sm:pb-6"
+          >
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {item.a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <section className="py-16 sm:py-20 lg:py-32 bg-white relative overflow-hidden">
+    <section className="relative py-28 bg-white overflow-hidden">
+      {/* soft background */}
+      <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-purple-100 rounded-full blur-[140px] opacity-60 pointer-events-none" />
 
-      {/* Background */}
-      <div className="absolute top-0 left-0 w-full h-[400px] bg-gradient-to-b from-gray-50 to-transparent pointer-events-none"></div>
+      <div className="container mx-auto px-4 lg:px-10 relative">
+        {/* HEADER */}
+        <div className="max-w-3xl mb-16">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-bold text-sm mb-5">
+            <HelpCircle size={16} />
+            FAQs
+          </span>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-24">
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            Frequently Asked{" "}
+            <span className="text-purple-600">Questions</span>
+          </h2>
 
-          {/* LEFT */}
-          <div className="lg:col-span-5 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-50 border border-purple-100 rounded-full mb-5">
-              <HelpCircle size={14} className="text-purple-600" />
-              <span className="text-xs font-bold text-purple-600 uppercase tracking-widest">
-                Support
-              </span>
-            </div>
+          <p className="text-gray-600 text-lg">
+            Clear answers about our programs, services, and partnerships.
+          </p>
+        </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0f0518] mb-5 leading-tight">
-              Frequently Asked <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-600">
-                Questions.
-              </span>
-            </h2>
-
-            <p className="text-base sm:text-lg text-gray-500 mb-7 leading-relaxed">
-              Everything you need to know about our internships, training, and collaborations. Can't find the answer?
-            </p>
-
-            <Link to="/contact">
-              <button className="
-                w-full sm:w-auto
-                px-7 py-3.5
-                bg-[#0f0518] text-white
-                font-bold rounded-2xl
-                shadow-lg shadow-brand-primary/20
-                transition-all flex items-center justify-center gap-3
-                active:scale-95
-              ">
-                <MessageCircle size={18} />
-                <span>Chat with Mentor</span>
-              </button>
-            </Link>
-          </div>
-
-          {/* RIGHT */}
-          <div className="lg:col-span-7 flex flex-col gap-3 sm:gap-4">
-            {faqs.map((faq, index) => {
-              const isOpen = activeIndex === index;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                  className={`
-                    border rounded-2xl sm:rounded-3xl overflow-hidden
-                    transition-all duration-300
-                    ${isOpen
-                      ? 'bg-white border-brand-primary/20 shadow-lg shadow-brand-primary/5'
-                      : 'bg-gray-50 border-gray-100 hover:bg-white'}
-                  `}
-                >
-                  <button
-                    onClick={() => setActiveIndex(isOpen ? null : index)}
-                    className="flex items-center justify-between w-full px-5 py-4 sm:p-7 text-left"
-                  >
-                    <span className={`
-                      text-base sm:text-lg font-bold pr-6
-                      ${isOpen ? 'text-brand-primary' : 'text-gray-900'}
-                    `}>
-                      {faq.question}
-                    </span>
-
-                    <div className={`
-                      w-9 h-9 sm:w-10 sm:h-10
-                      rounded-full flex items-center justify-center
-                      transition-all duration-300
-                      ${isOpen
-                        ? 'bg-brand-primary text-white rotate-180 shadow-md'
-                        : 'bg-white text-gray-400 border border-gray-200'}
-                    `}>
-                      {isOpen ? <Minus size={18} /> : <Plus size={18} />}
-                    </div>
-                  </button>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                      >
-                        <div className="px-5 sm:px-8 pb-6 sm:pb-8">
-                          <div className="h-px w-full bg-gray-100 mb-4 sm:mb-6"></div>
-                          <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
-
+        {/* GRID – IMPORTANT: NO layout animation here */}
+        <div className="grid grid-cols-2 gap-6 lg:gap-8">
+          {faqs.map((item, i) => (
+            <FAQCard
+              key={i}
+              item={item}
+              open={activeIndex === i}
+              onClick={() =>
+                setActiveIndex(activeIndex === i ? null : i)
+              }
+            />
+          ))}
         </div>
       </div>
     </section>

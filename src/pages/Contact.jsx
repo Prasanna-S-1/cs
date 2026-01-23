@@ -1,155 +1,246 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Mail, Phone, MapPin, Send, ArrowUpRight, 
-  ChevronDown, MessageCircle, Globe, ShieldCheck 
-} from 'lucide-react';
+import React from "react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  MessageCircle,
+  ArrowUpRight
+} from "lucide-react";
+
+const contactCards = [
+  {
+    title: "Visit Us",
+    text: "Madipakkam, Chennai",
+    icon: MapPin,
+    accent: "purple"
+  },
+  {
+    title: "Call Us",
+    text: "+91 80728 77622",
+    icon: Phone,
+    accent: "violet"
+  },
+  {
+    title: "Email",
+    text: "combosquare2@gmail.com",
+    icon: Mail,
+    accent: "pink"
+  },
+  {
+    title: "WhatsApp",
+    text: "Instant Support",
+    icon: MessageCircle,
+    accent: "green",
+    link: "https://wa.me/918072877622"
+  }
+];
 
 const Contact = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const address = "909, Bazaar Main Road, Ram Nagar, Madipakkam, Chennai - 600091";
-
-  const mapEmbedUrl =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.134763116524!2d80.1983!3d12.9627";
-
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="bg-white min-h-screen pt-20 overflow-x-hidden"
-    >
-      {/* CONTACT GRID */}
-      <section className="container mx-auto px-6 lg:px-12 py-16">
-        <div className="grid lg:grid-cols-12 gap-10 items-stretch">
+    <section className="relative bg-gradient-to-br from-[#0f0518] via-[#1a0b2e] to-[#0f0518] text-white overflow-hidden">
 
+      {/* BACKGROUND GLOWS */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[160px]" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-green-500/10 rounded-full blur-[160px]" />
 
-          {/* LEFT */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Phone */}
-              <div className="p-6 sm:p-8 bg-gray-50 rounded-[2rem] border hover:shadow-xl transition">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-5">
-                  <Phone className="text-brand-primary" />
-                </div>
-                <h3 className="text-xl font-black">Call Us</h3>
-                <p className="text-gray-500 text-sm font-bold">+91 90728 77622</p>
+      {/* CONTAINER */}
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 py-16 sm:py-24">
 
-              </div>
+        {/* HERO */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-              {/* Email */}
-              <div className="p-6 sm:p-8 bg-gray-50 rounded-[2rem] border hover:shadow-xl transition">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-5">
-                  <Mail className="text-brand-primary" />
-                </div>
-                <h3 className="text-xl font-black">Email Us</h3>
-                <p className="text-gray-500 text-sm font-bold truncate">
-                  combosquareofficials@gmail.com
-                </p>
-              </div>
-            </div>
+          {/* LEFT CONTENT */}
+          <div>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-sm font-bold mb-6">
+              📞 Get in Touch
+            </span>
 
-            {/* MAP – MOBILE FIXED */}
-            <div className="relative flex-grow min-h-[260px] sm:min-h-[400px] rounded-[3rem] overflow-hidden border-8 border-gray-50 shadow-2xl">
-              <iframe
-                title="Combo Square HQ"
-                src={mapEmbedUrl}
-                className="w-full h-full grayscale hover:grayscale-0 transition-all"
-                loading="lazy"
-              />
-              <div className="absolute bottom-5 left-5 right-5 bg-white/90 backdrop-blur-xl p-4 rounded-2xl flex justify-between items-center">
-                <div>
-                  <h4 className="text-sm font-black flex items-center gap-1">
-                    <MapPin size={14} className="text-brand-primary" /> Combo Square HQ
-                  </h4>
-                  <p className="text-[10px] text-gray-500">{address}</p>
-                </div>
-                <a
-                  href="https://maps.google.com"
-                  target="_blank"
-                  className="w-9 h-9 bg-black text-white rounded-full flex items-center justify-center"
-                >
-                  <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </div>
-          </div>
+            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black leading-tight mb-6">
+              Let’s Talk About <br />
+              <span className="text-purple-400">Your Next Move</span>
+            </h1>
 
-          {/* RIGHT – FORM */}
-          <div className="lg:col-span-7 bg-white p-6 sm:p-8 lg:p-16 rounded-[4rem] shadow-2xl border">
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black mb-4">
-              Send a <span className="text-brand-primary">Message.</span>
-            </h2>
-            <p className="text-gray-400 mb-10">
-              Have a requirement? Our experts will help you.
+            <p className="text-gray-300 max-w-xl text-base sm:text-lg leading-relaxed mb-10">
+              Whether you’re a student, startup, or institution — our team is
+              ready to guide you from learning to real-world execution.
             </p>
 
-            <form className="space-y-5">
-              <div className="grid md:grid-cols-2 gap-5">
-                <input
-                  placeholder="Full Name"
-                  className="px-6 py-4 sm:py-5 bg-gray-50 rounded-2xl font-bold outline-none"
-                />
-                <input
-                  placeholder="Phone Number"
-                  className="px-6 py-4 sm:py-5 bg-gray-50 rounded-2xl font-bold outline-none"
-                />
-              </div>
-
-              <input
-                placeholder="Email Address"
-                className="px-6 py-4 sm:py-5 bg-gray-50 rounded-2xl font-bold outline-none w-full"
-              />
-
-              <div className="relative">
-                <select className="w-full px-6 py-4 sm:py-5 bg-gray-50 rounded-2xl font-bold appearance-none">
-                  <option disabled selected>Select Inquiry Type</option>
-                  <option>Corporate Branding</option>
-                  <option>Web & App Development</option>
-                  <option>Industrial Training</option>
-                </select>
-                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400" />
-              </div>
-
-              <textarea
-                rows="4"
-                placeholder="Your message"
-                className="px-6 py-4 sm:py-5 bg-gray-50 rounded-3xl font-bold outline-none w-full resize-none"
-              />
-
-              <button className="w-full py-5 bg-black text-white rounded-2xl text-lg font-black flex justify-center gap-2 hover:bg-brand-primary">
-                Send Now <Send size={18} />
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* WHATSAPP CTA */}
-      <section className="bg-[#0f0518] py-20">
-        <div className="container mx-auto px-6 text-center">
-          <div className="bg-[#25D366] rounded-[3rem] p-6 sm:p-8 lg:p-12 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-left">
-              <h3 className="text-2xl font-black text-white">
-                Need an instant response?
-              </h3>
-              <p className="text-white/80 text-sm">
-                Chat with us on WhatsApp
-              </p>
-            </div>
+            {/* CTA BUTTON */}
             <a
-              href="https://wa.me/919072877622"
+              href="https://wa.me/918072877622"
               target="_blank"
-              className="px-10 py-4 bg-white text-[#25D366] font-black rounded-full text-lg flex items-center gap-2"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 px-7 py-4 rounded-2xl bg-green-500 hover:bg-green-600 text-black font-black shadow-2xl transition-all"
             >
-              <MessageCircle size={22} /> WhatsApp
+              Chat on WhatsApp <ArrowUpRight />
             </a>
           </div>
+
+          {/* RIGHT INFO GRID */}
+          <div className="relative -mt-8 sm:mt-0">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+
+              {contactCards.map((item, index) => {
+                const Icon = item.icon;
+                const accentMap = {
+                  purple: "hover:border-purple-400 hover:bg-purple-500/10",
+                  violet: "hover:border-violet-400 hover:bg-violet-500/10",
+                  pink: "hover:border-pink-400 hover:bg-pink-500/10",
+                  green: "hover:border-green-400 hover:bg-green-500/10"
+                };
+
+                const content = (
+                  <div
+                    className={`
+                      group bg-white/10 backdrop-blur-xl border border-white/20
+                      rounded-2xl sm:rounded-3xl
+                      p-4 sm:p-6
+                      transition-all duration-300
+                      ${accentMap[item.accent]}
+                    `}
+                  >
+                    <Icon
+                      className={`
+                        w-5 h-5 sm:w-6 sm:h-6 mb-3
+                        ${
+                          item.accent === "green"
+                            ? "text-green-400"
+                            : "text-purple-400"
+                        }
+                        group-hover:scale-110 transition
+                      `}
+                    />
+
+                    <h3 className="font-black text-sm sm:text-base mb-1">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-gray-300 leading-snug line-clamp-2">
+                      {item.text}
+                    </p>
+                  </div>
+                );
+
+                return item.link ? (
+                  <a
+                    key={index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div key={index}>{content}</div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </section>
-    </motion.main>
+         {/* SEND MESSAGE SECTION */}
+<div className="mt-16 sm:mt-20">
+  <div className="relative bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-10 lg:p-14 backdrop-blur-xl overflow-hidden">
+
+    {/* glow */}
+    <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-500/20 blur-[120px]" />
+
+    <div className="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+
+      {/* LEFT CONTENT */}
+      <div>
+        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 text-purple-300 text-sm font-bold mb-6">
+          ✉️ Send Message
+        </span>
+
+        <h2 className="text-3xl sm:text-4xl font-black mb-5">
+          Let’s Build Something <br />
+          <span className="text-purple-400">Great Together</span>
+        </h2>
+
+        <p className="text-gray-300 max-w-md leading-relaxed">
+          Have a question about programs, internships, services, or partnerships?
+          Drop us a message and our team will reach out shortly.
+        </p>
+      </div>
+
+      {/* FORM */}
+      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+
+        <input
+          type="text"
+          placeholder="Your Name"
+          className="col-span-1 px-5 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition"
+        />
+
+        <input
+          type="email"
+          placeholder="Your Email"
+          className="col-span-1 px-5 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition"
+        />
+
+        <input
+          type="text"
+          placeholder="Subject"
+          className="sm:col-span-2 px-5 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition"
+        />
+
+        <textarea
+          rows="4"
+          placeholder="Your Message"
+          className="sm:col-span-2 px-5 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition resize-none"
+        />
+
+        <button
+          type="submit"
+          className="sm:col-span-2 mt-2 inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-purple-500 hover:bg-purple-600 text-white font-black shadow-2xl transition-all active:scale-95"
+        >
+          Send Message 🚀
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+        {/* MAP SECTION */}
+        <div className="mt-16 sm:mt-24 grid lg:grid-cols-2 gap-12 items-center">
+
+          {/* MAP */}
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+            <iframe
+              title="Combo Square Location"
+              src="https://www.google.com/maps?q=Madipakkam%20Chennai&output=embed"
+              className="w-full h-[300px] sm:h-[380px] border-0"
+              loading="lazy"
+            />
+          </div>
+
+          {/* MAP TEXT */}
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-black mb-6">
+              Visit Our <span className="text-purple-400">Workspace</span>
+            </h2>
+
+            <p className="text-gray-300 max-w-lg leading-relaxed mb-8">
+              Located in the heart of Chennai, our innovation hub is where
+              students, creators, and businesses collaborate on real-world
+              solutions.
+            </p>
+
+            <div className="flex gap-4">
+              <a
+                href="https://maps.google.com?q=Madipakkam+Chennai"
+                target="_blank"
+                rel="noreferrer"
+                className="px-6 py-3 rounded-xl bg-white text-black font-black hover:bg-purple-600 hover:text-white transition-all"
+              >
+                Open in Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
