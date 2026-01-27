@@ -16,7 +16,6 @@ const services = [
     description:
       "IoT, Robotics, Embedded Systems, and Automation programs with strong hands-on and industry exposure.",
     image:
-      // ✅ FIXED – stable and widely used
       "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=80",
   },
   {
@@ -39,24 +38,39 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="relative bg-white py-20 overflow-hidden">
+    <section className="relative bg-white py-28 overflow-hidden">
       {/* subtle depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-purple-50 pointer-events-none" />
 
       <div className="relative container mx-auto px-4 lg:px-10">
-        {/* HEADER */}
-        <div className="mb-14">
-          <span className="inline-flex px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-sm font-bold mb-4">
+
+        {/* ✅ CENTERED HEADER */}
+        <div className="max-w-4xl mx-auto mb-20 text-center">
+          <span
+            className="
+              inline-flex items-center justify-center
+              px-6 py-2.5
+              rounded-full
+              bg-purple-100
+              text-purple-700
+              text-base sm:text-lg
+              font-extrabold
+              mb-6
+            "
+          >
             OUR SERVICES
           </span>
 
-          <h2 className="text-4xl sm:text-5xl font-black leading-tight">
-            Complete <span className="text-purple-600">Ecosystem</span>
-            <br /> for Growth & Innovation
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
+            Complete{" "}
+            <span className="text-purple-600">Ecosystem</span>
+            <br />
+            for Growth & Innovation
           </h2>
 
-          <p className="mt-4 text-gray-600 max-w-xl text-lg">
-            We deliver technology, creativity, and training solutions under one powerful ecosystem.
+          <p className="text-gray-600 text-lg sm:text-xl leading-relaxed max-w-3xl mx-auto">
+            We deliver technology, creativity, and training solutions under one
+            powerful ecosystem.
           </p>
         </div>
 
@@ -112,11 +126,6 @@ const Services = () => {
                   {service.title}
                 </h3>
 
-                {/* 
-                  KEY FIX:
-                  - clamp text height on mobile
-                  - full text visible on desktop
-                */}
                 <p
                   className="
                     text-gray-600 text-[13px] sm:text-sm leading-relaxed

@@ -29,37 +29,48 @@ const comparison = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="relative py-24 bg-white overflow-hidden">
+    <section className="relative py-28 bg-white overflow-hidden">
       {/* subtle background depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-purple-50 pointer-events-none" />
 
       <div className="relative container mx-auto px-4 lg:px-10">
-        {/* HEADER */}
-        <div className="max-w-3xl mb-16">
-          <span className="inline-flex px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-bold text-sm mb-5">
+
+        {/* ✅ CENTERED HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto mb-20 text-center"
+        >
+          <span
+            className="
+              inline-flex items-center justify-center
+              px-6 py-2.5
+              rounded-full
+              bg-purple-100
+              text-purple-700
+              text-base sm:text-lg
+              font-extrabold
+              mb-6
+            "
+          >
             WHY COMBO SQUARE
           </span>
 
-          <h2 className="text-4xl sm:text-5xl font-black leading-tight mb-4">
-            What Makes Us <span className="text-purple-600">Different</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
+            What Makes Us{" "}
+            <span className="text-purple-600">Different</span>
           </h2>
 
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-lg sm:text-xl leading-relaxed max-w-3xl mx-auto">
             We don’t just teach or deliver services — we create measurable impact
             through structured training, innovation, and execution.
           </p>
-        </div>
+        </motion.div>
 
         {/* TOP GRID (REASONS) */}
-        <div
-          className="
-            grid
-            grid-cols-2
-            lg:grid-cols-4
-            gap-6
-            mb-20
-          "
-        >
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {reasons.map((item, i) => (
             <motion.div
               key={i}
@@ -69,8 +80,7 @@ const WhyChooseUs = () => {
               transition={{ duration: 0.6, delay: i * 0.08 }}
               whileHover={{ y: -8 }}
               className="
-                group
-                relative
+                group relative
                 rounded-3xl
                 bg-white
                 border border-gray-100
@@ -86,13 +96,7 @@ const WhyChooseUs = () => {
                 {item.title}
               </h3>
 
-              <p
-                className="
-                  text-gray-600 text-[13px] sm:text-sm leading-relaxed
-                  line-clamp-2
-                  lg:line-clamp-none
-                "
-              >
+              <p className="text-gray-600 text-[13px] sm:text-sm leading-relaxed">
                 {item.desc}
               </p>
 
@@ -105,13 +109,14 @@ const WhyChooseUs = () => {
         <div className="relative bg-[#0f0518] rounded-[3rem] p-8 sm:p-12 lg:p-16 text-white">
           {/* glow */}
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-purple-600/20 rounded-full blur-[120px]" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-brand-primary/20 rounded-full blur-[120px]" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-purple-600/20 rounded-full blur-[120px]" />
 
           <div className="relative grid lg:grid-cols-2 gap-12 items-center">
             {/* LEFT */}
             <div>
               <h3 className="text-3xl sm:text-4xl font-black mb-4">
-                Before vs After <span className="text-purple-400">Combo Square</span>
+                Before vs After{" "}
+                <span className="text-purple-400">Combo Square</span>
               </h3>
 
               <p className="text-gray-400 text-lg mb-8 max-w-md">
@@ -152,6 +157,7 @@ const WhyChooseUs = () => {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

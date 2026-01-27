@@ -5,13 +5,12 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import { ArrowRight, Play, TrendingUp, Sparkles } from "lucide-react";
+import { ArrowRight, Play, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   const sectionRef = useRef(null);
 
-  /* ---------------- PARALLAX (SMOOTH & LIGHT) ---------------- */
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -35,140 +34,84 @@ const Hero = () => {
         flex items-center
       "
     >
-      {/* ================= BACKGROUND LAYERS ================= */}
+      {/* ================= BACKGROUND ================= */}
       <motion.div
         style={{ y: smoothBgY }}
         className="absolute inset-0 pointer-events-none"
       >
-        {/* Purple Glow */}
         <div className="absolute -top-32 -right-40 w-[520px] h-[520px] bg-purple-600/30 rounded-full blur-[160px]" />
-
-        {/* Pink Glow */}
         <div className="absolute bottom-[-140px] left-[-120px] w-[520px] h-[520px] bg-pink-500/20 rounded-full blur-[160px]" />
-
-        {/* Grid texture */}
-        <div className="absolute inset-0 opacity-[0.06]
+        <div
+          className="absolute inset-0 opacity-[0.06]
           bg-[linear-gradient(rgba(255,255,255,0.4)_1px,transparent_1px),
               linear-gradient(90deg,rgba(255,255,255,0.4)_1px,transparent_1px)]
           bg-[size:64px_64px]"
         />
       </motion.div>
 
-      {/* ================= MAIN CONTENT ================= */}
+      {/* ================= CONTENT ================= */}
       <motion.div
         style={{ y: smoothContentY }}
         className="relative z-10 w-full"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-10">
-          {/* ⚠️ MINI DESKTOP GRID — EVEN ON MOBILE */}
           <div
             className="
               grid
-              grid-cols-2
-              gap-6
-              lg:gap-16
+              grid-cols-1
+              lg:grid-cols-2
+              gap-8
+              lg:gap-12
               items-center
+              lg:items-center
+              lg:py-10
             "
           >
-            {/* ================= LEFT CONTENT ================= */}
-            <div className="space-y-6 lg:space-y-8">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
-                <Sparkles size={14} className="text-brand-neon" />
-                <span className="text-[11px] font-bold uppercase tracking-widest text-white">
-                  Premium Digital Agency
-                </span>
-              </div>
-
-              {/* Heading */}
-              <h1 className="text-white font-black leading-[1.05]
-                text-[26px]
-                sm:text-[30px]
-                lg:text-[64px]
-                tracking-tight
-              ">
-                We Build <br />
+            {/* ================= TEXT ================= */}
+            <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
+              <h1
+                className="
+                  text-white font-black leading-[1.05]
+                  text-[28px]
+                  sm:text-[32px]
+                  lg:text-[72px]
+                  xl:text-[80px]
+                  tracking-tight
+                "
+              >
+                We Elevate Your{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon via-purple-400 to-pink-500">
-                  Future-Ready
+                  Brand
                 </span>{" "}
-                Brands
+                by Creativity
               </h1>
 
-              {/* Description */}
-              <p className="text-gray-400 text-[13px] sm:text-[14px] lg:text-lg max-w-xl leading-relaxed">
-                Combo Square helps students, colleges, and businesses
-                scale through internships, real projects, and
-                next-generation digital solutions.
+              <p className="text-gray-400 text-[14px] sm:text-[15px] lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Combo Square is a next-gen digital agency helping students,
+                colleges, and businesses grow through internships, training,
+                and creative services.
               </p>
-
-              {/* Actions */}
-              <div className="flex gap-4 flex-wrap">
-                <Link to="/contact">
-                  <button className="
-                    px-5 py-3
-                    lg:px-7 lg:py-3.5
-                    bg-white text-[#0f0518]
-                    font-bold text-sm lg:text-base
-                    rounded-xl
-                    flex items-center gap-2
-                    hover:scale-[1.03]
-                    transition-transform
-                  ">
-                    Get Started <ArrowRight size={16} />
-                  </button>
-                </Link>
-
-                <Link to="/services">
-                  <button className="
-                    px-5 py-3
-                    lg:px-7 lg:py-3.5
-                    bg-white/5 text-white
-                    font-bold text-sm lg:text-base
-                    rounded-xl
-                    border border-white/15
-                    backdrop-blur
-                    flex items-center gap-2
-                    hover:bg-white/10
-                  ">
-                    <Play size={14} /> Explore
-                  </button>
-                </Link>
-              </div>
-
-              {/* Stats */}
-              <div className="flex gap-6 pt-4 border-t border-white/10">
-                {[
-                  ["25+", "Clients"],
-                  ["100+", "Projects"],
-                  ["4.9★", "Rating"],
-                ].map(([v, l]) => (
-                  <div key={l}>
-                    <p className="text-white font-black text-lg">{v}</p>
-                    <p className="text-[10px] uppercase text-gray-500 font-bold">
-                      {l}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            {/* ================= RIGHT VISUAL ================= */}
+            {/* ================= IMAGE ================= */}
             <div
   className="
     relative
     w-full
-    max-w-[280px]
-    sm:max-w-[320px]
-    lg:max-w-[420px]
+    max-w-[200px]
+    sm:max-w-[240px]
+    lg:max-w-[360px]
     aspect-[4/5]
+    lg:aspect-[3/5]
     mx-auto
+    mt-6
+    lg:pt-16
   "
 >
 
-              {/* Glow frame */}
+
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary to-purple-600 blur-[70px] opacity-40 rounded-[2.5rem]" />
 
-              {/* Image card */}
               <motion.div
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -180,6 +123,8 @@ const Hero = () => {
                   overflow-hidden
                   border border-white/15
                   shadow-2xl
+                  scale-[0.9]
+                  lg:scale-[0.9]
                 "
               >
                 <img
@@ -187,19 +132,16 @@ const Hero = () => {
                   alt="Combo Square Innovation"
                   className="w-full h-full object-cover"
                 />
-
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f0518]/80 via-transparent to-transparent" />
               </motion.div>
 
-              {/* Floating metric */}
               <motion.div
                 animate={{ y: [-6, 6, -6] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 className="
                   absolute
-                  -bottom-6
-                  -left-6
+                  -bottom-4
+                  -left-4
                   bg-white/10
                   backdrop-blur-xl
                   border border-white/20
@@ -219,6 +161,39 @@ const Hero = () => {
                   <p className="text-lg text-white font-black">+150%</p>
                 </div>
               </motion.div>
+            </div>
+
+            {/* ================= CTA ================= */}
+            <div className="col-span-1 lg:col-span-2 flex justify-center items-center gap-4 mt-2 lg:mt-0">
+              <Link to="/contact">
+                <button
+                  className="
+                    px-6 py-3
+                    bg-white text-[#0f0518]
+                    font-bold text-sm lg:text-base
+                    rounded-xl
+                    flex items-center gap-2
+                  "
+                >
+                  Get Started <ArrowRight size={16} />
+                </button>
+              </Link>
+
+              <Link to="/services">
+                <button
+                  className="
+                    px-6 py-3
+                    bg-white/5 text-white
+                    font-bold text-sm lg:text-base
+                    rounded-xl
+                    border border-white/15
+                    backdrop-blur
+                    flex items-center gap-2
+                  "
+                >
+                  <Play size={14} /> Explore Services
+                </button>
+              </Link>
             </div>
           </div>
         </div>

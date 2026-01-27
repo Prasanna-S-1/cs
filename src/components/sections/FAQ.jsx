@@ -1,44 +1,56 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, HelpCircle } from "lucide-react";
+import {
+  ChevronRight,
+  HelpCircle,
+  Smile,
+  Briefcase,
+  BookOpen,
+  Building2,
+  Code,
+  Award,
+} from "lucide-react";
 
 const faqs = [
   {
+    icon: Smile,
     q: "What is Combo Square?",
     a: "Combo Square is an EdTech and innovation hub that provides training, internships, and digital solutions for students, colleges, and businesses.",
   },
   {
+    icon: Briefcase,
     q: "Do you provide internships?",
     a: "Yes. We provide industry-focused internships with real projects, mentorship, and certification.",
   },
   {
+    icon: BookOpen,
     q: "Are your programs beginner friendly?",
     a: "Yes. Our programs are structured from fundamentals to real-world applications.",
   },
   {
+    icon: Building2,
     q: "Do you work with colleges?",
     a: "Yes. We partner with colleges for workshops, internships, and training programs.",
   },
   {
+    icon: Code,
     q: "What services do you offer?",
     a: "We offer branding, web development, digital marketing, and creative services.",
   },
   {
+    icon: Award,
     q: "Is certification provided?",
     a: "Yes. All programs and internships include verified certification.",
   },
 ];
 
 const FAQCard = ({ item, open, onClick }) => {
+  const Icon = item.icon;
+
   return (
     <div
       className={`
-        relative
-        rounded-3xl
-        border
-        bg-white
-        transition-all
-        overflow-hidden
+        relative rounded-3xl border bg-white transition-all overflow-hidden
         ${
           open
             ? "border-purple-300 shadow-[0_28px_60px_rgba(139,92,246,0.22)]"
@@ -46,33 +58,36 @@ const FAQCard = ({ item, open, onClick }) => {
         }
       `}
     >
-      {/* glow only for active */}
       {open && (
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-xl opacity-50 -z-10" />
       )}
 
-      {/* HEADER */}
       <button
         onClick={onClick}
-        className="w-full flex items-start gap-4 p-5 sm:p-6 text-left"
+        className="w-full flex items-start gap-5 p-6 sm:p-7 text-left"
       >
-        <motion.div
-          animate={{ rotate: open ? 90 : 0 }}
-          transition={{ duration: 0.25 }}
+        <div
           className={`
-            w-10 h-10 rounded-xl flex items-center justify-center shrink-0
+            w-12 h-12 rounded-2xl flex items-center justify-center shrink-0
             ${open ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-600"}
           `}
         >
-          <ChevronRight size={18} />
-        </motion.div>
+          <Icon size={22} />
+        </div>
 
-        <h4 className="font-black text-sm sm:text-base text-gray-900 leading-snug">
+        <h4 className="font-black text-base sm:text-lg text-gray-900 leading-snug flex-1">
           {item.q}
         </h4>
+
+        <motion.div
+          animate={{ rotate: open ? 90 : 0 }}
+          transition={{ duration: 0.25 }}
+          className="text-purple-600 mt-1"
+        >
+          <ChevronRight size={22} />
+        </motion.div>
       </button>
 
-      {/* ANSWER (isolated animation – NO layout bleed) */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -81,9 +96,9 @@ const FAQCard = ({ item, open, onClick }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.25 }}
-            className="px-5 sm:px-6 pb-5 sm:pb-6"
+            className="px-6 sm:px-7 pb-6 sm:pb-7"
           >
-            <p className="text-gray-600 text-sm leading-relaxed">
+            <p className="text-gray-600 text-base leading-relaxed">
               {item.a}
             </p>
           </motion.div>
@@ -97,30 +112,40 @@ const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <section className="relative py-28 bg-white overflow-hidden">
-      {/* soft background */}
-      <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-purple-100 rounded-full blur-[140px] opacity-60 pointer-events-none" />
+    <section className="relative py-32 bg-white overflow-hidden">
+      {/* background glow */}
+      <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-purple-100 rounded-full blur-[160px] opacity-60 pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-10 relative">
-        {/* HEADER */}
-        <div className="max-w-3xl mb-16">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-bold text-sm mb-5">
-            <HelpCircle size={16} />
+
+        {/* ✅ HEADER – MATCHING WHO WE ARE */}
+        <div className="max-w-4xl mx-auto mb-20 text-center">
+          <span className="
+            inline-flex items-center justify-center gap-2
+            px-6 py-2.5
+            rounded-full
+            bg-purple-100
+            text-purple-700
+            text-base sm:text-lg
+            font-extrabold
+            mb-6
+          ">
+            <HelpCircle size={18} />
             FAQs
           </span>
 
-          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
             Frequently Asked{" "}
             <span className="text-purple-600">Questions</span>
           </h2>
 
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-lg sm:text-xl leading-relaxed">
             Clear answers about our programs, services, and partnerships.
           </p>
         </div>
 
-        {/* GRID – IMPORTANT: NO layout animation here */}
-        <div className="grid grid-cols-2 gap-6 lg:gap-8">
+        {/* FAQ GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-9">
           {faqs.map((item, i) => (
             <FAQCard
               key={i}
