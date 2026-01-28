@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 const CTA = () => {
   return (
-    <section className="relative bg-[#12061d] overflow-hidden py-16 sm:py-20">
+    <section className="relative bg-[#12061d] overflow-hidden py-10 sm:py-14 lg:py-18">
+
       
       {/* ========= BACKGROUND EFFECTS ========= */}
       <div className="absolute inset-0 pointer-events-none">
@@ -33,40 +34,39 @@ const CTA = () => {
           "
         >
 
-          {/* ========= GRID (ALWAYS 2 COLS) ========= */}
+          {/* ✅ FIXED GRID */}
           <div
             className="
               grid
-              grid-cols-2
-              gap-6
-              sm:gap-10
+              grid-cols-1
+              lg:grid-cols-2
+              gap-10
               items-center
             "
           >
 
-            {/* ========= LEFT CONTENT ========= */}
-            <div className="space-y-4 sm:space-y-5">
-              
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-white/90 text-[10px] sm:text-xs font-bold tracking-wide">
+            {/* ========= TEXT (TOP ON MOBILE) ========= */}
+            <div className="space-y-5 text-center lg:text-left">
+
+              <div className="inline-flex mx-auto lg:mx-0 items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-white/90 text-[10px] sm:text-xs font-bold tracking-wide">
                 <Sparkles size={12} className="text-purple-300" />
                 READY TO LEVEL UP?
               </div>
 
-              <h2 className="text-[22px] sm:text-4xl font-black leading-tight text-white">
+              <h2 className="text-[26px] sm:text-4xl font-black leading-tight text-white">
                 Start Your Journey with{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-400">
                   Combo Square
                 </span>
               </h2>
 
-              <p className="text-white/70 text-[12px] sm:text-base leading-relaxed max-w-md">
+              <p className="text-white/70 text-[13px] sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
                 We help students, colleges, and businesses move from learning
                 to real-world execution through internships, live projects,
                 and industry-driven programs.
               </p>
 
-              {/* trust tags */}
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 pt-2">
                 {["Internships", "Live Projects", "Mentorship"].map((t, i) => (
                   <span
                     key={i}
@@ -78,35 +78,33 @@ const CTA = () => {
               </div>
             </div>
 
-            {/* ========= RIGHT ACTION CARD ========= */}
+            {/* ========= ACTION CARD (BOTTOM ON MOBILE) ========= */}
             <div
               className="
                 relative
                 bg-white
                 rounded-[1.8rem]
-                p-5
+                p-6
                 sm:p-8
                 shadow-[0_25px_70px_rgba(0,0,0,0.35)]
                 flex
                 flex-col
                 justify-between
-                min-h-[260px]
-                sm:min-h-[320px]
+                gap-6
               "
             >
-              <div className="space-y-3">
-                <h3 classNameh3 className="text-lg sm:text-2xl font-black text-gray-900">
+              <div className="space-y-3 text-center lg:text-left">
+                <h3 className="text-xl sm:text-2xl font-black text-gray-900">
                   Talk to Our Experts
                 </h3>
 
-                <p className="text-gray-600 text-[11px] sm:text-sm leading-relaxed">
+                <p className="text-gray-600 text-[12px] sm:text-sm leading-relaxed">
                   Get personalized guidance on programs, internships,
                   and services tailored to your goals.
                 </p>
               </div>
 
-              <div className="space-y-3 pt-4">
-                {/* Primary */}
+              <div className="space-y-3">
                 <Link to="/contact">
                   <button
                     className="
@@ -121,7 +119,6 @@ const CTA = () => {
                       items-center
                       justify-center
                       gap-2
-                      hover:scale-[1.02]
                       transition
                       active:scale-95
                     "
@@ -131,7 +128,6 @@ const CTA = () => {
                   </button>
                 </Link>
 
-                {/* Secondary */}
                 <a
                   href="tel:+918072877622"
                   className="
@@ -155,6 +151,7 @@ const CTA = () => {
                 </a>
               </div>
             </div>
+
           </div>
         </motion.div>
       </div>

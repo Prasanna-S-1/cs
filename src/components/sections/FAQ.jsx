@@ -112,7 +112,8 @@ const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <section className="relative py-32 bg-white overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-24 bg-white overflow-hidden">
+
       {/* background glow */}
       <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-purple-100 rounded-full blur-[160px] opacity-60 pointer-events-none" />
 

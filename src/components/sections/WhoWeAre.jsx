@@ -32,14 +32,13 @@ const pillars = [
 
 const WhoWeAre = () => {
   return (
-    <section className="relative bg-white py-20 sm:py-24 overflow-hidden">
+    <section className="relative bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
 
-      {/* Background gradient */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-white pointer-events-none" />
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* HEADER (CENTERED) */}
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,17 +46,7 @@ const WhoWeAre = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto mb-16 text-center"
         >
-          {/* BIGGER WHO WE ARE */}
-          <span className="
-            inline-flex items-center justify-center
-            px-6 py-2.5
-            rounded-full
-            bg-purple-100
-            text-purple-700
-            text-base sm:text-lg
-            font-extrabold
-            mb-6
-          ">
+          <span className="inline-flex px-6 py-2.5 rounded-full bg-purple-100 text-purple-700 font-extrabold mb-6">
             Who We Are
           </span>
 
@@ -74,17 +63,18 @@ const WhoWeAre = () => {
           </p>
         </motion.div>
 
-        {/* MAIN GRID */}
-        <div className="grid grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-
-          {/* IMAGE SECTION */}
+        {/* MAIN CONTENT */}
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* IMAGE — comes FIRST in mobile */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="
-              col-span-2 lg:col-span-6
+              w-full
+              lg:col-span-6
               relative
               rounded-[2.5rem]
               overflow-hidden
@@ -122,9 +112,9 @@ const WhoWeAre = () => {
             </motion.div>
           </motion.div>
 
-          {/* PILLARS */}
-          <div className="col-span-2 lg:col-span-6">
-            <div className="grid grid-cols-2 gap-6">
+          {/* CARDS — ONE BY ONE IN MOBILE */}
+          <div className="w-full lg:col-span-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {pillars.map((item, i) => (
                 <motion.div
                   key={i}
@@ -136,23 +126,21 @@ const WhoWeAre = () => {
                     bg-white
                     border border-gray-100
                     rounded-3xl
-                    p-6 sm:p-8
-                    min-h-[220px]
-                    shadow-md hover:shadow-xl
+                    p-6 sm:p-7
+                    shadow-md
+                    hover:shadow-xl
                     transition-all
-                    group
-                    flex flex-col
                   "
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-purple-600/10 text-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-600/10 text-purple-600 flex items-center justify-center mb-4">
                     <item.icon size={22} />
                   </div>
 
-                  <h4 className="font-black text-sm sm:text-base mb-3">
+                  <h4 className="font-black text-base mb-3">
                     {item.title}
                   </h4>
 
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     {item.desc}
                   </p>
                 </motion.div>

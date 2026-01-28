@@ -35,7 +35,8 @@ const stats = [
 
 const Stats = () => {
   return (
-    <section className="relative bg-white py-28 overflow-hidden">
+    <section className="relative bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
+
 
       {/* ===== SOFT BACKGROUND DECOR ===== */}
       <div className="absolute inset-0 pointer-events-none">
@@ -45,7 +46,7 @@ const Stats = () => {
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
 
-        {/* ===== ✅ CENTERED HEADER ===== */}
+        {/* ===== HEADER ===== */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,34 +54,23 @@ const Stats = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto mb-20 text-center"
         >
-          <span
-            className="
-              inline-flex items-center justify-center
-              px-6 py-2.5
-              rounded-full
-              bg-purple-100
-              text-purple-700
-              text-base sm:text-lg
-              font-extrabold
-              mb-6
-            "
-          >
+          <span className="inline-flex px-6 py-2.5 rounded-full bg-purple-100 text-purple-700 font-extrabold mb-6">
             Our Impact
           </span>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
             Numbers That Define{" "}
             <span className="text-purple-600">Combo Square</span>
           </h2>
 
-          <p className="text-gray-600 text-lg sm:text-xl leading-relaxed">
+          <p className="text-gray-600 text-lg sm:text-xl">
             We measure success through outcomes, impact, and real-world growth
             for students, colleges, and businesses.
           </p>
         </motion.div>
 
-        {/* ===== STATS GRID (2x2 ALWAYS) ===== */}
-        <div className="grid grid-cols-2 gap-6">
+        {/* ✅ FIXED: ONE BY ONE ON MOBILE */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (
@@ -101,28 +91,22 @@ const Stats = () => {
                   border border-gray-100
                   shadow-[0_20px_60px_rgba(0,0,0,0.08)]
                   px-6 py-7
-                  hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)]
                   transition-all
                 "
               >
-                {/* hover glow */}
-                <div className="absolute inset-0 rounded-[1.8rem] bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition pointer-events-none" />
-
                 <div className="relative flex items-start gap-4">
-                  {/* icon */}
                   <div className="w-14 h-14 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600">
                     <Icon size={24} />
                   </div>
 
-                  {/* text */}
                   <div>
-                    <p className="text-3xl font-black text-gray-900 leading-none">
+                    <p className="text-3xl font-black text-gray-900">
                       {stat.value}
                     </p>
                     <p className="text-sm font-bold text-gray-800 mt-1">
                       {stat.label}
                     </p>
-                    <p className="text-sm text-gray-500 mt-2 leading-snug max-w-[260px]">
+                    <p className="text-sm text-gray-500 mt-2 max-w-[260px]">
                       {stat.desc}
                     </p>
                   </div>
@@ -131,6 +115,7 @@ const Stats = () => {
             );
           })}
         </div>
+
       </div>
     </section>
   );

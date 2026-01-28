@@ -32,6 +32,8 @@ const Hero = () => {
         min-h-[90svh]
         lg:min-h-screen
         flex items-center
+        w-full
+        max-w-full
       "
     >
       {/* ================= BACKGROUND ================= */}
@@ -39,8 +41,8 @@ const Hero = () => {
         style={{ y: smoothBgY }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute -top-32 -right-40 w-[520px] h-[520px] bg-purple-600/30 rounded-full blur-[160px]" />
-        <div className="absolute bottom-[-140px] left-[-120px] w-[520px] h-[520px] bg-pink-500/20 rounded-full blur-[160px]" />
+        <div className="absolute -top-32 -right-40 w-[420px] h-[420px] bg-purple-600/30 rounded-full blur-[160px]" />
+        <div className="absolute bottom-[-140px] left-[-120px] w-[420px] h-[420px] bg-pink-500/20 rounded-full blur-[160px]" />
         <div
           className="absolute inset-0 opacity-[0.06]
           bg-[linear-gradient(rgba(255,255,255,0.4)_1px,transparent_1px),
@@ -52,9 +54,10 @@ const Hero = () => {
       {/* ================= CONTENT ================= */}
       <motion.div
         style={{ y: smoothContentY }}
-        className="relative z-10 w-full"
+        className="relative z-10 w-full overflow-x-hidden"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+        {/* 🔧 FIX IS HERE (w-screen ➜ w-full) */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 overflow-x-hidden">
           <div
             className="
               grid
@@ -63,17 +66,15 @@ const Hero = () => {
               gap-8
               lg:gap-12
               items-center
-              lg:items-center
-              lg:py-10
             "
           >
             {/* ================= TEXT ================= */}
-            <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
+            <div className="space-y-6 text-center lg:text-left">
               <h1
                 className="
                   text-white font-black leading-[1.05]
-                  text-[28px]
-                  sm:text-[32px]
+                  text-[30px]
+                  sm:text-[34px]
                   lg:text-[72px]
                   xl:text-[80px]
                   tracking-tight
@@ -86,7 +87,7 @@ const Hero = () => {
                 by Creativity
               </h1>
 
-              <p className="text-gray-400 text-[14px] sm:text-[15px] lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-gray-400 text-[15px] sm:text-[16px] lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Combo Square is a next-gen digital agency helping students,
                 colleges, and businesses grow through internships, training,
                 and creative services.
@@ -95,21 +96,18 @@ const Hero = () => {
 
             {/* ================= IMAGE ================= */}
             <div
-  className="
-    relative
-    w-full
-    max-w-[200px]
-    sm:max-w-[240px]
-    lg:max-w-[360px]
-    aspect-[4/5]
-    lg:aspect-[3/5]
-    mx-auto
-    mt-6
-    lg:pt-16
-  "
->
-
-
+              className="
+                relative
+                w-full
+                max-w-[180px]
+                sm:max-w-[220px]
+                lg:max-w-[360px]
+                aspect-[4/5]
+                mx-auto
+                mt-4
+                lg:mt-0
+              "
+            >
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary to-purple-600 blur-[70px] opacity-40 rounded-[2.5rem]" />
 
               <motion.div
@@ -123,8 +121,6 @@ const Hero = () => {
                   overflow-hidden
                   border border-white/15
                   shadow-2xl
-                  scale-[0.9]
-                  lg:scale-[0.9]
                 "
               >
                 <img
@@ -164,37 +160,57 @@ const Hero = () => {
             </div>
 
             {/* ================= CTA ================= */}
-            <div className="col-span-1 lg:col-span-2 flex justify-center items-center gap-4 mt-2 lg:mt-0">
-              <Link to="/contact">
+            <div className="col-span-1 lg:col-span-2 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-4">
+              <Link to="/contact" className="w-full sm:w-auto flex justify-center">
                 <button
                   className="
-                    px-6 py-3
-                    bg-white text-[#0f0518]
-                    font-bold text-sm lg:text-base
+                    w-full
+                    sm:w-[170px]
+                    h-[48px]
+                    bg-white
+                    text-[#0f0518]
+                    font-bold
+                    text-sm
                     rounded-xl
-                    flex items-center gap-2
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    transition
+                    active:scale-95
                   "
                 >
                   Get Started <ArrowRight size={16} />
                 </button>
               </Link>
 
-              <Link to="/services">
+              <Link to="/services" className="w-full sm:w-auto flex justify-center">
                 <button
                   className="
-                    px-6 py-3
-                    bg-white/5 text-white
-                    font-bold text-sm lg:text-base
+                    w-full
+                    sm:w-[170px]
+                    h-[48px]
+                    bg-white/5
+                    text-white
+                    font-bold
+                    text-sm
                     rounded-xl
-                    border border-white/15
+                    border
+                    border-white/15
                     backdrop-blur
-                    flex items-center gap-2
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    transition
+                    active:scale-95
                   "
                 >
                   <Play size={14} /> Explore Services
                 </button>
               </Link>
             </div>
+
           </div>
         </div>
       </motion.div>

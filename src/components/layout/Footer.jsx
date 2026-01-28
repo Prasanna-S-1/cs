@@ -13,7 +13,8 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0f0518] text-white pt-24 pb-12 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-[#0f0518] text-white pt-14 sm:pt-18 lg:pt-24 pb-12">
+
 
       {/* BRAND STRIP */}
       <div className="relative w-full h-[90px] sm:h-[140px] md:h-[220px] flex items-center justify-center overflow-hidden px-3 sm:px-6">

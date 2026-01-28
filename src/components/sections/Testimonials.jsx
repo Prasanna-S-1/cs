@@ -99,7 +99,8 @@ const FloatingColumn = ({ speed }) => (
 
 const Testimonials = () => {
   return (
-    <section className="relative py-32 bg-gray-50 overflow-hidden">
+    <section className="relative py-14 sm:py-18 lg:py-24 bg-white overflow-hidden">
+
       {/* subtle background */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white pointer-events-none" />
 

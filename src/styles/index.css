@@ -10,12 +10,13 @@
 html, body {
   @apply font-sans antialiased text-gray-900 bg-white;
   width: 100%;
-  overflow-x: hidden; /* CRITICAL: Prevents mobile horizontal scroll */
-  -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight */
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 
   scroll-behavior: smooth;
-  overscroll-behavior: none; /* iOS rubber-band fix (SAFE) */
-  padding-bottom: env(safe-area-inset-bottom); /* Notch-safe (no desktop impact) */
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: auto;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 
