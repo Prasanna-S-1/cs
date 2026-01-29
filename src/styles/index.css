@@ -8,19 +8,33 @@
 
 /* --- 2. GLOBAL RESET & MOBILE FIXES --- */
 html, body {
+  /* COLORS KEPT EXACTLY AS YOU REQUESTED */
   @apply font-sans antialiased text-gray-900 bg-white;
-  width: 100%;
-  overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
 
+  /* --- THE "CUT" FIX STARTS HERE --- */
+  width: 100%;
+  max-width: 100%; /* 100% is safer than 100vw for mobile cutting */
+  overflow-x: hidden !important; /* Forcefully stops the slide */
+  position: relative; /* Anchors the content so it can't slide off */
+  /* -------------------------------- */
+
+  -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
   overscroll-behavior-x: none;
   overscroll-behavior-y: auto;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* --- ROOT WRAPPER FIX (CRITICAL FOR REACT) --- */
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important; /* Double-lock the overflow */
+  position: relative;
+}
 
 /* --- 3. PREMIUM SCROLLBAR (Desktop only) --- */
+/* (COLORS KEPT EXACTLY AS REQUESTED) */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -77,4 +91,3 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
 }
-
