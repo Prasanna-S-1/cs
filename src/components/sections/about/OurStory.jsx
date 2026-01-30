@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowUpRight } from "lucide-react";
+import { Sparkles, ArrowUpRight, Calendar, CheckCircle2 } from "lucide-react";
 
-/* ===== CONTENT FROM PDF (UNCHANGED) ===== */
+/* ===== CONTENT (UNCHANGED) ===== */
 const journey = [
   {
     year: "2021",
@@ -29,123 +29,136 @@ const journey = [
 const OurStory = () => {
   return (
     <section className="relative bg-white overflow-hidden">
+      
+      {/*  */}
 
       {/* ===== BACKGROUND DEPTH ===== */}
-      <div className="absolute top-[-140px] right-[-140px] w-[420px] h-[420px] bg-purple-100/60 rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-160px] left-[-160px] w-[520px] h-[520px] bg-brand-primary/10 rounded-full blur-[160px]" />
+      <div className="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] bg-purple-100/60 rounded-full blur-[80px] sm:blur-[120px]" />
+      <div className="absolute bottom-[-100px] left-[-100px] w-[300px] h-[300px] sm:w-[520px] sm:h-[520px] bg-purple-500/10 rounded-full blur-[100px] sm:blur-[160px]" />
 
-      {/* subtle grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] sm:bg-[size:64px_64px]" />
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-10 py-20 lg:py-28">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-28">
 
         {/* ===== HEADER ===== */}
-        <div className="max-w-5xl mb-14">
-          <span className="inline-flex items-center gap-2 px-5 py-2 mb-5 rounded-full bg-purple-50 text-purple-700 text-xs font-black tracking-widest uppercase">
-            <Sparkles size={14} /> Our Story
-          </span>
+        <div className="max-w-4xl mb-10 lg:mb-16">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-5 rounded-full bg-purple-50 border border-purple-100 text-purple-700 text-[10px] sm:text-xs font-black tracking-widest uppercase"
+          >
+            <Sparkles size={12} /> Our Story
+          </motion.span>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.15] text-[#0f0518]">
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.15] text-[#0f0518]"
+          >
             From an idea to an{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-purple-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-500">
               innovation ecosystem
             </span>
-          </h2>
+          </motion.h2>
 
-          <p className="mt-6 max-w-3xl text-gray-600 text-base sm:text-lg font-medium leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 max-w-2xl text-gray-600 text-sm sm:text-lg font-medium leading-relaxed"
+          >
             Our journey is built on practical learning, industry alignment,
             and a commitment to preparing students and organizations for the future.
-          </p>
+          </motion.p>
         </div>
 
-        {/* ===== MAIN LAYOUT (CRITICAL FIX HERE) ===== */}
-        <div className="grid grid-cols-12 gap-8 lg:gap-14 items-start">
+        {/* ===== MAIN CONTENT GRID ===== */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-          {/* ===== TIMELINE (MINI DESKTOP EVEN ON MOBILE) ===== */}
-          <div className="col-span-12 md:col-span-7">
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
-
+          {/* ===== LEFT: TIMELINE CARDS ===== */}
+          <div className="col-span-1 lg:col-span-7 order-1 lg:order-1">
+            {/* MOBILE: grid-cols-1 (One by One), DESKTOP: grid-cols-2 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {journey.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                  whileHover={{ y: -6 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -5 }}
                   className="
-                    relative
+                    relative overflow-hidden
                     bg-white
                     rounded-2xl
-                    sm:rounded-3xl
-                    p-4 sm:p-6
-                    border border-gray-200
-                    shadow-[0_12px_35px_rgba(0,0,0,0.08)]
-                    hover:shadow-[0_20px_55px_rgba(0,0,0,0.14)]
-                    transition-all
+                    p-5 sm:p-6
+                    border border-gray-100
+                    shadow-[0_4px_20px_rgba(0,0,0,0.04)]
+                    hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)]
+                    transition-all duration-300
+                    group
                   "
                 >
-                  {/* top accent */}
-                  <span className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary to-purple-500 rounded-t-2xl sm:rounded-t-3xl" />
+                  {/* Decorative Gradient Line on Top */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-80 group-hover:opacity-100 transition-opacity" />
 
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="text-xs sm:text-sm font-black text-brand-primary">
-                      {item.year}
-                    </p>
-                    <span className="w-2.5 h-2.5 rounded-full bg-brand-primary" />
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 rounded-lg bg-purple-50 text-purple-600">
+                        <Calendar size={16} />
+                      </div>
+                      <span className="text-sm font-black text-purple-700 tracking-wide">
+                        {item.year}
+                      </span>
+                    </div>
+                    {/* Checkmark visual */}
+                    <CheckCircle2 size={18} className="text-gray-200 group-hover:text-green-500 transition-colors" />
                   </div>
 
-                  <h4 className="text-sm sm:text-lg font-black text-[#0f0518] mb-2">
+                  <h4 className="text-lg font-black text-[#0f0518] mb-2 group-hover:text-purple-700 transition-colors">
                     {item.title}
                   </h4>
 
-                  <p className="text-[12px] sm:text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium">
                     {item.desc}
                   </p>
                 </motion.div>
               ))}
-
             </div>
           </div>
 
-          {/* ===== VISUAL STORY CARD (FIXED FOR MOBILE) ===== */}
-          <div className="col-span-12 md:col-span-5 flex md:block justify-center">
+          {/* ===== RIGHT: IMAGE (STACKS TO BOTTOM ON MOBILE) ===== */}
+          <div className="col-span-1 lg:col-span-5 order-2 lg:order-2 flex justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 140 }}
-              className="
-                relative
-                w-full
-                max-w-[420px]
-                md:max-w-none
-                rounded-[2.4rem]
-                overflow-hidden
-                border border-gray-200
-                shadow-[0_40px_100px_rgba(0,0,0,0.15)]
-                bg-white
-              "
+              transition={{ delay: 0.3 }}
+              className="relative w-full rounded-[2rem] overflow-hidden border border-white/20 shadow-2xl bg-white"
             >
               <img
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1400"
                 alt="Combo Square Team"
-                className="w-full h-[220px] sm:h-[260px] lg:h-[340px] object-cover"
+                className="w-full h-[240px] sm:h-[300px] lg:h-[420px] object-cover"
               />
+              
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-
-              <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-2xl flex items-center justify-between">
+              {/* Floating Badge */}
+              <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg flex items-center justify-between border border-white/40">
                 <div>
-                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">
-                    Since 2021
-                  </p>
-                  <p className="text-sm sm:text-base font-black text-[#0f0518]">
-                    Building future-ready talent
-                  </p>
+                  <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Since 2021</p>
+                  <p className="text-sm font-black text-[#0f0518]">Building Future Talent</p>
                 </div>
-                <ArrowUpRight className="text-brand-primary" />
+                <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                  <ArrowUpRight size={18} />
+                </div>
               </div>
             </motion.div>
           </div>

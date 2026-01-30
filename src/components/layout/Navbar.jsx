@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, ExternalLink } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom'; 
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../../assets/images/logo.png'; 
@@ -7,27 +7,27 @@ import logo from '../../assets/images/logo.png';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  // ⭐ NEW STATES
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const location = useLocation();
 
   // ===============================
-  // SCROLL DIRECTION DETECTION
+  // OPTIMIZED SCROLL DETECTION
   // ===============================
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
 
+      // Detect if page is scrolled down (for background blur)
       setScrolled(currentScroll > 20);
 
+      // Detect Scroll Direction (Up/Down)
       if (currentScroll > lastScrollY && currentScroll > 100) {
-        // Scrolling DOWN
+        // Scrolling DOWN -> Hide Navbar
         setShowNavbar(false);
       } else {
-        // Scrolling UP
+        // Scrolling UP -> Show Navbar
         setShowNavbar(true);
       }
 
@@ -38,9 +38,13 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Lock body scroll on mobile
+  // Lock body scroll when Mobile Menu is open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
   }, [isOpen]);
 
   const navLinks = [
@@ -59,10 +63,10 @@ const Navbar = () => {
       <AnimatePresence>
         {showNavbar && (
           <motion.nav
-            initial={{ y: -120 }}
+            initial={{ y: -100 }}
             animate={{ y: 0 }}
-            exit={{ y: -120 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            exit={{ y: -100 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 font-sans border-b border-white/10 ${
               scrolled 
                 ? 'bg-[#482485]/95 backdrop-blur-md py-3 shadow-2xl' 
@@ -108,7 +112,7 @@ const Navbar = () => {
                   ))}
                 </div>
 
-                {/* RIGHT ACTION */}
+                {/* RIGHT ACTION (DESKTOP) */}
                 <div className="hidden lg:flex items-center gap-6">
                   <Link to="/contact">
                     <motion.button 
@@ -121,9 +125,9 @@ const Navbar = () => {
                   </Link>
                 </div>
 
-                {/* MOBILE TOGGLE */}
+                {/* MOBILE TOGGLE BUTTON */}
                 <button 
-                  className="lg:hidden p-2 text-white z-50 hover:bg-white/10 rounded-lg transition-colors" 
+                  className="lg:hidden p-2 text-white z-50 hover:bg-white/10 rounded-lg transition-colors active:scale-95" 
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -136,7 +140,7 @@ const Navbar = () => {
       </AnimatePresence>
 
       {/* =======================
-          MOBILE MENU
+          MOBILE MENU DRAWER
       ======================= */}
       <AnimatePresence>
         {isOpen && (
@@ -145,9 +149,10 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-0 bg-[#482485] z-40 flex flex-col pt-24 px-6 lg:hidden"
+            className="fixed inset-0 bg-[#482485] z-[90] flex flex-col pt-28 px-6 lg:hidden"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              {/* Mobile Links */}
               {navLinks.map((item, i) => (
                 <motion.div
                   key={item.name}
@@ -158,13 +163,30 @@ const Navbar = () => {
                   <Link 
                     to={item.path} 
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-between p-4 text-xl font-bold text-purple-200 hover:text-white"
+                    className={`flex items-center justify-between p-4 text-xl font-bold border-b border-white/5 ${
+                        location.pathname === item.path ? 'text-white pl-6' : 'text-purple-200'
+                    } hover:text-white transition-all duration-300`}
                   >
                     {item.name}
-                    <ChevronRight size={20} />
+                    <ChevronRight size={20} className="opacity-50" />
                   </Link>
                 </motion.div>
               ))}
+
+              {/* 🆕 FIXED: MOBILE CONTACT BUTTON ADDED HERE */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="mt-6"
+              >
+                <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  <button className="w-full py-4 bg-white text-[#482485] text-lg font-black rounded-xl shadow-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                    Contact Us <ChevronRight size={20} />
+                  </button>
+                </Link>
+              </motion.div>
+
             </div>
           </motion.div>
         )}
