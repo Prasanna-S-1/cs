@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // --- LAYOUT COMPONENTS ---
+import Preloader from './components/layout/Preloader'; // <-- Added Preloader import
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
@@ -14,8 +15,26 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 
 function App() {
+  // --- STATE FOR PRELOADER ---
+  const [isLoading, setIsLoading] = useState(true);
+
+  // --- LOADING EFFECT ---
+  useEffect(() => {
+    // Simulate initial loading time (e.g., fetching data, loading assets)
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2000ms = 2 seconds. Adjust as needed!
+
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
+
   return (
     <Router>
+      {/* The Preloader sits at the highest z-index. 
+        It will show/hide based on the isLoading state. 
+      */}
+      <Preloader isLoading={isLoading} />
+
       <div className="flex flex-col min-h-screen bg-white">
         
         {/* Navigation Bar - Stays at the top of every page */}
