@@ -194,7 +194,7 @@ const Contact = () => {
           type="submit"
           className="sm:col-span-2 mt-2 inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-purple-500 hover:bg-purple-600 text-white font-black shadow-2xl transition-all active:scale-95"
         >
-          Send Message 🚀
+          Send Message 
         </button>
 
       </form>

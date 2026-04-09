@@ -11,10 +11,20 @@ import {
   Send
 } from 'lucide-react';
 
+// Make sure this path exactly matches your folder structure from the screenshot
+import logoImg from '../../assets/images/logo.png';
+
 const Footer = () => {
+  // Social media links
+  const socialLinks = [
+    { icon: <Instagram />, url: "https://www.instagram.com/combo_square_?igsh=Mjg1NXM2dTZkcHVv" },
+    { icon: <Linkedin />, url: "https://www.linkedin.com/company/combo-square/" },
+    { icon: <Facebook />, url: "https://www.facebook.com/profile.php?id=61562432777570" },
+    { icon: <Twitter />, url: "https://x.com/combosquare_" }
+  ];
+
   return (
     <footer className="bg-[#0f0518] text-white pt-14 sm:pt-18 lg:pt-24 pb-12">
-
 
       {/* BRAND STRIP */}
       <div className="relative w-full h-[90px] sm:h-[140px] md:h-[220px] flex items-center justify-center overflow-hidden px-3 sm:px-6">
@@ -50,11 +60,15 @@ const Footer = () => {
         {/* TOP GRID */}
         <div className="grid lg:grid-cols-4 gap-12 mb-20">
 
-          {/* COL 1: Brand Info (NO LOGO) */}
+          {/* COL 1: Brand Info (LOGO IMPLEMENTED) */}
           <div className="space-y-8">
-            <span className="text-2xl font-bold tracking-tight">
-              Combo<span className="text-brand-primary">Square</span>
-            </span>
+            <a href="/" className="block w-48">
+              <img 
+                src={logoImg} 
+                alt="Combo Square Logo" 
+                className="w-full h-auto object-contain mix-blend-screen" 
+              />
+            </a>
 
             <p className="text-gray-400 leading-relaxed">
               A next-gen digital agency bridging the gap between academic learning
@@ -62,17 +76,19 @@ const Footer = () => {
             </p>
 
             <div className="flex gap-4">
-              {[<Instagram />, <Linkedin />, <Facebook />, <Twitter />].map(
-                (icon, i) => (
+              {socialLinks.map(
+                (social, i) => (
                   <a
                     key={i}
-                    href="#"
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400
                     hover:bg-brand-primary hover:text-white hover:scale-110
                     hover:shadow-[0_0_15px_rgba(139,92,246,0.5)]
                     transition-all duration-300"
                   >
-                    {React.cloneElement(icon, { size: 18 })}
+                    {React.cloneElement(social.icon, { size: 18 })}
                   </a>
                 )
               )}
@@ -84,10 +100,12 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-8 text-white">Quick Links</h4>
             <ul className="space-y-4">
               {['Home', 'About Us', 'Services', 'Careers', 'Blog', 'Contact'].map(
-                (item) => (
+                (item) => {
+                  const path = item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`;
+                  return (
                   <li key={item}>
                     <a
-                      href={`#${item.toLowerCase().replace(' ', '-')}`}
+                      href={path}
                       className="text-gray-400 hover:text-brand-primary transition-colors flex items-center gap-2 group"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -96,7 +114,8 @@ const Footer = () => {
                       </span>
                     </a>
                   </li>
-                )
+                  );
+                }
               )}
             </ul>
           </div>
@@ -112,13 +131,19 @@ const Footer = () => {
                 'Branding & UI/UX',
                 'Internship Programs',
                 'Placement Training'
-              ].map((item) => (
+              ].map((item) => {
+                const path = `/services#${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`;
+                return (
                 <li key={item}>
-                  <span className="text-gray-400 hover:text-brand-neon transition-colors">
+                  <a 
+                    href={path}
+                    className="text-gray-400 hover:text-brand-neon transition-colors block"
+                  >
                     {item}
-                  </span>
+                  </a>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </div>
 
@@ -129,33 +154,38 @@ const Footer = () => {
               Subscribe to get the latest internship alerts and tech news.
             </p>
 
-            <div className="relative mb-8">
+            <form action="https://api.web3forms.com/submit" method="POST" className="relative mb-8">
+              <input type="hidden" name="access_key" value="1b0f54ea-c13f-4f18-a52e-1d49ceddcd98" />
               <input
                 type="email"
+                name="email"
+                required
                 placeholder="Enter your email"
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 pr-12 text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:bg-white/10 transition-all"
               />
-              <button className="absolute right-2 top-2 p-2 bg-brand-primary rounded-lg text-white hover:bg-brand-secondary transition-colors shadow-lg">
+              <button type="submit" className="absolute right-2 top-2 p-2 bg-brand-primary rounded-lg text-white hover:bg-brand-secondary transition-colors shadow-lg">
                 <Send size={18} />
               </button>
-            </div>
+            </form>
 
             <div className="space-y-4">
               <div className="flex items-start gap-4 text-gray-400">
-                <MapPin size={20} className="text-brand-primary" />
+                <MapPin size={20} className="text-brand-primary shrink-0 mt-0.5" />
                 <span className="text-sm">
                   Madipakkam, Chennai, Tamil Nadu, India.
                 </span>
               </div>
               <div className="flex items-center gap-4 text-gray-400">
-                <Mail size={20} className="text-brand-primary" />
-                <span className="text-sm">
+                <Mail size={20} className="text-brand-primary shrink-0" />
+                <a href="mailto:combosquareofficials@gmail.com" className="text-sm hover:text-white transition-colors">
                   combosquareofficials@gmail.com
-                </span>
+                </a>
               </div>
               <div className="flex items-center gap-4 text-gray-400">
-                <Phone size={20} className="text-brand-primary" />
-                <span className="text-sm">+91 8072877622</span>
+                <Phone size={20} className="text-brand-primary shrink-0" />
+                <a href="tel:+918072877622" className="text-sm hover:text-white transition-colors">
+                  +91 8072877622
+                </a>
               </div>
             </div>
           </div>
@@ -165,9 +195,9 @@ const Footer = () => {
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>© 2026 Combo Square. All rights reserved.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="/sitemap" className="hover:text-white transition-colors">Sitemap</a>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const services = [
   {
@@ -37,9 +38,12 @@ const services = [
 ];
 
 const Services = () => {
+  const navigate = useNavigate(); // ✅ navigation hook
+
   return (
     <section className="relative py-14 sm:py-18 lg:py-24 bg-white overflow-hidden">
 
+      {/* BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-purple-50 pointer-events-none" />
 
       <div className="relative container mx-auto px-4 lg:px-10">
@@ -60,17 +64,8 @@ const Services = () => {
           </p>
         </div>
 
-        {/* ✅ FIXED GRID */}
-        <div
-          className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-4
-            gap-6
-            lg:gap-10
-          "
-        >
+        {/* GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
           {services.map((service, i) => (
             <motion.div
               key={i}
@@ -78,8 +73,9 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-lg"
+              className="rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-lg hover:shadow-xl transition"
             >
+              {/* IMAGE */}
               <div className="relative h-44 lg:h-56">
                 <img
                   src={service.image}
@@ -93,6 +89,7 @@ const Services = () => {
                 </span>
               </div>
 
+              {/* CONTENT */}
               <div className="p-5">
                 <h3 className="text-lg font-black mb-2">
                   {service.title}
@@ -102,13 +99,19 @@ const Services = () => {
                   {service.description}
                 </p>
 
-                <div className="flex items-center gap-2 text-sm font-bold text-purple-700">
+                {/* ✅ CLICKABLE BUTTON */}
+                <div
+                  onClick={() => navigate(`/service/${i}`)}
+                  className="flex items-center gap-2 text-sm font-bold text-purple-700 cursor-pointer hover:underline"
+                >
                   Learn More <ArrowUpRight size={14} />
                 </div>
+
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
