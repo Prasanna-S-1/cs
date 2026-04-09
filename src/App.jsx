@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// --- LAYOUT COMPONENTS ---
-import Preloader from './components/layout/Preloader'; // <-- Added Preloader import
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-=======
 import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -18,7 +9,6 @@ import {
 // Layout
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
->>>>>>> 0ba3b56a0e77b0d671ec1896894447a1d898bdfa
 
 // Pages
 import Home from "./pages/Home";
@@ -26,8 +16,9 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Careers from "./pages/Careers";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost"; // ✅ NEW: Individual Blog Post Page
 import Contact from "./pages/Contact";
-import ServiceDetails from "./pages/ServiceDetails"; // ✅ detail page
+import ServiceDetails from "./pages/ServiceDetails";
 
 // ✅ Scroll to top on page change
 const ScrollToTop = () => {
@@ -41,29 +32,9 @@ const ScrollToTop = () => {
 };
 
 function App() {
-  // --- STATE FOR PRELOADER ---
-  const [isLoading, setIsLoading] = useState(true);
-
-  // --- LOADING EFFECT ---
-  useEffect(() => {
-    // Simulate initial loading time (e.g., fetching data, loading assets)
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // 2000ms = 2 seconds. Adjust as needed!
-
-    return () => clearTimeout(timer); // Cleanup timer on unmount
-  }, []);
-
   return (
     <Router>
-<<<<<<< HEAD
-      {/* The Preloader sits at the highest z-index. 
-        It will show/hide based on the isLoading state. 
-      */}
-      <Preloader isLoading={isLoading} />
-=======
-      <ScrollToTop /> {/* ✅ important */}
->>>>>>> 0ba3b56a0e77b0d671ec1896894447a1d898bdfa
+      <ScrollToTop />
 
       <div className="flex flex-col min-h-screen bg-white">
         {/* NAVBAR */}
@@ -78,12 +49,16 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />
+            
+            {/* ✅ BLOG DETAILS PAGE (Dynamic Routing) */}
+            <Route path="/blog/:id" element={<BlogPost />} />
+
             <Route path="/contact" element={<Contact />} />
 
-            {/* ✅ SERVICE DETAILS PAGE */}
+            {/* SERVICE DETAILS PAGE */}
             <Route path="/service/:id" element={<ServiceDetails />} />
 
-            {/* OPTIONAL: 404 PAGE */}
+            {/* 404 PAGE */}
             <Route
               path="*"
               element={
