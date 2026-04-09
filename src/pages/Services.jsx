@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 // Components
 import ServicesHero from '../components/sections/services/ServicesHero';
 import ServiceShowcase from '../components/sections/services/ServiceShowcase';
-import CTA from '../components/sections/CTA'; // Reuse the explosive CTA from Home
+import CTA from '../components/sections/CTA'; 
 
 const Services = () => {
   useEffect(() => {

@@ -1,54 +1,74 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
-// --- LAYOUT COMPONENTS ---
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
+// Layout
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
-// --- PAGE COMPONENTS ---
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Careers from './pages/Careers';
-import Blog from './pages/Blog';
-import Contact from './pages/Contact';
+// Pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Careers from "./pages/Careers";
+import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
+import ServiceDetails from "./pages/ServiceDetails"; // ✅ detail page
+
+// ✅ Scroll to top on page change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 function App() {
   return (
     <Router>
+      <ScrollToTop /> {/* ✅ important */}
+
       <div className="flex flex-col min-h-screen bg-white">
-        
-        {/* Navigation Bar - Stays at the top of every page */}
+        {/* NAVBAR */}
         <Navbar />
 
-        {/* Main Content Area - Injects the active page based on URL */}
+        {/* MAIN CONTENT */}
         <main className="flex-grow">
           <Routes>
-            
-            {/* 1. Home Page - The Hero Landing */}
+            {/* MAIN PAGES */}
             <Route path="/" element={<Home />} />
-            
-            {/* 2. About Us - The Visionaries & Story */}
             <Route path="/about" element={<About />} />
-
-            {/* 3. Services - The Digital Empire Showroom */}
             <Route path="/services" element={<Services />} />
-
-            {/* 4. Careers - The Premium Job Portal */}
             <Route path="/careers" element={<Careers />} />
-
-            {/* 5. Blog - The Knowledge & Insights Hub */}
             <Route path="/blog" element={<Blog />} />
-
-            {/* 6. Contact - The Cinematic Map & Inquiry Page */}
             <Route path="/contact" element={<Contact />} />
 
+            {/* ✅ SERVICE DETAILS PAGE */}
+            <Route path="/service/:id" element={<ServiceDetails />} />
+
+            {/* OPTIONAL: 404 PAGE */}
+            <Route
+              path="*"
+              element={
+                <div className="flex items-center justify-center h-[60vh] text-center">
+                  <h1 className="text-2xl font-bold text-gray-600">
+                    404 - Page Not Found
+                  </h1>
+                </div>
+              }
+            />
           </Routes>
         </main>
 
-        {/* Footer - Stays at the bottom of every page */}
+        {/* FOOTER */}
         <Footer />
-        
       </div>
     </Router>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // ✅ ADD
 
 const services = [
   {
@@ -33,12 +34,15 @@ const services = [
 ];
 
 const ServiceShowcase = () => {
+  const navigate = useNavigate(); // ✅ ADD
+
   return (
     <section className="relative bg-white py-20 lg:py-28 overflow-hidden">
-      {/* subtle background */}
+
       <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -63,19 +67,11 @@ const ServiceShowcase = () => {
         </motion.div>
 
         {/* GRID */}
-        <div
-          className="
-            grid 
-            grid-cols-2 
-            lg:grid-cols-4 
-            gap-4 
-            sm:gap-6 
-            lg:gap-8
-          "
-        >
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {services.map((item, i) => (
             <motion.div
               key={i}
+              onClick={() => navigate(`/service/${i}`)} // ✅ CLICK ANYWHERE
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -91,6 +87,9 @@ const ServiceShowcase = () => {
                 hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)]
                 transition-all
                 duration-500
+                cursor-pointer
+                hover:-translate-y-2
+                hover:scale-[1.02]
               "
             >
               {/* IMAGE */}
@@ -131,6 +130,7 @@ const ServiceShowcase = () => {
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
