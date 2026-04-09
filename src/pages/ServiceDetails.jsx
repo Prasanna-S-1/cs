@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 const services = [
   {
@@ -7,138 +8,154 @@ const services = [
     desc: "Full Stack Development, AI & ML, Cloud, and Cybersecurity solutions.",
 
     about:
-      "IT Services focus on building scalable applications and preparing students for real-world software development roles.",
+      "Our IT Services program is designed to transform students into industry-ready developers. With real-time projects, modern tools, and hands-on coding, learners gain deep technical knowledge and practical exposure.",
 
     domains: [
       {
         title: "Full Stack Development",
-        content: "Build complete web apps using React, Node.js, and databases.",
+        desc: "Build complete web applications.",
+        stack: ["React", "Node.js", "MongoDB", "Express"],
+        duration: "45 Days",
+        project: "E-commerce Web App",
       },
       {
         title: "AI & Machine Learning",
-        content: "Develop intelligent systems using data and algorithms.",
+        desc: "Develop intelligent systems.",
+        stack: ["Python", "TensorFlow", "Pandas"],
+        duration: "40 Days",
+        project: "Prediction System",
       },
       {
         title: "Cloud & DevOps",
-        content: "Deploy apps using AWS and CI/CD pipelines.",
+        desc: "Deploy scalable apps.",
+        stack: ["AWS", "Docker", "CI/CD"],
+        duration: "30 Days",
+        project: "Cloud Deployment",
       },
       {
         title: "Cybersecurity",
-        content: "Secure applications and protect sensitive data.",
+        desc: "Secure applications.",
+        stack: ["Kali Linux", "Encryption", "Auth"],
+        duration: "25 Days",
+        project: "Secure Login System",
       },
-    ],
-
-    courses: [
-      "React JS",
-      "Node JS",
-      "MongoDB",
-      "AWS",
-      "Docker",
-      "API Development",
     ],
   },
 
   {
     title: "Core Domains",
-    desc: "IoT, Robotics, and Embedded Systems learning.",
+    desc: "IoT, Robotics, Embedded Systems.",
 
     about:
-      "Core Domains provide hands-on experience in hardware and automation technologies with real-time projects.",
+      "Core Domains provide strong hardware and automation knowledge through practical learning. Students build real-world systems and gain hands-on experience with industry tools.",
 
     domains: [
       {
         title: "IoT Systems",
-        content: "Build smart devices using sensors and cloud.",
+        desc: "Smart devices with sensors.",
+        stack: ["Arduino", "Sensors", "Cloud"],
+        duration: "30 Days",
+        project: "Smart Home System",
       },
       {
         title: "Robotics",
-        content: "Create automation systems and robots.",
+        desc: "Automation with robots.",
+        stack: ["Python", "Motors", "Controllers"],
+        duration: "35 Days",
+        project: "Line Follower Robot",
       },
       {
         title: "Embedded Systems",
-        content: "Work with Arduino and Raspberry Pi.",
+        desc: "Hardware-based solutions.",
+        stack: ["Arduino", "C", "Microcontrollers"],
+        duration: "30 Days",
+        project: "Embedded Device",
       },
       {
         title: "Automation",
-        content: "Implement real-time industrial automation.",
+        desc: "Industrial automation.",
+        stack: ["PLC", "Sensors", "Controllers"],
+        duration: "28 Days",
+        project: "Automation System",
       },
-    ],
-
-    courses: [
-      "Arduino",
-      "Raspberry Pi",
-      "Embedded C",
-      "IoT Cloud",
-      "Sensors",
     ],
   },
 
   {
     title: "Creative Services",
-    desc: "Design, Branding, and Marketing solutions.",
+    desc: "Design, Branding, and Marketing.",
 
     about:
-      "Creative Services help businesses grow through design, marketing, and digital storytelling.",
+      "Creative Services focus on building strong brand identity and digital presence. Students learn design tools, marketing strategies, and real-world content creation.",
 
     domains: [
       {
         title: "UI/UX Design",
-        content: "Design user-friendly digital experiences.",
+        desc: "Design modern interfaces.",
+        stack: ["Figma", "Adobe XD"],
+        duration: "20 Days",
+        project: "Mobile App UI",
       },
       {
         title: "Digital Marketing",
-        content: "SEO, ads, and social media growth.",
+        desc: "Online growth strategies.",
+        stack: ["SEO", "Google Ads", "Analytics"],
+        duration: "25 Days",
+        project: "Marketing Campaign",
       },
       {
         title: "Branding",
-        content: "Build strong brand identity.",
+        desc: "Build identity.",
+        stack: ["Photoshop", "Illustrator"],
+        duration: "20 Days",
+        project: "Brand Kit",
       },
       {
         title: "Content Creation",
-        content: "Create engaging digital content.",
+        desc: "Engaging content.",
+        stack: ["Premiere Pro", "Canva"],
+        duration: "18 Days",
+        project: "Video Campaign",
       },
-    ],
-
-    courses: [
-      "Figma",
-      "Photoshop",
-      "SEO",
-      "Social Media Marketing",
-      "Video Editing",
     ],
   },
 
   {
     title: "Training & Hackathons",
-    desc: "Skill development with real-world exposure.",
+    desc: "Skill-based learning and competitions.",
 
     about:
-      "Training programs focus on making students job-ready through practical learning and competitions.",
+      "Training programs are focused on practical learning, teamwork, and real-world problem solving. Hackathons enhance creativity and innovation under pressure.",
 
     domains: [
       {
         title: "Internships",
-        content: "Work on real-time projects.",
+        desc: "Real-world experience.",
+        stack: ["Projects", "Team Work"],
+        duration: "60 Days",
+        project: "Live Industry Project",
       },
       {
         title: "Workshops",
-        content: "Hands-on learning sessions.",
+        desc: "Hands-on sessions.",
+        stack: ["Tools", "Practice"],
+        duration: "10 Days",
+        project: "Mini Projects",
       },
       {
         title: "Corporate Training",
-        content: "Industry-level training.",
+        desc: "Industry training.",
+        stack: ["Professional Tools"],
+        duration: "30 Days",
+        project: "Case Studies",
       },
       {
         title: "Hackathons",
-        content: "Solve real-world challenges.",
+        desc: "Problem solving.",
+        stack: ["Innovation", "Coding"],
+        duration: "2 Days",
+        project: "Prototype Build",
       },
-    ],
-
-    courses: [
-      "Project Building",
-      "Team Collaboration",
-      "Problem Solving",
-      "Presentation Skills",
     ],
   },
 ];
@@ -146,65 +163,103 @@ const services = [
 const ServiceDetails = () => {
   const { id } = useParams();
   const service = services[id];
+  const [openIndex, setOpenIndex] = useState(null);
 
   if (!service) return <div className="p-10">Service not found</div>;
 
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
 
         {/* TITLE */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-10"
-        >
-          <h1 className="text-4xl font-black text-purple-600 mb-3">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-black text-purple-600 mb-2">
             {service.title}
           </h1>
           <p className="text-gray-600">{service.desc}</p>
-        </motion.div>
-
-        {/* ABOUT */}
-        <div className="mb-12 text-center">
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            {service.about}
-          </p>
         </div>
 
-        {/* DOMAINS */}
-        <div className="grid sm:grid-cols-2 gap-6 mb-12">
+        {/* ABOUT */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-3xl mx-auto text-center mb-12"
+        >
+          <h2 className="text-2xl font-bold mb-4">
+            About {service.title}
+          </h2>
+          <p className="text-gray-600 leading-relaxed">
+            {service.about}
+          </p>
+        </motion.div>
+
+        {/* ACCORDION */}
+        <div className="space-y-5">
           {service.domains.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="p-6 bg-purple-50 rounded-xl border"
+              whileHover={{ scale: 1.01 }}
+              className="rounded-2xl border bg-white shadow-md overflow-hidden"
             >
-              <h3 className="font-bold text-purple-700 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-gray-600 text-sm">
-                {item.content}
-              </p>
+              {/* HEADER */}
+              <button
+                onClick={() =>
+                  setOpenIndex(openIndex === i ? null : i)
+                }
+                className="w-full flex justify-between items-center p-5 text-left"
+              >
+                <div>
+                  <h3 className="font-bold text-lg text-purple-700">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <span className="text-xl font-bold">
+                  {openIndex === i ? "-" : "+"}
+                </span>
+              </button>
+
+              {/* CONTENT */}
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="px-5 pb-5"
+                  >
+                    <div className="bg-purple-50 rounded-xl p-4 space-y-3">
+
+                      <p>
+                        <span className="font-semibold">
+                          Tech Stack:
+                        </span>{" "}
+                        {item.stack.join(", ")}
+                      </p>
+
+                      <p>
+                        <span className="font-semibold">
+                          Duration:
+                        </span>{" "}
+                        {item.duration}
+                      </p>
+
+                      <p>
+                        <span className="font-semibold">
+                          Project:
+                        </span>{" "}
+                        {item.project}
+                      </p>
+
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
-        </div>
-
-        {/* COURSES */}
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Courses</h2>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            {service.courses.map((c, i) => (
-              <span
-                key={i}
-                className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm"
-              >
-                {c}
-              </span>
-            ))}
-          </div>
         </div>
 
       </div>
