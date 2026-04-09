@@ -4,10 +4,6 @@ import {
   Briefcase,
   MapPin,
   Clock,
-  Code2,
-  Rocket,
-  Users,
-  Sparkles,
   ArrowRight,
 } from "lucide-react";
 
@@ -36,29 +32,6 @@ const roles = [
   },
 ];
 
-const perks = [
-  {
-    icon: Code2,
-    title: "Industry Training",
-    text: "Structured training aligned with real company workflows.",
-  },
-  {
-    icon: Rocket,
-    title: "Live Projects",
-    text: "Hands-on delivery with startups and real clients.",
-  },
-  {
-    icon: Users,
-    title: "Mentorship",
-    text: "1-on-1 guidance from experienced professionals.",
-  },
-  {
-    icon: Sparkles,
-    title: "Placement Support",
-    text: "Resume, interviews, and hiring network access.",
-  },
-];
-
 /* -----------------------------------
    COMPONENT
 ----------------------------------- */
@@ -74,7 +47,7 @@ const Careers = () => {
     <div className="bg-white overflow-hidden">
 
       {/* =====================================================
-          HERO SECTION (FIXED BUTTONS)
+          HERO SECTION
       ===================================================== */}
       <section className="relative bg-gradient-to-br from-[#2a0f4c] via-[#4b1c7a] to-[#12001f] text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.15),transparent_60%)]" />
@@ -135,7 +108,7 @@ const Careers = () => {
       </section>
 
       {/* =====================================================
-          ROLES (FIXED SQUEEZE)
+          ROLES SECTION
       ===================================================== */}
       <section
         ref={rolesRef}
@@ -145,7 +118,7 @@ const Careers = () => {
           Open <span className="text-purple-600">Opportunities</span>
         </h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
           {roles.map((role, i) => (
             <motion.div
               key={i}
@@ -201,41 +174,6 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* =====================================================
-          PERKS (ICON COLOR CHANGE ON TOUCH)
-      ===================================================== */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl lg:text-4xl font-black mb-14">
-            Why <span className="text-purple-600">Join Us</span>
-          </h2>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {perks.map((p, i) => {
-              const Icon = p.icon;
-              return (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -6 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-4
-                    group-hover:bg-purple-600 group-hover:text-white
-                    active:bg-purple-700 active:text-white transition">
-                    <Icon />
-                  </div>
-
-                  <h4 className="font-black mb-2">{p.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {p.text}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
