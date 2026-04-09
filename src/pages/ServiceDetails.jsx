@@ -1,52 +1,144 @@
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const services = [
   {
     title: "IT Services",
-    desc: "Full Stack Development, AI & ML, Data Analytics, Cloud Computing, and Cybersecurity solutions.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    points: [
-      "Full Stack Web & App Development",
-      "AI & Machine Learning Solutions",
-      "Cloud & DevOps Integration",
-      "Cybersecurity & Data Protection",
+    desc: "Full Stack Development, AI & ML, Cloud, and Cybersecurity solutions.",
+
+    about:
+      "IT Services focus on building scalable applications and preparing students for real-world software development roles.",
+
+    domains: [
+      {
+        title: "Full Stack Development",
+        content: "Build complete web apps using React, Node.js, and databases.",
+      },
+      {
+        title: "AI & Machine Learning",
+        content: "Develop intelligent systems using data and algorithms.",
+      },
+      {
+        title: "Cloud & DevOps",
+        content: "Deploy apps using AWS and CI/CD pipelines.",
+      },
+      {
+        title: "Cybersecurity",
+        content: "Secure applications and protect sensitive data.",
+      },
+    ],
+
+    courses: [
+      "React JS",
+      "Node JS",
+      "MongoDB",
+      "AWS",
+      "Docker",
+      "API Development",
     ],
   },
+
   {
     title: "Core Domains",
-    desc: "IoT, Robotics, Embedded Systems, and Automation programs.",
-    image:
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e",
-    points: [
-      "IoT Product Development",
-      "Robotics & Automation",
-      "Embedded Systems Design",
-      "Industry-Based Projects",
+    desc: "IoT, Robotics, and Embedded Systems learning.",
+
+    about:
+      "Core Domains provide hands-on experience in hardware and automation technologies with real-time projects.",
+
+    domains: [
+      {
+        title: "IoT Systems",
+        content: "Build smart devices using sensors and cloud.",
+      },
+      {
+        title: "Robotics",
+        content: "Create automation systems and robots.",
+      },
+      {
+        title: "Embedded Systems",
+        content: "Work with Arduino and Raspberry Pi.",
+      },
+      {
+        title: "Automation",
+        content: "Implement real-time industrial automation.",
+      },
+    ],
+
+    courses: [
+      "Arduino",
+      "Raspberry Pi",
+      "Embedded C",
+      "IoT Cloud",
+      "Sensors",
     ],
   },
+
   {
     title: "Creative Services",
-    desc: "UI/UX Design, Digital Marketing, Branding, and Video Editing.",
-    image:
-      "https://images.unsplash.com/photo-1556761175-4b46a572b786",
-    points: [
-      "UI/UX Design",
+    desc: "Design, Branding, and Marketing solutions.",
+
+    about:
+      "Creative Services help businesses grow through design, marketing, and digital storytelling.",
+
+    domains: [
+      {
+        title: "UI/UX Design",
+        content: "Design user-friendly digital experiences.",
+      },
+      {
+        title: "Digital Marketing",
+        content: "SEO, ads, and social media growth.",
+      },
+      {
+        title: "Branding",
+        content: "Build strong brand identity.",
+      },
+      {
+        title: "Content Creation",
+        content: "Create engaging digital content.",
+      },
+    ],
+
+    courses: [
+      "Figma",
+      "Photoshop",
+      "SEO",
       "Social Media Marketing",
-      "Brand Identity",
-      "Video Editing & Content Creation",
+      "Video Editing",
     ],
   },
+
   {
     title: "Training & Hackathons",
-    desc: "Internships, Workshops, Corporate Training, and Hackathons.",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-    points: [
-      "Internship Programs",
-      "Hands-on Workshops",
-      "Corporate Training",
-      "Hackathons & Events",
+    desc: "Skill development with real-world exposure.",
+
+    about:
+      "Training programs focus on making students job-ready through practical learning and competitions.",
+
+    domains: [
+      {
+        title: "Internships",
+        content: "Work on real-time projects.",
+      },
+      {
+        title: "Workshops",
+        content: "Hands-on learning sessions.",
+      },
+      {
+        title: "Corporate Training",
+        content: "Industry-level training.",
+      },
+      {
+        title: "Hackathons",
+        content: "Solve real-world challenges.",
+      },
+    ],
+
+    courses: [
+      "Project Building",
+      "Team Collaboration",
+      "Problem Solving",
+      "Presentation Skills",
     ],
   },
 ];
@@ -55,49 +147,64 @@ const ServiceDetails = () => {
   const { id } = useParams();
   const service = services[id];
 
+  if (!service) return <div className="p-10">Service not found</div>;
+
   return (
     <section className="py-16 bg-white">
-
       <div className="max-w-6xl mx-auto px-6">
 
         {/* TITLE */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-black text-purple-600 mb-4">
-            {service?.title}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-10"
+        >
+          <h1 className="text-4xl font-black text-purple-600 mb-3">
+            {service.title}
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            {service?.desc}
+          <p className="text-gray-600">{service.desc}</p>
+        </motion.div>
+
+        {/* ABOUT */}
+        <div className="mb-12 text-center">
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            {service.about}
           </p>
         </div>
 
-        {/* IMAGE */}
-        <div className="mb-12">
-          <img
-            src={service?.image}
-            alt={service?.title}
-            className="w-full h-[300px] object-cover rounded-3xl shadow-lg"
-          />
-        </div>
-
-        {/* FEATURES */}
-        <div className="grid sm:grid-cols-2 gap-6 mb-16">
-          {service?.points.map((point, index) => (
-            <div
-              key={index}
-              className="p-6 rounded-2xl bg-purple-50 border border-purple-100 shadow-sm"
+        {/* DOMAINS */}
+        <div className="grid sm:grid-cols-2 gap-6 mb-12">
+          {service.domains.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="p-6 bg-purple-50 rounded-xl border"
             >
-              <p className="font-semibold text-gray-800">
-                ✅ {point}
+              <h3 className="font-bold text-purple-700 mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-600 text-sm">
+                {item.content}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* COURSES */}
         <div className="text-center">
-          <button className="px-8 py-4 bg-purple-600 text-white rounded-2xl font-bold hover:bg-purple-700 transition">
-            Get Started
-          </button>
+          <h2 className="text-2xl font-bold mb-4">Courses</h2>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            {service.courses.map((c, i) => (
+              <span
+                key={i}
+                className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
         </div>
 
       </div>
