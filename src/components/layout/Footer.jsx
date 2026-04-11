@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from "react-router-dom"; // ✅ ADDED
+
 import {
   Facebook,
   Twitter,
@@ -11,11 +13,10 @@ import {
   Send
 } from 'lucide-react';
 
-// Make sure this path exactly matches your folder structure from the screenshot
 import logoImg from '../../assets/images/logo.png';
 
 const Footer = () => {
-  // Social media links
+
   const socialLinks = [
     { icon: <Instagram />, url: "https://www.instagram.com/combo_square_?igsh=Mjg1NXM2dTZkcHVv" },
     { icon: <Linkedin />, url: "https://www.linkedin.com/company/combo-square/" },
@@ -24,105 +25,80 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#0f0518] text-white pt-14 sm:pt-18 lg:pt-24 pb-12">
+    <footer className="bg-[#0f0518] text-white pt-14 sm:pt-18 lg:pt-24 pb-12 relative overflow-hidden">
 
-      {/* BRAND STRIP */}
+      {/* BRAND TEXT */}
       <div className="relative w-full h-[90px] sm:h-[140px] md:h-[220px] flex items-center justify-center overflow-hidden px-3 sm:px-6">
-        <h1
-          className="
-            flex items-center justify-center
-            text-[11.5vw] sm:text-[10.5vw] md:text-[9vw]
-            font-extrabold
-            tracking-[0em] sm:tracking-[0.0em] md:tracking-[0.15em]
-            text-white/10
-            whitespace-nowrap
-            leading-none
-            select-none
-          "
-        >
-          {"COMBO SQUARE".split("").map((char, i) => (
-            <span
-              key={i}
-              className="transition-colors duration-300 hover:text-purple-600"
-            >
-              {char === " " ? "\u00A0" : char}
-            </span>
-          ))}
+        <h1 className="text-[11.5vw] sm:text-[10.5vw] md:text-[9vw] font-extrabold text-white/10 whitespace-nowrap">
+          {"COMBO SQUARE"}
         </h1>
       </div>
 
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-secondary/10 rounded-full blur-[150px] pointer-events-none" />
+      {/* BACKGROUND EFFECT */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-[150px]" />
 
       <div className="container mx-auto px-6 relative z-10">
 
-        {/* TOP GRID */}
+        {/* GRID */}
         <div className="grid lg:grid-cols-4 gap-12 mb-20">
 
-          {/* COL 1: Brand Info (LOGO IMPLEMENTED) */}
+          {/* LOGO */}
           <div className="space-y-8">
-            <a href="/" className="block w-48">
+            <Link to="/" className="block w-48">
               <img 
                 src={logoImg} 
                 alt="Combo Square Logo" 
-                className="w-full h-auto object-contain mix-blend-screen" 
+                className="w-full h-auto object-contain mix-blend-screen"
               />
-            </a>
+            </Link>
 
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-gray-400">
               A next-gen digital agency bridging the gap between academic learning
               and industry demands.
             </p>
 
             <div className="flex gap-4">
-              {socialLinks.map(
-                (social, i) => (
-                  <a
-                    key={i}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400
-                    hover:bg-brand-primary hover:text-white hover:scale-110
-                    hover:shadow-[0_0_15px_rgba(139,92,246,0.5)]
-                    transition-all duration-300"
-                  >
-                    {React.cloneElement(social.icon, { size: 18 })}
-                  </a>
-                )
-              )}
+              {socialLinks.map((social, i) => (
+                <a
+                  key={i}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-purple-600 hover:text-white transition"
+                >
+                  {React.cloneElement(social.icon, { size: 18 })}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* COL 2: Quick Links */}
+          {/* QUICK LINKS */}
           <div>
-            <h4 className="text-lg font-bold mb-8 text-white">Quick Links</h4>
+            <h4 className="text-lg font-bold mb-8">Quick Links</h4>
             <ul className="space-y-4">
-              {['Home', 'About Us', 'Services', 'Careers', 'Blog', 'Contact'].map(
-                (item) => {
-                  const path = item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`;
-                  return (
+              {['Home', 'About Us', 'Services', 'Careers', 'Blog', 'Contact'].map((item) => {
+                const path = item === 'Home'
+                  ? '/'
+                  : `/${item.toLowerCase().replace(' ', '-')}`;
+
+                return (
                   <li key={item}>
-                    <a
-                      href={path}
-                      className="text-gray-400 hover:text-brand-primary transition-colors flex items-center gap-2 group"
+                    <Link
+                      to={path}
+                      className="text-gray-400 hover:text-purple-500 transition"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <span className="group-hover:translate-x-1 transition-transform">
-                        {item}
-                      </span>
-                    </a>
+                      {item}
+                    </Link>
                   </li>
-                  );
-                }
-              )}
+                );
+              })}
             </ul>
           </div>
 
-          {/* COL 3: Services */}
+          {/* SERVICES */}
           <div>
-            <h4 className="text-lg font-bold mb-8 text-white">Our Services</h4>
+            <h4 className="text-lg font-bold mb-8">Our Services</h4>
             <ul className="space-y-4">
               {[
                 'IT Development',
@@ -132,72 +108,89 @@ const Footer = () => {
                 'Internship Programs',
                 'Placement Training'
               ].map((item) => {
-                const path = `/services#${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`;
+                const path = `/services#${item
+                  .toLowerCase()
+                  .replace(/ & /g, '-')
+                  .replace(/ /g, '-')}`;
+
                 return (
-                <li key={item}>
-                  <a 
-                    href={path}
-                    className="text-gray-400 hover:text-brand-neon transition-colors block"
-                  >
-                    {item}
-                  </a>
-                </li>
+                  <li key={item}>
+                    <Link
+                      to={path}
+                      className="text-gray-400 hover:text-purple-500 transition"
+                    >
+                      {item}
+                    </Link>
+                  </li>
                 );
               })}
             </ul>
           </div>
 
-          {/* COL 4: Newsletter & Contact */}
+          {/* NEWSLETTER */}
           <div>
-            <h4 className="text-lg font-bold mb-8 text-white">Stay Updated</h4>
+            <h4 className="text-lg font-bold mb-8">Stay Updated</h4>
+
             <p className="text-gray-400 mb-6 text-sm">
               Subscribe to get the latest internship alerts and tech news.
             </p>
 
-            <form action="https://api.web3forms.com/submit" method="POST" className="relative mb-8">
-              <input type="hidden" name="access_key" value="1b0f54ea-c13f-4f18-a52e-1d49ceddcd98" />
+            <form
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              className="relative mb-8"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="1b0f54ea-c13f-4f18-a52e-1d49ceddcd98"
+              />
+
               <input
                 type="email"
                 name="email"
                 required
                 placeholder="Enter your email"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 pr-12 text-white placeholder-gray-500 focus:outline-none focus:border-brand-primary/50 focus:bg-white/10 transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 pr-12 text-white"
               />
-              <button type="submit" className="absolute right-2 top-2 p-2 bg-brand-primary rounded-lg text-white hover:bg-brand-secondary transition-colors shadow-lg">
+
+              <button
+                type="submit"
+                className="absolute right-2 top-2 p-2 bg-purple-600 rounded-lg text-white"
+              >
                 <Send size={18} />
               </button>
             </form>
 
-            <div className="space-y-4">
-              <div className="flex items-start gap-4 text-gray-400">
-                <MapPin size={20} className="text-brand-primary shrink-0 mt-0.5" />
-                <span className="text-sm">
-                  Madipakkam, Chennai, Tamil Nadu, India.
-                </span>
+            {/* CONTACT */}
+            <div className="space-y-4 text-gray-400 text-sm">
+              <div className="flex gap-3">
+                <MapPin size={18} /> Madipakkam, Chennai, India
               </div>
-              <div className="flex items-center gap-4 text-gray-400">
-                <Mail size={20} className="text-brand-primary shrink-0" />
-                <a href="mailto:combosquareofficials@gmail.com" className="text-sm hover:text-white transition-colors">
+
+              <div className="flex gap-3">
+                <Mail size={18} />
+                <a href="mailto:combosquareofficials@gmail.com">
                   combosquareofficials@gmail.com
                 </a>
               </div>
-              <div className="flex items-center gap-4 text-gray-400">
-                <Phone size={20} className="text-brand-primary shrink-0" />
-                <a href="tel:+918072877622" className="text-sm hover:text-white transition-colors">
-                  +91 8072877622
-                </a>
+
+              <div className="flex gap-3">
+                <Phone size={18} />
+                <a href="tel:+918072877622">+91 8072877622</a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+        {/* BOTTOM */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>© 2026 Combo Square. All rights reserved.</p>
-          <div className="flex gap-8">
-            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="/sitemap" className="hover:text-white transition-colors">Sitemap</a>
+
+          <div className="flex gap-6">
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms-of-service">Terms of Service</Link>
+            <Link to="/sitemap">Sitemap</Link>
           </div>
         </div>
       </div>

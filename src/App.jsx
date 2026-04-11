@@ -17,7 +17,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Careers from "./pages/Careers";
 import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost"; // ✅ Kept your new page
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import ServiceDetails from "./pages/ServiceDetails";
 
@@ -35,7 +35,7 @@ function ScrollToTop() {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Preloader Logic from GitHub
+  // Preloader Logic
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -46,13 +46,14 @@ function App() {
 
   return (
     <Router>
-      {/* 1. Preloader (from GitHub) */}
+      {/* Preloader */}
       <Preloader isLoading={isLoading} />
 
-      {/* 2. Scroll Fix */}
+      {/* Scroll Fix */}
       <ScrollToTop />
 
-      <div className="flex flex-col min-h-screen bg-white">
+      {/* MAIN LAYOUT */}
+      <div className="flex flex-col min-h-screen bg-[#482485] overflow-x-hidden">
         {/* NAVBAR */}
         <Navbar />
 
@@ -60,20 +61,21 @@ function App() {
         <main className="flex-grow pt-24">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+
+            <Route path="/about-us" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/careers" element={<Careers />} />
-            
-            {/* BLOG SECTION */}
+
+            {/* BLOG */}
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
 
             <Route path="/contact" element={<Contact />} />
-            
+
             {/* SERVICE DETAILS */}
             <Route path="/service/:id" element={<ServiceDetails />} />
 
-            {/* 404 PAGE */}
+            {/* 404 */}
             <Route
               path="*"
               element={
