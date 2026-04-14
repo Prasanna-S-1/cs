@@ -35,7 +35,6 @@ function ScrollToTop() {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Preloader Logic
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -46,38 +45,24 @@ function App() {
 
   return (
     <Router>
-      {/* Preloader */}
       <Preloader isLoading={isLoading} />
-
-      {/* Scroll Fix */}
       <ScrollToTop />
 
-      {/* MAIN LAYOUT */}
       <div className="flex flex-col min-h-screen bg-[#482485] overflow-x-hidden">
-        {/* NAVBAR */}
         <Navbar />
 
-        {/* MAIN CONTENT */}
-        <main className="flex-grow pt-24">
+        {/* ✅ ONLY HERE we handle navbar spacing */}
+        <main className="flex-grow pt-[72px]">
           <Routes>
             <Route path="/" element={<Home />} />
-
-            {/* ✅ FIXED ROUTE */}
             <Route path="/about" element={<About />} />
-
             <Route path="/services" element={<Services />} />
             <Route path="/careers" element={<Careers />} />
-
-            {/* BLOG */}
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
-
             <Route path="/contact" element={<Contact />} />
-
-            {/* SERVICE DETAILS */}
             <Route path="/service/:id" element={<ServiceDetails />} />
 
-            {/* 404 */}
             <Route
               path="*"
               element={
@@ -91,7 +76,6 @@ function App() {
           </Routes>
         </main>
 
-        {/* FOOTER */}
         <Footer />
       </div>
     </Router>
