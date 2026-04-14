@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from "react-router-dom"; // ✅ ADDED
-
+import { Link } from "react-router-dom";
 import {
   Facebook,
   Twitter,
@@ -10,12 +9,39 @@ import {
   Mail,
   Phone,
   MapPin,
-  Send
+  Send,
+  CheckCircle,
+  Loader2
 } from 'lucide-react';
-
 import logoImg from '../../assets/images/logo.png';
 
+const NEWSLETTER_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCYIfvlyJ8OppD6Q6BPBnwN4yCTHjxjQruf3sYO78_W2sXSpRJt6HXwa3LtL3zD2f7/exec";
+
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [subStatus, setSubStatus] = useState("idle"); // idle | sending | success | error
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    setSubStatus("sending");
+
+    try {
+      await fetch(NEWSLETTER_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          type: "newsletter",
+        }),
+      });
+
+      setSubStatus("success");
+      setEmail("");
+    } catch (err) {
+      setSubStatus("error");
+    }
+  };
 
   const socialLinks = [
     { icon: <Instagram />, url: "https://www.instagram.com/combo_square_?igsh=Mjg1NXM2dTZkcHVv" },
@@ -46,18 +72,16 @@ const Footer = () => {
           {/* LOGO */}
           <div className="space-y-8">
             <Link to="/" className="block w-48">
-              <img 
-                src={logoImg} 
-                alt="Combo Square Logo" 
+              <img
+                src={logoImg}
+                alt="Combo Square Logo"
                 className="w-full h-auto object-contain mix-blend-screen"
               />
             </Link>
-
             <p className="text-gray-400">
               A next-gen digital agency bridging the gap between academic learning
               and industry demands.
             </p>
-
             <div className="flex gap-4">
               {socialLinks.map((social, i) => (
                 <a
@@ -81,13 +105,9 @@ const Footer = () => {
                 const path = item === 'Home'
                   ? '/'
                   : `/${item.toLowerCase().replace(' ', '-')}`;
-
                 return (
                   <li key={item}>
-                    <Link
-                      to={path}
-                      className="text-gray-400 hover:text-purple-500 transition"
-                    >
+                    <Link to={path} className="text-gray-400 hover:text-purple-500 transition">
                       {item}
                     </Link>
                   </li>
@@ -108,17 +128,10 @@ const Footer = () => {
                 'Internship Programs',
                 'Placement Training'
               ].map((item) => {
-                const path = `/services#${item
-                  .toLowerCase()
-                  .replace(/ & /g, '-')
-                  .replace(/ /g, '-')}`;
-
+                const path = `/services#${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`;
                 return (
                   <li key={item}>
-                    <Link
-                      to={path}
-                      className="text-gray-400 hover:text-purple-500 transition"
-                    >
+                    <Link to={path} className="text-gray-400 hover:text-purple-500 transition">
                       {item}
                     </Link>
                   </li>
@@ -130,51 +143,49 @@ const Footer = () => {
           {/* NEWSLETTER */}
           <div>
             <h4 className="text-lg font-bold mb-8">Stay Updated</h4>
-
             <p className="text-gray-400 mb-6 text-sm">
               Subscribe to get the latest internship alerts and tech news.
             </p>
 
-            <form
-              action="https://api.web3forms.com/submit"
-              method="POST"
-              className="relative mb-8"
-            >
-              <input
-                type="hidden"
-                name="access_key"
-                value="1b0f54ea-c13f-4f18-a52e-1d49ceddcd98"
-              />
+            {subStatus === "success" ? (
+              <div className="flex items-center gap-2 text-green-400 font-bold text-sm mb-8 px-4 py-3 bg-green-500/10 border border-green-500/30 rounded-xl">
+                <CheckCircle size={18} />
+                Subscribed successfully! 🎉
+              </div>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} className="relative mb-8">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="Enter your email"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 pr-14 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 transition"
+                />
+                <button
+                  type="submit"
+                  disabled={subStatus === "sending"}
+                  className="absolute right-2 top-2 p-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-white transition disabled:opacity-60"
+                >
+                  {subStatus === "sending"
+                    ? <Loader2 size={18} className="animate-spin" />
+                    : <Send size={18} />
+                  }
+                </button>
+              </form>
+            )}
 
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 pr-12 text-white"
-              />
-
-              <button
-                type="submit"
-                className="absolute right-2 top-2 p-2 bg-purple-600 rounded-lg text-white"
-              >
-                <Send size={18} />
-              </button>
-            </form>
-
-            {/* CONTACT */}
+            {/* CONTACT INFO */}
             <div className="space-y-4 text-gray-400 text-sm">
               <div className="flex gap-3">
                 <MapPin size={18} /> Madipakkam, Chennai, India
               </div>
-
               <div className="flex gap-3">
                 <Mail size={18} />
                 <a href="mailto:combosquareofficials@gmail.com">
                   combosquareofficials@gmail.com
                 </a>
               </div>
-
               <div className="flex gap-3">
                 <Phone size={18} />
                 <a href="tel:+918072877622">+91 8072877622</a>
@@ -186,7 +197,6 @@ const Footer = () => {
         {/* BOTTOM */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>© 2026 Combo Square. All rights reserved.</p>
-
           <div className="flex gap-6">
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/terms-of-service">Terms of Service</Link>
