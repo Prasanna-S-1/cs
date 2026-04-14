@@ -252,7 +252,7 @@ const Contact = () => {
                     className="w-4 h-4 accent-purple-500 cursor-pointer"
                   />
                   <span className="text-sm text-gray-300 group-hover:text-white transition">
-                    📬 Subscribe to our newsletter for updates & offers
+                     Subscribe to our newsletter for updates & offers
                   </span>
                 </label>
 
