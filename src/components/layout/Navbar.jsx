@@ -47,9 +47,9 @@ const Navbar = () => {
   ];
 
   const moreLinks = [
-    { name: '🏆 Hackathon', path: '/hackathon' },
-    { name: '📚 Courses', path: '/courses' },
-    { name: '💼 Internships', path: '/internships' },
+    { name: ' Hackathon', path: '/hackathon' },
+    { name: ' Courses', path: '/courses' },
+    { name: ' Internships', path: '/internships' },
   ];
 
   return (

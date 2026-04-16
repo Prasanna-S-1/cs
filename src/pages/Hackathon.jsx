@@ -14,11 +14,11 @@ const eventDetails = [
 ];
 
 const categories = [
-  { emoji: "🌾", name: "Agriculture" },
-  { emoji: "🏥", name: "Healthcare" },
-  { emoji: "📚", name: "EdTech" },
-  { emoji: "💰", name: "FinTech" },
-  { emoji: "🔒", name: "Cybersecurity" },
+  { emoji: "", name: "Agriculture" },
+  { emoji: "", name: "Healthcare" },
+  { emoji: "", name: "EdTech" },
+  { emoji: "", name: "FinTech" },
+  { emoji: "", name: "Cybersecurity" },
 ];
 
 const evaluationCriteria = [
@@ -39,8 +39,8 @@ const rules = [
 ];
 
 const prizes = [
-  { place: "1st", medal: "🥇", amount: "₹3,000", color: "from-yellow-400 to-yellow-600" },
-  { place: "2nd", medal: "🥈", amount: "₹2,000", color: "from-gray-300 to-gray-500" },
+  { place: "1st", medal: "", amount: "₹3,000", color: "from-yellow-400 to-yellow-600" },
+  { place: "2nd", medal: "", amount: "₹2,000", color: "from-gray-300 to-gray-500" },
 ];
 
 const Hackathon = () => {
@@ -55,7 +55,7 @@ const Hackathon = () => {
         <div className="relative z-10 container mx-auto px-6 lg:px-12 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm font-bold mb-6">
-               Combo Square Hackathon 2026
+              Combo Square Hackathon 2026
             </span>
 
             <h1 className="text-5xl sm:text-6xl xl:text-7xl font-black leading-tight mb-6">
@@ -69,9 +69,7 @@ const Hackathon = () => {
             </p>
 
             <a
-              href="https://wa.me/918072877622"
-              target="_blank"
-              rel="noreferrer"
+              href="/contact"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-purple-500 hover:bg-purple-600 text-white font-black shadow-2xl transition-all active:scale-95"
             >
               Register Now <ArrowRight size={20} />
@@ -113,13 +111,12 @@ const Hackathon = () => {
 
           {/* Priority Track */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white/5 border border-purple-500/30 rounded-3xl p-8">
-            <span className="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold mb-4">⭐ Priority Track</span>
+            <span className="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold mb-4">Priority Track</span>
             <h3 className="text-2xl font-black mb-3">Combo Square Problem Statements</h3>
             <p className="text-gray-400 text-sm mb-6">Teams selecting these statements get <span className="text-purple-400 font-bold">first priority</span> during evaluation.</p>
             <div className="grid grid-cols-2 gap-3">
               {categories.map((cat, i) => (
                 <div key={i} className="flex items-center gap-2 bg-white/5 rounded-xl px-4 py-3">
-                  <span className="text-xl">{cat.emoji}</span>
                   <span className="text-sm font-bold">{cat.name}</span>
                 </div>
               ))}
@@ -128,7 +125,7 @@ const Hackathon = () => {
 
           {/* Open Innovation */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white/5 border border-white/10 rounded-3xl p-8">
-            <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-gray-300 text-xs font-bold mb-4">💡 Open Innovation Track</span>
+            <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-gray-300 text-xs font-bold mb-4">Open Innovation Track</span>
             <h3 className="text-2xl font-black mb-3">Student Idea Track</h3>
             <p className="text-gray-400 text-sm mb-6">Propose your own problem statement from any domain focusing on innovation.</p>
             <h4 className="font-bold mb-3 text-purple-300">Each team must submit:</h4>
@@ -182,7 +179,6 @@ const Hackathon = () => {
               className={`bg-gradient-to-br ${prize.color} p-1 rounded-3xl`}
             >
               <div className="bg-[#0f0518] rounded-[22px] p-8 text-center h-full">
-                <div className="text-5xl mb-3">{prize.medal}</div>
                 <h3 className="text-xl font-black mb-2">{prize.place} Prize</h3>
                 <p className="text-3xl font-black text-purple-400">{prize.amount}</p>
               </div>
@@ -233,16 +229,14 @@ const Hackathon = () => {
             </div>
           </div>
           <p className="mt-8 text-gray-400 text-sm leading-relaxed">
-            Combo Square Hackathon 2026 is not just a competition, but a platform to innovate,
-            collaborate, and showcase your talent. Join us and turn your ideas into reality! 
+           Combo Square Hackathon 2026 is not just a competition, but a platform to innovate,
+            collaborate, and showcase your talent. Join us and turn your ideas into reality!
           </p>
           <a
-            href="https://wa.me/918072877622"
-            target="_blank"
-            rel="noreferrer"
+            href="/contact"
             className="mt-6 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-green-500 hover:bg-green-600 text-black font-black shadow-2xl transition-all"
           >
-            Register via WhatsApp <ArrowRight size={20} />
+            Register Now <ArrowRight size={20} />
           </a>
         </motion.div>
       </section>

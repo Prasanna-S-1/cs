@@ -6,7 +6,7 @@ const internships = [
   {
     title: "Full Stack Intern",
     domain: "IT Development",
-    emoji: "💻",
+    emoji: "",
     desc: "Build industry-grade MERN applications with real clients, clean architecture, and mentor guidance.",
     location: "Remote / Chennai",
     duration: "3 – 6 Months",
@@ -18,7 +18,7 @@ const internships = [
   {
     title: "Developer Intern",
     domain: "Web & App",
-    emoji: "🚀",
+    emoji: "",
     desc: "Work across frontend, backend, APIs, and deployment while shipping scalable real-world products.",
     location: "Hybrid",
     duration: "6 Months",
@@ -30,7 +30,7 @@ const internships = [
   {
     title: "Digital Marketing Intern",
     domain: "Marketing",
-    emoji: "📢",
+    emoji: "",
     desc: "Learn SEO, paid ads, social media growth and analytics-driven performance marketing.",
     location: "Remote",
     duration: "3 Months",
@@ -42,7 +42,7 @@ const internships = [
   {
     title: "UI/UX Design Intern",
     domain: "Design",
-    emoji: "🎨",
+    emoji: "",
     desc: "Design modern interfaces, conduct user research and build design systems using industry tools.",
     location: "Remote",
     duration: "2 – 3 Months",
@@ -54,7 +54,7 @@ const internships = [
   {
     title: "IoT & Robotics Intern",
     domain: "Hardware",
-    emoji: "🤖",
+    emoji: "",
     desc: "Work on embedded systems, sensors, automation and real-world hardware applications.",
     location: "Chennai",
     duration: "3 Months",
@@ -66,7 +66,7 @@ const internships = [
   {
     title: "Content Creation Intern",
     domain: "Media",
-    emoji: "🎬",
+    emoji: "",
     desc: "Create engaging videos, social media content and manage brand storytelling.",
     location: "Remote / Hybrid",
     duration: "2 Months",
@@ -113,9 +113,7 @@ const Internships = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://wa.me/918072877622"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/contact"
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-purple-500 hover:bg-purple-600 text-white font-black transition-all"
                 >
                   Apply Now <ArrowRight size={18} />
@@ -132,13 +130,12 @@ const Internships = () => {
             {/* Stats */}
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="grid grid-cols-2 gap-4">
               {[
-                { number: "100+", label: "Interns Placed", emoji: "🎓" },
-                { number: "6+", label: "Domains Available", emoji: "💼" },
-                { number: "95%", label: "Satisfaction Rate", emoji: "⭐" },
-                { number: "Free", label: "Career Guidance", emoji: "🚀" },
+                { number: "100+", label: "Interns Placed", emoji: "" },
+                { number: "6+", label: "Domains Available", emoji: "" },
+                { number: "95%", label: "Satisfaction Rate", emoji: "" },
+                { number: "Free", label: "Career Guidance", emoji: "" },
               ].map((stat, i) => (
                 <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-purple-400/50 transition-all">
-                  <div className="text-3xl mb-2">{stat.emoji}</div>
                   <div className="text-2xl font-black text-purple-400">{stat.number}</div>
                   <div className="text-xs text-gray-400 font-semibold">{stat.label}</div>
                 </div>
@@ -175,7 +172,6 @@ const Internships = () => {
               {/* Content */}
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xl">{intern.emoji}</span>
                   <span className="text-xs font-bold text-purple-300 uppercase tracking-wide">{intern.domain}</span>
                 </div>
 
@@ -194,9 +190,7 @@ const Internships = () => {
                 </div>
 
                 <a
-                  href="https://wa.me/918072877622"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/contact"
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-purple-500 hover:bg-purple-600 text-white font-black text-sm transition-all"
                 >
                   Apply Now <ArrowRight size={14} />
@@ -234,12 +228,10 @@ const Internships = () => {
           <p className="text-gray-400 mb-8 max-w-xl mx-auto">Join hundreds of students who launched their careers with Combo Square internships.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href="https://wa.me/918072877622"
-              target="_blank"
-              rel="noreferrer"
+              href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-green-500 hover:bg-green-600 text-black font-black transition-all"
             >
-              Apply via WhatsApp <ArrowRight size={18} />
+              Apply Now <ArrowRight size={18} />
             </a>
             <a
               href="/contact"
