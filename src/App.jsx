@@ -20,15 +20,16 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import ServiceDetails from "./pages/ServiceDetails";
+import Hackathon from "./pages/Hackathon";
+import Courses from "./pages/Courses";
+import Internships from "./pages/Internships";
 
 // Scroll to top on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
 }
 
@@ -39,7 +40,6 @@ function App() {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -51,8 +51,7 @@ function App() {
       <div className="flex flex-col min-h-screen bg-[#482485] overflow-x-hidden">
         <Navbar />
 
-        {/* ✅ ONLY HERE we handle navbar spacing */}
-        <main className="flex-grow pt-[72px]">
+        <main className="flex-grow pt-24">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -63,6 +62,12 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/service/:id" element={<ServiceDetails />} />
 
+            {/* NEW PAGES */}
+            <Route path="/hackathon" element={<Hackathon />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/internships" element={<Internships />} />
+
+            {/* 404 */}
             <Route
               path="*"
               element={
