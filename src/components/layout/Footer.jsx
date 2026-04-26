@@ -101,14 +101,23 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-8">Quick Links</h4>
             <ul className="space-y-4">
-              {['Home', 'About Us', 'Services', 'Careers', 'Blog', 'Contact'].map((item) => {
-                const path = item === 'Home'
-                  ? '/'
-                  : `/${item.toLowerCase().replace(' ', '-')}`;
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'About Us', path: '/about' },
+                { name: 'Services', path: '/services' },
+                { name: 'Careers', path: '/careers' },
+                { name: 'Blog', path: '/blog' },
+                { name: 'Contact', path: '/contact' },
+                { name: 'Job Alerts', path: '/job-alerts' },
+                { name: 'Internship & Courses', path: '/internship-courses' },
+                { name: 'Hackathon', path: '/hackathon' },
+              ].map((item) => {
+                const path = item.path;
+                const displayName = item.name;
                 return (
-                  <li key={item}>
+                  <li key={displayName}>
                     <Link to={path} className="text-gray-400 hover:text-purple-500 transition">
-                      {item}
+                      {displayName}
                     </Link>
                   </li>
                 );

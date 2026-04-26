@@ -32,24 +32,23 @@ const Navbar = () => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
   }, [isOpen]);
 
-  // Close dropdown on route change
   useEffect(() => {
     setMoreOpen(false);
     setIsOpen(false);
   }, [location]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Home',     path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
-    { name: 'Careers', path: '/careers' },
-    { name: 'Blog', path: '/blog' },
+    { name: 'Careers',  path: '/careers' },
+    { name: 'Blog',     path: '/blog' },
   ];
 
   const moreLinks = [
-    { name: ' Hackathon', path: '/hackathon' },
-    { name: ' Courses', path: '/courses' },
-    { name: ' Internships', path: '/internships' },
+    { name: ' Hackathon',           path: '/hackathon' },
+    { name: ' Internship & Courses', path: '/internship-courses' },
+    { name: ' Job Alerts',           path: '/job-alerts' },
   ];
 
   return (
@@ -110,13 +109,13 @@ const Navbar = () => {
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-[#2a1460] border border-white/10 rounded-2xl shadow-2xl overflow-hidden w-48"
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-[#2a1460] border border-white/10 rounded-2xl shadow-2xl overflow-hidden w-56"
                         >
                           {moreLinks.map((item) => (
                             <Link
                               key={item.name}
                               to={item.path}
-                              className={`block px-5 py-3 text-sm font-bold transition hover:bg-purple-500/30 ${
+                              className={`block px-5 py-3.5 text-sm font-bold transition hover:bg-purple-500/30 ${
                                 location.pathname === item.path ? 'text-white bg-purple-500/20' : 'text-purple-200'
                               }`}
                             >

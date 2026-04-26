@@ -69,7 +69,7 @@ const Hackathon = () => {
             </p>
 
             <a
-              href="/contact"
+              href="/contact?source=hackathon"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-purple-500 hover:bg-purple-600 text-white font-black shadow-2xl transition-all active:scale-95"
             >
               Register Now <ArrowRight size={20} />
@@ -233,7 +233,7 @@ const Hackathon = () => {
             collaborate, and showcase your talent. Join us and turn your ideas into reality!
           </p>
           <a
-            href="/contact"
+            href="/contact?source=hackathon"
             className="mt-6 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-green-500 hover:bg-green-600 text-black font-black shadow-2xl transition-all"
           >
             Register Now <ArrowRight size={20} />

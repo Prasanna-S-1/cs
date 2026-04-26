@@ -21,8 +21,8 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import ServiceDetails from "./pages/ServiceDetails";
 import Hackathon from "./pages/Hackathon";
-import Courses from "./pages/Courses";
-import Internships from "./pages/Internships";
+import InternshipCourses from "./pages/InternshipCourses";
+import JobAlert from "./pages/JobAlert";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -64,8 +64,8 @@ function App() {
 
             {/* NEW PAGES */}
             <Route path="/hackathon" element={<Hackathon />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/internships" element={<Internships />} />
+            <Route path="/internship-courses" element={<InternshipCourses />} />
+            <Route path="/job-alerts" element={<JobAlert />} />
 
             {/* 404 */}
             <Route
