@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
 import {
   Briefcase, MapPin, ExternalLink, MessageCircle,
   ChevronRight, Bell, TrendingUp, Users, Building2,
@@ -28,7 +26,6 @@ const MNC_COMPANIES = [
   { name: "SAP",          logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg",              careers: "https://jobs.sap.com" },
 ];
 
-// Top 50 MNC Career Links (for job cards)
 const ALL_COMPANIES = [
   ...MNC_COMPANIES,
   { name: "Zoho",         careers: "https://careers.zohocorp.com" },
@@ -68,7 +65,6 @@ const ALL_COMPANIES = [
   { name: "Mahindra",     careers: "https://careers.mahindra.com" },
 ];
 
-// ── HIRING SERIES DATA ───────────────────────────────────────
 const HIRING_SERIES = [
   {
     series: "#31",
@@ -126,7 +122,6 @@ const HIRING_SERIES = [
   },
 ];
 
-// ── ANIMATED COUNTER ─────────────────────────────────────────
 const Counter = ({ target, suffix, label }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -155,37 +150,27 @@ const Counter = ({ target, suffix, label }) => {
   );
 };
 
-// ── MAIN COMPONENT ───────────────────────────────────────────
 const JobAlert = () => {
-  const marqueeRef = useRef(null);
-
   return (
     <div className="bg-[#070410] text-white min-h-screen overflow-x-hidden font-sans">
-      <Navbar />
 
-      {/* ═══════════════════════════════════════════════
-          SECTION 1 — HERO
-      ═══════════════════════════════════════════════ */}
+      {/* SECTION 1 — HERO */}
       <section className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 overflow-hidden">
-        {/* Background effects */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-violet-600/10 rounded-full blur-[200px]" />
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[150px]" />
           <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-purple-600/10 rounded-full blur-[120px]" />
-          {/* Grid pattern */}
           <div className="absolute inset-0 opacity-[0.03]"
             style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 lg:px-12 text-center">
-          {/* Badge */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-sm font-bold mb-10">
               <Bell size={14} className="animate-bounce" /> Live Job Alerts · Updated Daily
             </span>
           </motion.div>
 
-          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -214,7 +199,6 @@ const JobAlert = () => {
             <span className="text-white font-semibold">how to get selected</span>
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -237,14 +221,11 @@ const JobAlert = () => {
             </a>
           </motion.div>
 
-          {/* ── MARQUEE — MNC LOGOS ── */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
             <p className="text-gray-600 text-xs font-bold uppercase tracking-widest mb-6">Hiring from top companies</p>
             <div className="relative overflow-hidden">
-              {/* fade edges */}
               <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#070410] to-transparent z-10" />
               <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#070410] to-transparent z-10" />
-
               <div className="flex gap-12 animate-marquee whitespace-nowrap">
                 {[...MNC_COMPANIES, ...MNC_COMPANIES].map((c, i) => (
                   <div key={i} className="flex items-center gap-3 flex-shrink-0 opacity-40 hover:opacity-80 transition-opacity">
@@ -257,23 +238,19 @@ const JobAlert = () => {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          SECTION 2 — STATS
-      ═══════════════════════════════════════════════ */}
+      {/* SECTION 2 — STATS */}
       <section className="py-24 border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-900/10 via-purple-900/5 to-violet-900/10" />
         <div className="relative z-10 container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
-            <Counter target={1000} suffix="+" label="Jobs Posted" />
-            <Counter target={50}   suffix="+" label="Companies" />
+            <Counter target={1000}  suffix="+" label="Jobs Posted" />
+            <Counter target={50}    suffix="+" label="Companies" />
             <Counter target={10000} suffix="+" label="Students Reached" />
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          SECTION 3 — LATEST HIRING SERIES
-      ═══════════════════════════════════════════════ */}
+      {/* SECTION 3 — LATEST HIRING SERIES */}
       <section id="latest-jobs" className="py-24 container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -300,18 +277,13 @@ const JobAlert = () => {
               transition={{ delay: i * 0.08 }}
               className="group relative bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-violet-500/30 hover:bg-white/[0.06] transition-all duration-300 flex flex-col gap-4 overflow-hidden"
             >
-              {/* glow on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-violet-500/0 to-purple-500/0 group-hover:from-violet-500/5 group-hover:to-purple-500/5 transition-all duration-500 rounded-2xl" />
-
-              {/* Top row */}
               <div className="flex items-center justify-between">
                 <span className="text-3xl font-black text-white/20 group-hover:text-white/30 transition-colors">{job.series}</span>
                 <span className={`px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r ${job.badgeColor} text-white`}>
                   {job.badge}
                 </span>
               </div>
-
-              {/* Companies */}
               <div>
                 <p className="text-xs text-gray-600 font-bold uppercase tracking-wider mb-2">Companies</p>
                 <div className="flex flex-wrap gap-2">
@@ -322,20 +294,14 @@ const JobAlert = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Roles */}
               <div>
                 <p className="text-xs text-gray-600 font-bold uppercase tracking-wider mb-1">Roles</p>
                 <p className="text-gray-300 text-sm font-semibold">{job.roles}</p>
               </div>
-
-              {/* Location */}
               <div className="flex items-center gap-2 text-gray-500 text-xs">
                 <MapPin size={12} className="text-violet-400" />
                 {job.location}
               </div>
-
-              {/* View Jobs buttons */}
               <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/5">
                 {job.companies.map((c, ci) => (
                   <a
@@ -352,7 +318,6 @@ const JobAlert = () => {
           ))}
         </div>
 
-        {/* All companies grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -377,13 +342,10 @@ const JobAlert = () => {
         </motion.div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          SECTION 4 — ABOUT
-      ═══════════════════════════════════════════════ */}
+      {/* SECTION 4 — ABOUT */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-900/15 via-transparent to-blue-900/10" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-violet-500/20 to-transparent" />
-
         <div className="relative z-10 container mx-auto px-6 lg:px-12">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -394,7 +356,6 @@ const JobAlert = () => {
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs font-bold uppercase tracking-widest mb-10">
                 <Star size={12} className="text-yellow-400" /> Our Mission
               </span>
-
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.15] mb-8">
                 We don't just{" "}
                 <span className="relative">
@@ -404,14 +365,12 @@ const JobAlert = () => {
                   </svg>
                 </span>
               </h2>
-
               <p className="text-2xl sm:text-3xl text-gray-300 font-light leading-relaxed mb-16">
                 We help you understand{" "}
                 <span className="text-white font-bold">how companies hire</span>{" "}
                 and how to{" "}
                 <span className="text-violet-400 font-bold">prepare for them.</span>
               </p>
-
               <div className="grid sm:grid-cols-3 gap-6">
                 {[
                   { icon: TrendingUp, title: "Hiring Insights",   desc: "We break down what companies actually look for in candidates" },
@@ -442,9 +401,7 @@ const JobAlert = () => {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          SECTION 5 — CTA
-      ═══════════════════════════════════════════════ */}
+      {/* SECTION 5 — CTA */}
       <section className="py-24 container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
@@ -454,12 +411,10 @@ const JobAlert = () => {
         >
           <div className="absolute -top-32 -right-32 w-64 h-64 bg-violet-500/20 rounded-full blur-[100px]" />
           <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px]" />
-
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-sm font-bold mb-8">
               <Bell size={14} /> Don't miss out
             </span>
-
             <h2 className="text-4xl sm:text-5xl font-black mb-4">
               Want daily{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">job updates?</span>
@@ -467,7 +422,6 @@ const JobAlert = () => {
             <p className="text-gray-400 text-lg mb-10 max-w-lg mx-auto">
               Join 10,000+ students getting fresh job alerts, hiring tips and interview prep every day.
             </p>
-
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="https://wa.me/918072877622"
@@ -487,9 +441,6 @@ const JobAlert = () => {
         </motion.div>
       </section>
 
-      <Footer />
-
-      {/* ── CSS for marquee ── */}
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }
