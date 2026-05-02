@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from "react-router-dom";
 import {
   Facebook,
@@ -19,23 +18,18 @@ const NEWSLETTER_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCYIfvly
 
 const Footer = () => {
   const [email, setEmail] = useState("");
-  const [subStatus, setSubStatus] = useState("idle"); // idle | sending | success | error
+  const [subStatus, setSubStatus] = useState("idle");
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     setSubStatus("sending");
-
     try {
       await fetch(NEWSLETTER_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          type: "newsletter",
-        }),
+        body: JSON.stringify({ email: email, type: "newsletter" }),
       });
-
       setSubStatus("success");
       setEmail("");
     } catch (err) {
@@ -47,29 +41,40 @@ const Footer = () => {
     { icon: <Instagram />, url: "https://www.instagram.com/combo_square_?igsh=Mjg1NXM2dTZkcHVv" },
     { icon: <Linkedin />, url: "https://www.linkedin.com/company/combo-square/" },
     { icon: <Facebook />, url: "https://www.facebook.com/profile.php?id=61562432777570" },
-    { icon: <Twitter />, url: "https://x.com/combosquare_" }
+    { icon: <Twitter />, url: "https://x.com/combosquare_" },
+  ];
+
+  const quickLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Careers', path: '/careers' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'Job Alerts', path: '/job-alerts' },
+    { name: 'Internship & Courses', path: '/internship-courses' },
+    { name: 'Hackathon', path: '/hackathon' },
+  ];
+
+  const services = [
+    'IT Development',
+    'IoT & Robotics',
+    'Digital Marketing',
+    'Branding & UI/UX',
+    'Internship Programs',
+    'Placement Training',
   ];
 
   return (
     <footer className="bg-[#0f0518] text-white pt-14 sm:pt-18 lg:pt-24 pb-12 relative overflow-hidden">
 
-      {/* BRAND TEXT */}
-      <div className="relative w-full h-[90px] sm:h-[140px] md:h-[220px] flex items-center justify-center overflow-hidden px-3 sm:px-6">
-        <h1 className="text-[11.5vw] sm:text-[10.5vw] md:text-[9vw] font-extrabold text-white/10 whitespace-nowrap">
-          {"COMBO SQUARE"}
-        </h1>
-      </div>
-
-      {/* BACKGROUND EFFECT */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[150px]" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-[150px]" />
 
       <div className="container mx-auto px-6 relative z-10">
 
-        {/* GRID */}
         <div className="grid lg:grid-cols-4 gap-12 mb-20">
 
-          {/* LOGO */}
           <div className="space-y-8">
             <Link to="/" className="block w-48">
               <img
@@ -79,8 +84,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-gray-400">
-              A next-gen digital agency bridging the gap between academic learning
-              and industry demands.
+              A next-gen digital agency bridging the gap between academic learning and industry demands.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social, i) => (
@@ -97,59 +101,35 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* QUICK LINKS */}
           <div>
             <h4 className="text-lg font-bold mb-8">Quick Links</h4>
             <ul className="space-y-4">
-              {[
-                { name: 'Home', path: '/' },
-                { name: 'About Us', path: '/about' },
-                { name: 'Services', path: '/services' },
-                { name: 'Careers', path: '/careers' },
-                { name: 'Blog', path: '/blog' },
-                { name: 'Contact', path: '/contact' },
-                { name: 'Job Alerts', path: '/job-alerts' },
-                { name: 'Internship & Courses', path: '/internship-courses' },
-                { name: 'Hackathon', path: '/hackathon' },
-              ].map((item) => {
-                const path = item.path;
-                const displayName = item.name;
-                return (
-                  <li key={displayName}>
-                    <Link to={path} className="text-gray-400 hover:text-purple-500 transition">
-                      {displayName}
-                    </Link>
-                  </li>
-                );
-              })}
+              {quickLinks.map((item) => (
+                <li key={item.name}>
+                  <Link to={item.path} className="text-gray-400 hover:text-purple-500 transition">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* SERVICES */}
           <div>
             <h4 className="text-lg font-bold mb-8">Our Services</h4>
             <ul className="space-y-4">
-              {[
-                'IT Development',
-                'IoT & Robotics',
-                'Digital Marketing',
-                'Branding & UI/UX',
-                'Internship Programs',
-                'Placement Training'
-              ].map((item) => {
-                const path = `/services#${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`;
-                return (
-                  <li key={item}>
-                    <Link to={path} className="text-gray-400 hover:text-purple-500 transition">
-                      {item}
-                    </Link>
-                  </li>
-                );
-              })}
+              {services.map((item) => (
+                <li key={item}>
+                  <Link
+                    to={"/services#" + item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}
+                    className="text-gray-400 hover:text-purple-500 transition"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* NEWSLETTER */}
           <div>
             <h4 className="text-lg font-bold mb-8">Stay Updated</h4>
             <p className="text-gray-400 mb-6 text-sm">
@@ -159,7 +139,7 @@ const Footer = () => {
             {subStatus === "success" ? (
               <div className="flex items-center gap-2 text-green-400 font-bold text-sm mb-8 px-4 py-3 bg-green-500/10 border border-green-500/30 rounded-xl">
                 <CheckCircle size={18} />
-                Subscribed successfully! 🎉
+                Subscribed successfully!
               </div>
             ) : (
               <form onSubmit={handleNewsletterSubmit} className="relative mb-8">
@@ -176,24 +156,19 @@ const Footer = () => {
                   disabled={subStatus === "sending"}
                   className="absolute right-2 top-2 p-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-white transition disabled:opacity-60"
                 >
-                  {subStatus === "sending"
-                    ? <Loader2 size={18} className="animate-spin" />
-                    : <Send size={18} />
-                  }
+                  {subStatus === "sending" ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                 </button>
               </form>
             )}
 
-            {/* CONTACT INFO */}
             <div className="space-y-4 text-gray-400 text-sm">
               <div className="flex gap-3">
-                <MapPin size={18} /> Madipakkam, Chennai, India
+                <MapPin size={18} />
+                <span>Madipakkam, Chennai, India</span>
               </div>
               <div className="flex gap-3">
                 <Mail size={18} />
-                <a href="mailto:combosquareofficials@gmail.com">
-                  combosquareofficials@gmail.com
-                </a>
+                <a href="mailto:combosquareofficials@gmail.com">combosquareofficials@gmail.com</a>
               </div>
               <div className="flex gap-3">
                 <Phone size={18} />
@@ -201,9 +176,9 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
         </div>
 
-        {/* BOTTOM */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>© 2026 Combo Square. All rights reserved.</p>
           <div className="flex gap-6">
@@ -212,6 +187,7 @@ const Footer = () => {
             <Link to="/sitemap">Sitemap</Link>
           </div>
         </div>
+
       </div>
     </footer>
   );
